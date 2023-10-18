@@ -6,13 +6,14 @@ public class Chord {
     Note note3;
     Note note4;
     String chordType;
-    Chord(Note note1, Note note2, Note note3) {
+    //----------------------------Constructors--------------------------------
+    public Chord(Note note1, Note note2, Note note3) {
         this.note1 = note1;
         this.note2 = note2;
         this.note3 = note3;
         this.determineChordType();
     }
-    Chord(Note note1, Note note2, Note note3, Note note4) {
+    public Chord(Note note1, Note note2, Note note3, Note note4) {
         this.note1 = note1;
         this.note2 = note2;
         this.note3 = note3;
