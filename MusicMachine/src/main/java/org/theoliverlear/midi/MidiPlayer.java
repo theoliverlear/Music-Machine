@@ -3,11 +3,14 @@ package org.theoliverlear.midi;
 import org.theoliverlear.Note;
 
 import javax.sound.midi.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.concurrent.CountDownLatch;
 
 public class MidiPlayer {
-    public static void main(String[] args) throws MidiUnavailableException {
+    public static void main(String[] args) throws MidiUnavailableException, InvalidMidiDataException, IOException {
         MidiDevice.Info[] infos = MidiSystem.getMidiDeviceInfo();
         Arrays.stream(infos).forEach(System.out::println);
         MidiDevice device = MidiSystem.getMidiDevice(infos[5]);
@@ -70,20 +73,24 @@ public class MidiPlayer {
                 {Note.G_SHARP_2.getNoteNumber(), 500},
                 {Note.REST.getNoteNumber(), 1500}
                 };
-        Thread rightHand = new Thread(() -> {
-            arrayPlayNote(receiver, rightHandNotesWithTempo);
-        });
-        Thread leftHand = new Thread(() -> {
-            arrayPlayNote(receiver, leftHandNotesWithTempo);
-        });
-        rightHand.start();
-        //leftHand.start();
-        try {
-            rightHand.join();
-            //leftHand.join();
-        } catch (InterruptedException ex) {
-            ex.printStackTrace();
-        }
+//        Thread rightHand = new Thread(() -> {
+//            arrayPlayNote(receiver, rightHandNotesWithTempo);
+//        });
+//        Thread leftHand = new Thread(() -> {
+//            arrayPlayNote(receiver, leftHandNotesWithTempo);
+//        });
+//        rightHand.start();
+//        leftHand.start();
+//        try {
+//            rightHand.join();
+//            leftHand.join();
+//        } catch (InterruptedException ex) {
+//            ex.printStackTrace();
+//        }
+        //File midiFile = new File("src/main/resources/sonata_in_c.mid");
+        File midiFile = new File("src/main/resources/fur_elise.mid");
+        filePlayNoteSimple(receiver, device, midiFile);
+        //filePlayNote(receiver, device, midiFile);
         receiver.close();
         device.close();
     }
@@ -93,6 +100,110 @@ public class MidiPlayer {
         } else {
             return -1;
         }
+    }
+    public static void filePlayNote(Receiver receiver, MidiDevice device, File midiFile) throws MidiUnavailableException, InvalidMidiDataException, IOException {
+        // Get a sequencer
+        Sequencer player = MidiSystem.getSequencer(false);
+        // Open the sequencer
+        player.open();
+        // Get a sequence from the midi file
+        Sequence sequence = MidiSystem.getSequence(midiFile);
+        // Set the sequence to the sequencer
+        player.setSequence(sequence);
+        // Set piano to the receiver
+        Receiver pianoReceiver = device.getReceiver();
+        // Set the sequencer to the transmitter
+        Transmitter seqTransmitter = player.getTransmitter();
+        // Route the transmitter to the receiver
+        seqTransmitter.setReceiver(pianoReceiver);
+
+
+        player.addMetaEventListener(metaEvent -> {
+            if (metaEvent.getType() == 47) {
+                player.close();
+            }
+        });
+        Track[] tracks = player.getSequence().getTracks();
+        Thread[] threads = new Thread[tracks.length];
+        CountDownLatch countDownTimer = new CountDownLatch(tracks.length);
+        for (int trackIndex = 0; trackIndex < tracks.length; trackIndex++) {
+            Track track = tracks[trackIndex];
+            threads[trackIndex] = new Thread(() -> {
+                for (int trackEvent = 0; trackEvent < track.size(); trackEvent++) {
+                    MidiEvent midiEvent = track.get(trackEvent);
+                    MidiMessage midiMessage = midiEvent.getMessage();
+                    if (midiMessage instanceof ShortMessage) {
+                        ShortMessage note = (ShortMessage) midiMessage;
+                        if (note.getCommand() == ShortMessage.NOTE_ON) {
+                            int key = note.getData1();
+                            int velocity = note.getData2();
+                            if (velocity > 0) {
+                                for (int followingEvent = trackEvent + 1; followingEvent < track.size(); followingEvent++) {
+                                    MidiEvent followingMidiEvent = track.get(followingEvent);
+                                    MidiMessage followingMidiMessage = followingMidiEvent.getMessage();
+                                    if (followingMidiMessage instanceof ShortMessage) {
+                                        ShortMessage followingNote = (ShortMessage) followingMidiMessage;
+                                        if ((followingNote.getCommand() == ShortMessage.NOTE_OFF ||
+                                        followingNote.getCommand() == ShortMessage.NOTE_ON && followingNote.getData2() == 0) &&
+                                        followingNote.getData1() == key) {
+                                            long noteDurationTicks = followingMidiEvent.getTick() - midiEvent.getTick();
+                                            long noteDurationMilliSeconds = (long) ((noteDurationTicks * 60000) / (sequence.getResolution() * player.getTempoInBPM()));
+                                            System.out.println("Playing note: " + key + " for " + noteDurationMilliSeconds + " milliseconds.");
+                                            try {
+                                                playNote(receiver, key, velocity, (int) noteDurationMilliSeconds);
+                                            } catch (
+                                                    InvalidMidiDataException ex) {
+                                                ex.printStackTrace();
+                                            }
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        for (Thread thread : threads) {
+            thread.start();
+        }
+        for (Thread thread : threads) {
+            try {
+                thread.join();
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+        }
+        player.close();
+    }
+    public static void filePlayNoteSimple(Receiver receiver, MidiDevice device, File midiFile) throws MidiUnavailableException, InvalidMidiDataException, IOException {
+        Sequencer player = MidiSystem.getSequencer(false);
+        player.open();
+
+        Sequence sequence = MidiSystem.getSequence(midiFile);
+
+        player.setSequence(sequence);
+
+        Receiver pianoReceiver = device.getReceiver();
+
+        player.getTransmitter().setReceiver(pianoReceiver);
+
+        player.start();
+
+        player.addMetaEventListener(metaEvent -> {
+            if (metaEvent.getType() == 47) {
+                player.close();
+            }
+        });
+        while (player.isRunning()) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+        }
+        player.close();
     }
     public static void arrayPlayNote(Receiver receiver, int[][] notesWithTempo) {
        //notesWithTempo = Arrays.copyOf(notesWithTempo, 15);
@@ -132,6 +243,19 @@ public class MidiPlayer {
         }
     }
     public static void playNote(Receiver receiver, int note, int velocity, int noteDuration) throws InvalidMidiDataException {
+        try {
+            ShortMessage noteOn = new ShortMessage();
+            noteOn.setMessage(ShortMessage.NOTE_ON, 0, note, velocity);
+            receiver.send(noteOn, -1);
+            Thread.sleep(noteDuration);
+            ShortMessage noteOff = new ShortMessage();
+            noteOff.setMessage(ShortMessage.NOTE_OFF, 0, note, velocity);
+            receiver.send(noteOff, -1);
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+    }
+        public static void playNote(Receiver receiver, int note, int velocity, long noteDuration) throws InvalidMidiDataException {
         try {
             ShortMessage noteOn = new ShortMessage();
             noteOn.setMessage(ShortMessage.NOTE_ON, 0, note, velocity);
