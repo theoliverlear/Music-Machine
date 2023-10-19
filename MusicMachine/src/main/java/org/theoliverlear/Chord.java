@@ -33,12 +33,28 @@ public class Chord {
     public void determineChordType() {
         int rootToThird = this.note2.getNoteNumber() - this.note1.getNoteNumber();
         int thirdToFifth = this.note3.getNoteNumber() - this.note2.getNoteNumber();
+        int rootToSeventh = 0;
+        if (note4 != null) {
+            rootToSeventh = this.note4.getNoteNumber() - this.note1.getNoteNumber();
+        }
         if (rootToThird == Interval.MajorThird.getSemitonesFromRoot() &&
                 thirdToFifth == Interval.MinorThird.getSemitonesFromRoot()) {
-            this.chordType = "Major";
+            if (note4 == null) {
+                this.chordType = "Major";
+            } else if (rootToSeventh == Interval.MajorSeventh.getSemitonesFromRoot()) {
+                this.chordType = "Major 7th";
+            } else if (rootToSeventh == Interval.MinorSeventh.getSemitonesFromRoot()) {
+                this.chordType = "Dominant";
+            }
         } else if (rootToThird == Interval.MinorThird.getSemitonesFromRoot() &&
                 thirdToFifth == Interval.MajorThird.getSemitonesFromRoot()) {
-            this.chordType = "Minor";
+            if (note4 == null) {
+                this.chordType = "Minor";
+            } else if (rootToSeventh == Interval.MajorSeventh.getSemitonesFromRoot()) {
+                this.chordType = "Minor Major 7th";
+            } else if (rootToSeventh == Interval.MinorSeventh.getSemitonesFromRoot()) {
+                this.chordType = "Minor 7th";
+            }
         } else if (rootToThird == Interval.MajorThird.getSemitonesFromRoot() &&
                 thirdToFifth == Interval.MajorThird.getSemitonesFromRoot()) {
             this.chordType = "Augmented";
