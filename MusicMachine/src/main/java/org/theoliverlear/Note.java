@@ -124,7 +124,8 @@ public enum Note {
     A_SHARP_7("A7#", "A Sharp", 85),
     B_FLAT_7("B7b", "B Flat", 85),
     B7("B7", "B Natural", 86),
-    C8("C8", "C Natural", 87);
+    C8("C8", "C Natural", 87),
+    REST("REST", "Rest", -1);
     final String noteCode;
     final String noteName;
     final int noteNumber;
