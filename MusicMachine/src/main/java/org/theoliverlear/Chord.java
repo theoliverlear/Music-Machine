@@ -20,22 +20,16 @@ public class Chord {
         this.note4 = note4;
         this.determineChordType();
     }
-    /*
-    1     0     1     1     0     0     0     1
-    128   64    32    16    8     4     2     1
-    128 + 0 + 32 + 16 + 0 + 0 + 0 + 1 = 177;
-
-    177
-
-    1 0 1 1 0 0 0 1
-     */
     //------------------------------Methods-----------------------------------
     public void determineChordType() {
-        int rootToThird = this.note2.getNoteNumber() - this.note1.getNoteNumber();
-        int thirdToFifth = this.note3.getNoteNumber() - this.note2.getNoteNumber();
+        int rootToThird = this.note2.getNoteNumber() -
+                          this.note1.getNoteNumber();
+        int thirdToFifth = this.note3.getNoteNumber() -
+                           this.note2.getNoteNumber();
         int rootToSeventh = 0;
         if (note4 != null) {
-            rootToSeventh = this.note4.getNoteNumber() - this.note1.getNoteNumber();
+            rootToSeventh = this.note4.getNoteNumber() -
+                            this.note1.getNoteNumber();
         }
         if (rootToThird == Interval.MajorThird.getSemitonesFromRoot() &&
                 thirdToFifth == Interval.MinorThird.getSemitonesFromRoot()) {
@@ -75,6 +69,9 @@ public class Chord {
     public Note getNote3() {
         return this.note3;
     }
+    public Note getNote4() {
+        return this.note4;
+    }
     public String getChordType() {
         return this.chordType;
     }
@@ -87,6 +84,9 @@ public class Chord {
     }
     public void setNote3(Note note3) {
         this.note3 = note3;
+    }
+    public void setNote4(Note note4) {
+        this.note4 = note4;
     }
     public void setChordType(String chordType) {
         this.chordType = chordType;
