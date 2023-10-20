@@ -88,7 +88,8 @@ public class MidiPlayer {
 //            ex.printStackTrace();
 //        }
         //File midiFile = new File("src/main/resources/sonata_in_c.mid");
-        File midiFile = new File("src/main/resources/fur_elise.mid");
+        //File midiFile = new File("src/main/resources/fur_elise.mid");
+        File midiFile = new File("src/main/resources/hedwigs_theme.mid");
         filePlayNoteSimple(receiver, device, midiFile);
         //filePlayNote(receiver, device, midiFile);
         receiver.close();
