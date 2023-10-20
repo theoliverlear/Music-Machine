@@ -31,6 +31,8 @@ public class Chord {
             rootToSeventh = this.noteFour.getNoteNumber() -
                             this.noteOne.getNoteNumber();
         }
+        // If forth note is a unison or octave, it is goes back to being
+        // either a major or minor chord
         if (rootToThird == Interval.MajorThird.getSemitonesFromRoot() &&
                 thirdToFifth == Interval.MinorThird.getSemitonesFromRoot()) {
             if (noteFour == null) {
