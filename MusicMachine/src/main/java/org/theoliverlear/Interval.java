@@ -1,7 +1,7 @@
 package org.theoliverlear;
 
 public enum Interval {
-    Union(0),
+    Unison(0),
     MinorSecond(1),
     MajorSecond(2),
     MinorThird(3),
