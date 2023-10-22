@@ -1,5 +1,6 @@
 package org.theoliverlear.midi;
 
+import org.theoliverlear.Chord;
 import org.theoliverlear.Note;
 
 import javax.sound.midi.*;
@@ -15,6 +16,7 @@ public class MidiPrinter {
     Transmitter transmitter;
     String sharpOrFlat;
     HashMap<Integer, Note> midiNoteMap = new HashMap<>();
+    ArrayList<Note> currentNotes = new ArrayList<>();
     //----------------------------Constructors--------------------------------
     public MidiPrinter(MidiDevice device) throws MidiUnavailableException {
         this.device = device;
@@ -38,6 +40,20 @@ public class MidiPrinter {
                     if (ShortMessage.NOTE_ON == shortMessage.getCommand() &&
                             velocity > 0) {
                         System.out.println("Key: " + midiNoteMap.get(key).getNoteName() + " Velocity: " + velocity);
+                        currentNotes.add(midiNoteMap.get(key));
+                        currentNotes.sort(Note::compareTo);
+                        System.out.println("Current Notes: " + currentNotes);
+                        Chord chord = null;
+                        if (currentNotes.size() == 3) {
+                            chord = new Chord(currentNotes.get(0), currentNotes.get(1), currentNotes.get(2));
+                        } else if (currentNotes.size() == 4) {
+                            chord = new Chord(currentNotes.get(0), currentNotes.get(1), currentNotes.get(2), currentNotes.get(3));
+                        }
+                        if (chord != null) {
+                            System.out.println("Chord: " + chord.getChordType());
+                        }
+                    } else {
+                        currentNotes.remove(midiNoteMap.get(key));
                     }
                 }
             }
