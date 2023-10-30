@@ -30,4 +30,16 @@ public enum Interval {
     public int getSemitonesFromRoot() {
         return this.semitonesFromRoot;
     }
+    public static Interval getInterval(int semitonesFromRoot) {
+        for (Interval interval : Interval.values()) {
+            if (interval.getSemitonesFromRoot() == semitonesFromRoot) {
+                return interval;
+            }
+        }
+        return null;
+    }
+    public static Interval getInterval(Note noteOne, Note noteTwo) {
+        int semitonesFromRoot = noteTwo.getNoteNumber() - noteOne.getNoteNumber();
+        return getInterval(semitonesFromRoot);
+    }
 }
