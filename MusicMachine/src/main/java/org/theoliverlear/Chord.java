@@ -26,7 +26,7 @@ public class Chord {
                           this.noteOne.getNoteNumber();
         int thirdToFifth = this.noteThree.getNoteNumber() -
                            this.noteTwo.getNoteNumber();
-        int rootToSeventh = 0;
+        int rootToSeventh = 0; // Perhaps replace with Optional<Note>
         if (noteFour != null) {
             rootToSeventh = this.noteFour.getNoteNumber() -
                             this.noteOne.getNoteNumber();
@@ -60,6 +60,32 @@ public class Chord {
         } else {
             this.chordType = "Unknown";
         }
+    }
+    @Deprecated
+    public boolean isMajor() {
+        int rootToThird = this.noteTwo.getNoteNumber() -
+                          this.noteOne.getNoteNumber();
+        int thirdToFifth = this.noteThree.getNoteNumber() -
+                           this.noteTwo.getNoteNumber();
+        int rootToSeventh = 0;
+        if (noteFour != null) {
+            rootToSeventh = this.noteFour.getNoteNumber() -
+                            this.noteOne.getNoteNumber();
+        }
+        if (noteFour != null) {
+            if (rootToThird == Interval.MajorThird.getSemitonesFromRoot() &&
+            thirdToFifth == Interval.MinorThird.getSemitonesFromRoot()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isInverted() {
+        return false;
+    }
+    public void determineInversion() {
+
     }
     //------------------------------Getters-----------------------------------
     public Note getNoteOne() {
