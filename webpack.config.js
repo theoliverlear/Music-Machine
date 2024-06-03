@@ -1,10 +1,14 @@
 const path = require('path');
 const webpack = require('webpack');
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
     entry: [
-        './src/script/globalScript.ts'
+        './src/script/globalScript.ts',
+        './src/script/main.ts'
     ],
+    target: 'electron-main',
+    externals: [nodeExternals()],
     module: {
         rules: [
             {
