@@ -1,36 +1,39 @@
 import { app, BrowserWindow } from 'electron';
-import * as path from 'path';
+import electronReload from 'electron-reload';
 
-try {
-    require('electron-reloader')(module, {
-        electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
-    })
-} catch { }
+electronReload(__dirname, {});
+import path from 'path';
 
-let mainWindow: Electron.BrowserWindow | null;
+let mainWindow: BrowserWindow | null;
 
-function createWindow () {
+function createWindow() {
+
     mainWindow = new BrowserWindow({
-        width: 800,
-        height: 600,
+        width: 1200,
+        height: 800,
         webPreferences: {
             nodeIntegration: true,
+            contextIsolation: false
         }
     });
 
     mainWindow.loadFile(path.join(__dirname, '../page/free-play.html'));
-    // mainWindow.webContents.openDevTools();
-    mainWindow.on('closed', function () {
+
+    mainWindow.on('closed', function() {
         mainWindow = null;
     });
 }
 
 app.on('ready', createWindow);
 
-app.on('window-all-closed', function () {
-    if (process.platform !== 'darwin') app.quit();
+app.on('window-all-closed', function() {
+    if (process.platform !== 'darwin') {
+        app.quit();
+    }
 });
 
-app.on('activate', function () {
-    if (mainWindow === null) createWindow();
+app.on('activate', function() {
+    if (mainWindow === null) {
+        createWindow();
+    }
 });
