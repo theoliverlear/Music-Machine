@@ -1,0 +1,14 @@
+@mixin flex($justify: center, $align: center, $direction: row) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction: $direction;
+}
+@mixin size($width: 100%, $height: 100%) {
+    width: $width;
+    height: $height;
+}
+@mixin basic-margin-padding($margin: 0, $padding: 0) {
+    margin: $margin;
+    padding: $padding;
+}
