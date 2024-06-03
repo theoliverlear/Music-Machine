@@ -1,0 +1,61 @@
+@import "global-functions";
+@import "global-mixins";
+/*----------------------------------Colors----------------------------------*/
+$pristine-white: hsl(0, 0%, 100%);
+$alabaster-stone: hsl(40, 21%, 89%);
+$sandstone: hsl(29, 32%, 78%);
+
+$charcoal: hsl(0, 0%, 9%);
+$absolute-black: hsl(0, 0%, 0%);
+/*----------------------------------Fonts-----------------------------------*/
+$source-code-font: 'Source Code Pro', monospace;
+$jetbrains-mono-font: 'JetBrains Mono', monospace;
+/*--------------------------------Font-Size---------------------------------*/
+$h1-font-size: min(simple-pixel-calc(6, 12), 140px);
+$h2-font-size: min(simple-pixel-calc(5, 10), 120px);
+$h3-font-size: min(simple-pixel-calc(4,  8), 100px);
+$h4-half-font-size: min(simple-pixel-calc(3.5,  7), 90px);
+$h4-quarter-font-size: min(simple-pixel-calc(3,  6), 80px);
+$h4-font-size: min(simple-pixel-calc(2.5,  6), 80px);
+$h5-font-size: min(simple-pixel-calc(1.75,  4), 60px);
+$h6-font-size: min(simple-pixel-calc(1.15,  2), 40px);
+$p-font-size:  min(simple-pixel-calc(1.15,  2), 40px);
+/*---------------------------------Borders----------------------------------*/
+$thinnest-border: min(calc(((0.025vw + 0.025vh) / 2) + 0.025rem), 2px);
+$very-thin-border: calc(((0.05vw + 0.05vh) / 2) + 0.05em);
+$thin-border: calc(((0.1vw + 0.1vh) / 2) + 0.1em);
+/*----------------------------------Sizes-----------------------------------*/
+$zero: 0;
+$sixteenth-percent: simple-calc(0.0625, 0.025);
+$eighth-percent: simple-calc(0.125, 0.05);
+$quarter-percent: simple-calc(0.25, 0.1);
+$half-percent: simple-calc(0.5, 0.2);
+$two-third-percent: simple-calc(0.6666666666666666, 0.26666666666666666);
+$three-quarter-percent: simple-calc(0.75, 0.3);
+$one-percent: simple-calc(1, 0.4);
+$one-half-percent: simple-calc(1.5, 0.6);
+$two-percent: simple-calc(2, 0.8);
+$two-half-percent: simple-calc(2.5, 1);
+$three-percent: simple-calc(3, 1.2);
+$three-and-quarter-percent: simple-calc(3.25, 1.3); // Break naming convention for this one.
+$three-half-percent: simple-calc(3.5, 1.4);
+$four-percent: simple-calc(4, 1.6);
+$five-percent: simple-calc(5, 2);
+$six-percent: simple-calc(6, 2.4);
+$seven-percent: simple-calc(7, 2.8);
+$ten-percent: simple-calc(10, 4);
+$twelve-percent: simple-calc(12, 4.8);
+$fourteen-percent: simple-calc(14, 5.6);
+$fifteen-percent: simple-calc(15, 6);
+$twenty-percent: simple-calc(20, 8);
+$twenty-five-percent: simple-calc(25, 10);
+$thirty-percent: simple-calc(30, 12);
+$thirty-five-percent: simple-calc(35, 14);
+$forty-percent: simple-calc(40, 16);
+$forty-five-percent: simple-calc(45, 18);
+$fifty-percent: simple-calc(50, 20);
+$sixty-percent: simple-calc(60, 24);
+$seventy-percent: simple-calc(70, 28);
+$eighty-percent: simple-calc(80, 32);
+$ninety-percent: simple-calc(90, 36);
+$hundred-percent: simple-calc(100, 40);
