@@ -1,0 +1,56 @@
+@import "global-variables";
+@import "global-mixins";
+@import "global-functions";
+
+.piano-container {
+    @include basic-margin-padding($zero, $zero);
+    scale: 0.75;
+    .key-container {
+        display: flex;
+        .octave-container {
+            display: flex;
+            flex-direction: column;
+            .opening-octave {
+
+            }
+            position: relative;
+            .key-octave {
+                display: flex;
+                position: relative;
+            }
+            .white-keys-octave {
+                @include flex(center, center, row);
+                .key {
+                    width: $one-half-percent;
+                    height: $ten-percent;
+                    background-color: $pristine-white;
+                    border: $thin-border solid $charcoal;
+                    cursor: pointer;
+                }
+            }
+            .black-keys-octave {
+                @include flex(center, center, row);
+                position: absolute;
+                .key {
+                    width: $one-percent;
+                    height: $six-percent;
+                    background-color: $charcoal;
+                    margin: $zero $zero $zero calc($two-third-percent * 0.9);
+                    border : {
+                        right: $thin-border solid $pristine-white;
+                        left: $thin-border solid $pristine-white;
+                        bottom: $thin-border solid $pristine-white;
+                    }
+                    cursor: pointer;
+                }
+                .key:nth-child(1) {
+                    margin-left: calc($one-percent * 1.1);
+                }
+                .key:nth-child(2) {
+                    margin-right: $one-half-percent;
+                }
+
+            }
+        }
+    }
+}
