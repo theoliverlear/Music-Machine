@@ -4,11 +4,23 @@ const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
     entry: [
+        './src/script/BlackKey.ts',
         './src/script/globalScript.ts',
-        './src/script/main.ts'
+        './src/script/Interval.ts',
+        './src/script/Key.ts',
+        './src/script/KeyOctave.ts',
+        './src/script/midiScript.ts',
+        './src/script/ScaleToneSequence.ts',
+        './src/script/WhiteKey.ts'
     ],
-    target: 'electron-main',
-    externals: [nodeExternals()],
+    target: 'electron-renderer',
+    node: {
+        __dirname: false,
+        __filename: false,
+    },
+    externals: [
+        nodeExternals()
+    ],
     module: {
         rules: [
             {
@@ -48,6 +60,9 @@ module.exports = {
         new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery'
-        })
+        }),
+        new webpack.IgnorePlugin({
+            resourceRegExp: /^fsevents/,
+        }),
     ]
 };
