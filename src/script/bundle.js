@@ -9,6 +9,72 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/script/BlackKey.ts":
+/*!********************************!*\
+  !*** ./src/script/BlackKey.ts ***!
+  \********************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+eval("\n\nfunction _typeof(o) { \"@babel/helpers - typeof\"; return _typeof = \"function\" == typeof Symbol && \"symbol\" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && \"function\" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? \"symbol\" : typeof o; }, _typeof(o); }\nfunction _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, \"value\" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }\nfunction _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, \"prototype\", { writable: !1 }), e; }\nfunction _toPropertyKey(t) { var i = _toPrimitive(t, \"string\"); return \"symbol\" == _typeof(i) ? i : i + \"\"; }\nfunction _toPrimitive(t, r) { if (\"object\" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || \"default\"); if (\"object\" != _typeof(i)) return i; throw new TypeError(\"@@toPrimitive must return a primitive value.\"); } return (\"string\" === r ? String : Number)(t); }\nfunction _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError(\"Cannot call a class as a function\"); }\nfunction _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }\nfunction _possibleConstructorReturn(t, e) { if (e && (\"object\" == _typeof(e) || \"function\" == typeof e)) return e; if (void 0 !== e) throw new TypeError(\"Derived constructors may only return object or undefined\"); return _assertThisInitialized(t); }\nfunction _assertThisInitialized(e) { if (void 0 === e) throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); return e; }\nfunction _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }\nfunction _getPrototypeOf(t) { return _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function (t) { return t.__proto__ || Object.getPrototypeOf(t); }, _getPrototypeOf(t); }\nfunction _inherits(t, e) { if (\"function\" != typeof e && null !== e) throw new TypeError(\"Super expression must either be null or a function\"); t.prototype = Object.create(e && e.prototype, { constructor: { value: t, writable: !0, configurable: !0 } }), Object.defineProperty(t, \"prototype\", { writable: !1 }), e && _setPrototypeOf(t, e); }\nfunction _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function (t, e) { return t.__proto__ = e, t; }, _setPrototypeOf(t, e); }\nObject.defineProperty(exports, \"__esModule\", ({\n  value: true\n}));\nvar Key_1 = __webpack_require__(/*! ./Key */ \"./src/script/Key.ts\");\nvar BlackKey = /*#__PURE__*/function (_Key_1$Key) {\n  function BlackKey() {\n    _classCallCheck(this, BlackKey);\n    return _callSuper(this, BlackKey, arguments);\n  }\n  _inherits(BlackKey, _Key_1$Key);\n  return _createClass(BlackKey);\n}(Key_1.Key);\n\n//# sourceURL=webpack://music-machine/./src/script/BlackKey.ts?");
+
+/***/ }),
+
+/***/ "./src/script/Interval.ts":
+/*!********************************!*\
+  !*** ./src/script/Interval.ts ***!
+  \********************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", ({\n  value: true\n}));\nexports.Interval = void 0;\nvar Interval;\n(function (Interval) {\n  Interval[Interval[\"UNISON\"] = 0] = \"UNISON\";\n  Interval[Interval[\"MINOR_SECOND\"] = 1] = \"MINOR_SECOND\";\n  Interval[Interval[\"MAJOR_SECOND\"] = 2] = \"MAJOR_SECOND\";\n  Interval[Interval[\"MINOR_THIRD\"] = 3] = \"MINOR_THIRD\";\n  Interval[Interval[\"MAJOR_THIRD\"] = 4] = \"MAJOR_THIRD\";\n  Interval[Interval[\"PERFECT_FOURTH\"] = 5] = \"PERFECT_FOURTH\";\n  Interval[Interval[\"TRITONE\"] = 6] = \"TRITONE\";\n  Interval[Interval[\"PERFECT_FIFTH\"] = 7] = \"PERFECT_FIFTH\";\n  Interval[Interval[\"MINOR_SIXTH\"] = 8] = \"MINOR_SIXTH\";\n  Interval[Interval[\"MAJOR_SIXTH\"] = 9] = \"MAJOR_SIXTH\";\n  Interval[Interval[\"MINOR_SEVENTH\"] = 10] = \"MINOR_SEVENTH\";\n  Interval[Interval[\"MAJOR_SEVENTH\"] = 11] = \"MAJOR_SEVENTH\";\n  Interval[Interval[\"OCTAVE\"] = 12] = \"OCTAVE\";\n  Interval[Interval[\"MINOR_NINTH\"] = 13] = \"MINOR_NINTH\";\n  Interval[Interval[\"MAJOR_NINTH\"] = 14] = \"MAJOR_NINTH\";\n  Interval[Interval[\"MINOR_TENTH\"] = 15] = \"MINOR_TENTH\";\n  Interval[Interval[\"MAJOR_TENTH\"] = 16] = \"MAJOR_TENTH\";\n  Interval[Interval[\"PERFECT_ELEVENTH\"] = 17] = \"PERFECT_ELEVENTH\";\n  Interval[Interval[\"AUGMENTED_ELEVENTH\"] = 18] = \"AUGMENTED_ELEVENTH\";\n  Interval[Interval[\"PERFECT_TWELFTH\"] = 19] = \"PERFECT_TWELFTH\";\n  Interval[Interval[\"MINOR_THIRTEENTH\"] = 20] = \"MINOR_THIRTEENTH\";\n  Interval[Interval[\"MAJOR_THIRTEENTH\"] = 21] = \"MAJOR_THIRTEENTH\";\n  Interval[Interval[\"MINOR_FOURTEENTH\"] = 22] = \"MINOR_FOURTEENTH\";\n  Interval[Interval[\"MAJOR_FOURTEENTH\"] = 23] = \"MAJOR_FOURTEENTH\";\n  Interval[Interval[\"PERFECT_FIFTEENTH\"] = 24] = \"PERFECT_FIFTEENTH\";\n})(Interval || (exports.Interval = Interval = {}));\n\n//# sourceURL=webpack://music-machine/./src/script/Interval.ts?");
+
+/***/ }),
+
+/***/ "./src/script/Key.ts":
+/*!***************************!*\
+  !*** ./src/script/Key.ts ***!
+  \***************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+eval("\n\nfunction _typeof(o) { \"@babel/helpers - typeof\"; return _typeof = \"function\" == typeof Symbol && \"symbol\" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && \"function\" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? \"symbol\" : typeof o; }, _typeof(o); }\nfunction _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, \"value\" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }\nfunction _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, \"prototype\", { writable: !1 }), e; }\nfunction _toPropertyKey(t) { var i = _toPrimitive(t, \"string\"); return \"symbol\" == _typeof(i) ? i : i + \"\"; }\nfunction _toPrimitive(t, r) { if (\"object\" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || \"default\"); if (\"object\" != _typeof(i)) return i; throw new TypeError(\"@@toPrimitive must return a primitive value.\"); } return (\"string\" === r ? String : Number)(t); }\nfunction _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError(\"Cannot call a class as a function\"); }\nObject.defineProperty(exports, \"__esModule\", ({\n  value: true\n}));\nexports.Key = void 0;\nvar Key = /*#__PURE__*/_createClass(function Key() {\n  _classCallCheck(this, Key);\n});\nexports.Key = Key;\n\n//# sourceURL=webpack://music-machine/./src/script/Key.ts?");
+
+/***/ }),
+
+/***/ "./src/script/KeyOctave.ts":
+/*!*********************************!*\
+  !*** ./src/script/KeyOctave.ts ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+eval("\n\nfunction _typeof(o) { \"@babel/helpers - typeof\"; return _typeof = \"function\" == typeof Symbol && \"symbol\" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && \"function\" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? \"symbol\" : typeof o; }, _typeof(o); }\nfunction _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, \"value\" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }\nfunction _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, \"prototype\", { writable: !1 }), e; }\nfunction _toPropertyKey(t) { var i = _toPrimitive(t, \"string\"); return \"symbol\" == _typeof(i) ? i : i + \"\"; }\nfunction _toPrimitive(t, r) { if (\"object\" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || \"default\"); if (\"object\" != _typeof(i)) return i; throw new TypeError(\"@@toPrimitive must return a primitive value.\"); } return (\"string\" === r ? String : Number)(t); }\nfunction _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError(\"Cannot call a class as a function\"); }\nObject.defineProperty(exports, \"__esModule\", ({\n  value: true\n}));\nexports.KeyOctave = void 0;\nvar KeyOctave = /*#__PURE__*/_createClass(function KeyOctave() {\n  _classCallCheck(this, KeyOctave);\n});\nexports.KeyOctave = KeyOctave;\n\n//# sourceURL=webpack://music-machine/./src/script/KeyOctave.ts?");
+
+/***/ }),
+
+/***/ "./src/script/ScaleToneSequence.ts":
+/*!*****************************************!*\
+  !*** ./src/script/ScaleToneSequence.ts ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+eval("\n\nfunction _typeof(o) { \"@babel/helpers - typeof\"; return _typeof = \"function\" == typeof Symbol && \"symbol\" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && \"function\" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? \"symbol\" : typeof o; }, _typeof(o); }\nfunction _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, \"value\" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }\nfunction _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, \"prototype\", { writable: !1 }), e; }\nfunction _toPropertyKey(t) { var i = _toPrimitive(t, \"string\"); return \"symbol\" == _typeof(i) ? i : i + \"\"; }\nfunction _toPrimitive(t, r) { if (\"object\" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || \"default\"); if (\"object\" != _typeof(i)) return i; throw new TypeError(\"@@toPrimitive must return a primitive value.\"); } return (\"string\" === r ? String : Number)(t); }\nfunction _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError(\"Cannot call a class as a function\"); }\nObject.defineProperty(exports, \"__esModule\", ({\n  value: true\n}));\nexports.ScaleToneSequence = void 0;\nvar Interval_1 = __webpack_require__(/*! ./Interval */ \"./src/script/Interval.ts\");\nvar ScaleToneSequence = /*#__PURE__*/_createClass(function ScaleToneSequence() {\n  _classCallCheck(this, ScaleToneSequence);\n  this.MAJOR = [Interval_1.Interval.UNISON, Interval_1.Interval.MAJOR_SECOND, Interval_1.Interval.MAJOR_THIRD, Interval_1.Interval.PERFECT_FOURTH, Interval_1.Interval.PERFECT_FIFTH, Interval_1.Interval.MAJOR_SIXTH, Interval_1.Interval.MAJOR_SEVENTH];\n  this.MINOR = [Interval_1.Interval.UNISON, Interval_1.Interval.MAJOR_SECOND, Interval_1.Interval.MINOR_THIRD, Interval_1.Interval.PERFECT_FOURTH, Interval_1.Interval.PERFECT_FIFTH, Interval_1.Interval.MINOR_SIXTH, Interval_1.Interval.MINOR_SEVENTH];\n  this.HARMONIC_MINOR = [Interval_1.Interval.UNISON, Interval_1.Interval.MAJOR_SECOND, Interval_1.Interval.MINOR_THIRD, Interval_1.Interval.PERFECT_FOURTH, Interval_1.Interval.PERFECT_FIFTH, Interval_1.Interval.MINOR_SIXTH, Interval_1.Interval.MAJOR_SEVENTH];\n  this.DORIAN = [Interval_1.Interval.UNISON, Interval_1.Interval.MAJOR_SECOND, Interval_1.Interval.MINOR_THIRD, Interval_1.Interval.PERFECT_FOURTH, Interval_1.Interval.PERFECT_FIFTH, Interval_1.Interval.MAJOR_SIXTH, Interval_1.Interval.MINOR_SEVENTH];\n});\nexports.ScaleToneSequence = ScaleToneSequence;\n\n//# sourceURL=webpack://music-machine/./src/script/ScaleToneSequence.ts?");
+
+/***/ }),
+
+/***/ "./src/script/WhiteKey.ts":
+/*!********************************!*\
+  !*** ./src/script/WhiteKey.ts ***!
+  \********************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+eval("\n\nfunction _typeof(o) { \"@babel/helpers - typeof\"; return _typeof = \"function\" == typeof Symbol && \"symbol\" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && \"function\" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? \"symbol\" : typeof o; }, _typeof(o); }\nfunction _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, \"value\" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }\nfunction _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, \"prototype\", { writable: !1 }), e; }\nfunction _toPropertyKey(t) { var i = _toPrimitive(t, \"string\"); return \"symbol\" == _typeof(i) ? i : i + \"\"; }\nfunction _toPrimitive(t, r) { if (\"object\" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || \"default\"); if (\"object\" != _typeof(i)) return i; throw new TypeError(\"@@toPrimitive must return a primitive value.\"); } return (\"string\" === r ? String : Number)(t); }\nfunction _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError(\"Cannot call a class as a function\"); }\nfunction _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }\nfunction _possibleConstructorReturn(t, e) { if (e && (\"object\" == _typeof(e) || \"function\" == typeof e)) return e; if (void 0 !== e) throw new TypeError(\"Derived constructors may only return object or undefined\"); return _assertThisInitialized(t); }\nfunction _assertThisInitialized(e) { if (void 0 === e) throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); return e; }\nfunction _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }\nfunction _getPrototypeOf(t) { return _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function (t) { return t.__proto__ || Object.getPrototypeOf(t); }, _getPrototypeOf(t); }\nfunction _inherits(t, e) { if (\"function\" != typeof e && null !== e) throw new TypeError(\"Super expression must either be null or a function\"); t.prototype = Object.create(e && e.prototype, { constructor: { value: t, writable: !0, configurable: !0 } }), Object.defineProperty(t, \"prototype\", { writable: !1 }), e && _setPrototypeOf(t, e); }\nfunction _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function (t, e) { return t.__proto__ = e, t; }, _setPrototypeOf(t, e); }\nObject.defineProperty(exports, \"__esModule\", ({\n  value: true\n}));\nexports.WhiteKey = void 0;\nvar Key_1 = __webpack_require__(/*! ./Key */ \"./src/script/Key.ts\");\nvar WhiteKey = /*#__PURE__*/function (_Key_1$Key) {\n  function WhiteKey() {\n    _classCallCheck(this, WhiteKey);\n    return _callSuper(this, WhiteKey, arguments);\n  }\n  _inherits(WhiteKey, _Key_1$Key);\n  return _createClass(WhiteKey);\n}(Key_1.Key);\nexports.WhiteKey = WhiteKey;\n\n//# sourceURL=webpack://music-machine/./src/script/WhiteKey.ts?");
+
+/***/ }),
+
 /***/ "./src/script/globalScript.ts":
 /*!************************************!*\
   !*** ./src/script/globalScript.ts ***!
@@ -19,124 +85,13 @@ eval("\n\n//# sourceURL=webpack://music-machine/./src/script/globalScript.ts?");
 
 /***/ }),
 
-/***/ "./src/script/main.ts":
-/*!****************************!*\
-  !*** ./src/script/main.ts ***!
-  \****************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
+/***/ "./src/script/midiScript.ts":
+/*!**********************************!*\
+  !*** ./src/script/midiScript.ts ***!
+  \**********************************/
+/***/ (() => {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! electron */ \"electron\");\n/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(electron__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! path */ \"path\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_1__);\n/* module decorator */ module = __webpack_require__.hmd(module);\n\n\n// Add this section\ntry {\n  __webpack_require__(/*! electron-reloader */ \"./node_modules/electron-reloader/index.js\")(module, {\n    // Note that the path to electron may vary according to the main file\n    electron: path__WEBPACK_IMPORTED_MODULE_1__.join(__dirname, 'node_modules', '.bin', 'electron')\n  });\n} catch (_a) {}\nvar mainWindow;\nfunction createWindow() {\n  mainWindow = new electron__WEBPACK_IMPORTED_MODULE_0__.BrowserWindow({\n    width: 800,\n    height: 600,\n    webPreferences: {\n      nodeIntegration: true\n    }\n  });\n  mainWindow.loadFile(path__WEBPACK_IMPORTED_MODULE_1__.join(__dirname, '../page/free-play.html'));\n  // mainWindow.webContents.openDevTools();\n  mainWindow.on('closed', function () {\n    mainWindow = null;\n  });\n}\nelectron__WEBPACK_IMPORTED_MODULE_0__.app.on('ready', createWindow);\nelectron__WEBPACK_IMPORTED_MODULE_0__.app.on('window-all-closed', function () {\n  if (process.platform !== 'darwin') electron__WEBPACK_IMPORTED_MODULE_0__.app.quit();\n});\nelectron__WEBPACK_IMPORTED_MODULE_0__.app.on('activate', function () {\n  if (mainWindow === null) createWindow();\n});\n\n//# sourceURL=webpack://music-machine/./src/script/main.ts?");
-
-/***/ }),
-
-/***/ "./node_modules/date-time/index.js":
-/*!*****************************************!*\
-  !*** ./node_modules/date-time/index.js ***!
-  \*****************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-eval("\nconst timeZone = __webpack_require__(/*! time-zone */ \"./node_modules/time-zone/index.js\");\n\nconst dateTime = options => {\n\toptions = Object.assign({\n\t\tdate: new Date(),\n\t\tlocal: true,\n\t\tshowTimeZone: false,\n\t\tshowMilliseconds: false\n\t}, options);\n\n\tlet {date} = options;\n\n\tif (options.local) {\n\t\t// Offset the date so it will return the correct value when getting the ISO string\n\t\tdate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000));\n\t}\n\n\tlet end = '';\n\n\tif (options.showTimeZone) {\n\t\tend = ' UTC' + (options.local ? timeZone(date) : '');\n\t}\n\n\tif (options.showMilliseconds && date.getUTCMilliseconds() > 0) {\n\t\tend = ` ${date.getUTCMilliseconds()}ms${end}`;\n\t}\n\n\treturn date\n\t\t.toISOString()\n\t\t.replace(/T/, ' ')\n\t\t.replace(/\\..+/, end);\n};\n\nmodule.exports = dateTime;\n// TODO: Remove this for the next major release\nmodule.exports[\"default\"] = dateTime;\n\n\n//# sourceURL=webpack://music-machine/./node_modules/date-time/index.js?");
-
-/***/ }),
-
-/***/ "./node_modules/electron-is-dev/index.js":
-/*!***********************************************!*\
-  !*** ./node_modules/electron-is-dev/index.js ***!
-  \***********************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-eval("\nconst electron = __webpack_require__(/*! electron */ \"electron\");\n\nif (typeof electron === 'string') {\n\tthrow new TypeError('Not running in an Electron environment!');\n}\n\nconst app = electron.app || electron.remote.app;\n\nconst isEnvSet = 'ELECTRON_IS_DEV' in process.env;\nconst getFromEnv = parseInt(process.env.ELECTRON_IS_DEV, 10) === 1;\n\nmodule.exports = isEnvSet ? getFromEnv : !app.isPackaged;\n\n\n//# sourceURL=webpack://music-machine/./node_modules/electron-is-dev/index.js?");
-
-/***/ }),
-
-/***/ "./node_modules/electron-reloader/index.js":
-/*!*************************************************!*\
-  !*** ./node_modules/electron-reloader/index.js ***!
-  \*************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-eval("\nconst {inspect} = __webpack_require__(/*! util */ \"util\");\nconst path = __webpack_require__(/*! path */ \"path\");\nconst electron = __webpack_require__(/*! electron */ \"electron\");\nconst chokidar = __webpack_require__(/*! chokidar */ \"chokidar\");\nconst isDev = __webpack_require__(/*! electron-is-dev */ \"./node_modules/electron-is-dev/index.js\");\nconst dateTime = __webpack_require__(/*! date-time */ \"./node_modules/date-time/index.js\");\nconst chalk = __webpack_require__(/*! chalk */ \"chalk\");\nconst findUp = __webpack_require__(/*! find-up */ \"find-up\");\n\nfunction getMainProcessPaths(topModuleObject, cwd) {\n\tconst paths = new Set([topModuleObject.filename]);\n\n\tconst getPaths = moduleObject => {\n\t\tfor (const child of moduleObject.children) {\n\t\t\tif (paths.has(child.filename)) {\n\t\t\t\tcontinue;\n\t\t\t}\n\n\t\t\tif (path.relative(cwd, child.filename).includes('node_modules')) {\n\t\t\t\tcontinue;\n\t\t\t}\n\n\t\t\tpaths.add(child.filename);\n\t\t\tgetPaths(child);\n\t\t}\n\t};\n\n\tgetPaths(topModuleObject);\n\n\treturn paths;\n}\n\nmodule.exports = (moduleObject, options = {}) => {\n\t// This module should be a dev dependency, but guard\n\t// this in case the user included it as a dependency.\n\tif (!isDev) {\n\t\treturn;\n\t}\n\n\tif (!moduleObject) {\n\t\tthrow new Error('You have to pass the `module` object');\n\t}\n\n\tif (options.ignored) {\n\t\tthrow new Error('The option is named `ignore` not `ignored`');\n\t}\n\n\toptions = {\n\t\twatchRenderer: true,\n\t\t...options\n\t};\n\n\tconst mainProcessDirectory = path.dirname(moduleObject.filename);\n\tconst packageDirectory = findUp.sync('package.json', {cwd: mainProcessDirectory});\n\tconst cwd = packageDirectory ? path.dirname(packageDirectory) : mainProcessDirectory;\n\tconst mainProcessPaths = getMainProcessPaths(moduleObject, cwd);\n\tconst watchPaths = options.watchRenderer ? cwd : [...mainProcessPaths];\n\tlet isRelaunching = false;\n\n\tconst watcher = chokidar.watch(watchPaths, {\n\t\tcwd,\n\t\tdisableGlobbing: true,\n\t\tignored: [\n\t\t\t/(^|[/\\\\])\\../, // Dotfiles\n\t\t\t'node_modules',\n\t\t\t'**/*.map'\n\t\t].concat(options.ignore)\n\t});\n\n\telectron.app.on('quit', () => {\n\t\twatcher.close();\n\t});\n\n\tif (options.debug) {\n\t\twatcher.on('ready', () => {\n\t\t\tconsole.log('Watched paths:', inspect(watcher.getWatched(), {compact: false, colors: true}));\n\t\t});\n\t}\n\n\twatcher.on('change', filePath => {\n\t\tif (options.debug) {\n\t\t\tconsole.log('File changed:', chalk.bold(filePath), chalk.dim(`(${dateTime().split(' ')[1]})`));\n\t\t}\n\n\t\tif (mainProcessPaths.has(path.join(cwd, filePath))) {\n\t\t\t// Prevent multiple instances of Electron from being started due to the change\n\t\t\t// handler being called multiple times before the original instance exits.\n\t\t\tif (!isRelaunching) {\n\t\t\t\telectron.app.relaunch();\n\t\t\t\telectron.app.exit(0);\n\t\t\t}\n\n\t\t\tisRelaunching = true;\n\t\t} else {\n\t\t\tfor (const window_ of electron.BrowserWindow.getAllWindows()) {\n\t\t\t\twindow_.webContents.reloadIgnoringCache();\n\n\t\t\t\tfor (const view_ of window_.getBrowserViews()) {\n\t\t\t\t\tview_.webContents.reloadIgnoringCache();\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t});\n};\n\n\n//# sourceURL=webpack://music-machine/./node_modules/electron-reloader/index.js?");
-
-/***/ }),
-
-/***/ "./node_modules/time-zone/index.js":
-/*!*****************************************!*\
-  !*** ./node_modules/time-zone/index.js ***!
-  \*****************************************/
-/***/ ((module) => {
-
-"use strict";
-eval("\nmodule.exports = date => {\n\tconst offset = (date || new Date()).getTimezoneOffset();\n\tconst absOffset = Math.abs(offset);\n\tconst hours = Math.floor(absOffset / 60);\n\tconst minutes = absOffset % 60;\n\tconst minutesOut = minutes > 0 ? ':' + ('0' + minutes).slice(-2) : '';\n\n\treturn (offset < 0 ? '+' : '-') + hours + minutesOut;\n};\n\n\n//# sourceURL=webpack://music-machine/./node_modules/time-zone/index.js?");
-
-/***/ }),
-
-/***/ "chalk":
-/*!************************!*\
-  !*** external "chalk" ***!
-  \************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("chalk");
-
-/***/ }),
-
-/***/ "chokidar":
-/*!***************************!*\
-  !*** external "chokidar" ***!
-  \***************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("chokidar");
-
-/***/ }),
-
-/***/ "electron":
-/*!***************************!*\
-  !*** external "electron" ***!
-  \***************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("electron");
-
-/***/ }),
-
-/***/ "find-up":
-/*!**************************!*\
-  !*** external "find-up" ***!
-  \**************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("find-up");
-
-/***/ }),
-
-/***/ "util":
-/*!***********************!*\
-  !*** external "util" ***!
-  \***********************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("util");
-
-/***/ }),
-
-/***/ "path":
-/*!***********************!*\
-  !*** external "path" ***!
-  \***********************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("path");
+eval("function _createForOfIteratorHelper(r, e) { var t = \"undefined\" != typeof Symbol && r[Symbol.iterator] || r[\"@@iterator\"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && \"number\" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError(\"Invalid attempt to iterate non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t[\"return\"] || t[\"return\"](); } finally { if (u) throw o; } } }; }\nfunction _unsupportedIterableToArray(r, a) { if (r) { if (\"string\" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return \"Object\" === t && r.constructor && (t = r.constructor.name), \"Map\" === t || \"Set\" === t ? Array.from(r) : \"Arguments\" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }\nfunction _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }\nnavigator.requestMIDIAccess().then(onMIDISuccess, onMIDIFailure);\n// Function to run when requestMIDIAccess is successful\nfunction onMIDISuccess(midiAccess) {\n  var inputs = midiAccess.inputs;\n  var outputs = midiAccess.outputs;\n  console.log('MIDI Access Object', midiAccess);\n  var _iterator = _createForOfIteratorHelper(inputs.values()),\n    _step;\n  try {\n    for (_iterator.s(); !(_step = _iterator.n()).done;) {\n      var input = _step.value;\n      console.log('MIDI input', input);\n    }\n  } catch (err) {\n    _iterator.e(err);\n  } finally {\n    _iterator.f();\n  }\n  var _iterator2 = _createForOfIteratorHelper(outputs.values()),\n    _step2;\n  try {\n    for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {\n      var output = _step2.value;\n      console.log('MIDI output', output);\n    }\n  } catch (err) {\n    _iterator2.e(err);\n  } finally {\n    _iterator2.f();\n  }\n}\n// Function to run when requestMIDIAccess fails\nfunction onMIDIFailure() {\n  console.log('Could not access your MIDI devices.');\n}\nconsole.log('MIDI Script Loaded');\n\n//# sourceURL=webpack://music-machine/./src/script/midiScript.ts?");
 
 /***/ })
 
@@ -154,84 +109,31 @@ module.exports = require("path");
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			id: moduleId,
-/******/ 			loaded: false,
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Flag the module as loaded
-/******/ 		module.loaded = true;
-/******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
-/************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
-/******/ 			for(var key in definition) {
-/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/harmony module decorator */
-/******/ 	(() => {
-/******/ 		__webpack_require__.hmd = (module) => {
-/******/ 			module = Object.create(module);
-/******/ 			if (!module.children) module.children = [];
-/******/ 			Object.defineProperty(module, 'exports', {
-/******/ 				enumerable: true,
-/******/ 				set: () => {
-/******/ 					throw new Error('ES Modules may not assign module.exports or exports.*, Use ESM export syntax, instead: ' + module.id);
-/******/ 				}
-/******/ 			});
-/******/ 			return module;
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
-/******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	})();
 /******/ 	
 /************************************************************************/
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	__webpack_require__("./src/script/BlackKey.ts");
 /******/ 	__webpack_require__("./src/script/globalScript.ts");
-/******/ 	var __webpack_exports__ = __webpack_require__("./src/script/main.ts");
+/******/ 	__webpack_require__("./src/script/Interval.ts");
+/******/ 	__webpack_require__("./src/script/Key.ts");
+/******/ 	__webpack_require__("./src/script/KeyOctave.ts");
+/******/ 	__webpack_require__("./src/script/midiScript.ts");
+/******/ 	__webpack_require__("./src/script/ScaleToneSequence.ts");
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/script/WhiteKey.ts");
 /******/ 	
 /******/ })()
 ;
