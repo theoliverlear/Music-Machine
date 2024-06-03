@@ -1,10 +1,8 @@
 import { app, BrowserWindow } from 'electron';
 import * as path from 'path';
 
-// Add this section
 try {
     require('electron-reloader')(module, {
-        // Note that the path to electron may vary according to the main file
         electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
     })
 } catch { }
