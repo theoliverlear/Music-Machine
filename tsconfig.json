@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "lib": ["dom"],
+    "outDir": "./src/script",
+    "noImplicitAny": true,
+    "module": "es6",
+    "target": "es6",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node"
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules", "./src/script/bundle.js"],
+}
