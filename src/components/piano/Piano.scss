@@ -26,6 +26,14 @@
                     background-color: $pristine-white;
                     border: $thin-border solid $charcoal;
                     cursor: pointer;
+                    &:hover {
+                        background-color: $light-grey;
+                        cursor: pointer;
+                    }
+                    &:active {
+                        background-color: $charcoal;
+                        cursor: pointer;
+                    }
                 }
             }
             .black-keys-octave {
@@ -42,6 +50,14 @@
                         bottom: $thin-border solid $pristine-white;
                     }
                     cursor: pointer;
+                    &:hover {
+                        background-color: $absolute-black;
+                        cursor: pointer;
+                    }
+                    &:active {
+                        background-color: $pristine-white;
+                        cursor: pointer;
+                    }
                 }
                 .key:nth-child(1) {
                     margin-left: calc($one-percent * 1.1);
