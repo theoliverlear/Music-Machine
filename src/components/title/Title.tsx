@@ -1,6 +1,6 @@
 import React from 'react';
 import './Title.css';
-function Title(props: {title: string, size: number}) {
+function Title(props: {title: string, size: number, onClick?: (title: string) => void}) {
     function headingSize() {
         switch (props.size) {
             case 1:
@@ -19,8 +19,9 @@ function Title(props: {title: string, size: number}) {
                 return <h1>{props.title}</h1>;
         }
     }
+    // Refactor onClick to be more modular. Right now it depends on a "title".
     return (
-        <div className="title-div">
+        <div className="title-div" onClick={() => props.onClick ? props.onClick(props.title) : null}>
             {headingSize()}
         </div>
     );
