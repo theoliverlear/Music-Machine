@@ -1,0 +1,7 @@
+@import "../../global-variables";
+@import "../../global-mixins";
+@import "../../global-functions";
+
+.title-div {
+    @include flex(center, center, column);
+}
