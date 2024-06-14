@@ -45,4 +45,29 @@ body {
         width: 100%;
         @include flex(center, center, column);
     }
+    #root {
+        width: 100%;
+        @include flex(center, center, column);
+        .app {
+            width: 100%;
+            @include flex(center, center, column);
+        }
+    }
+    hr {
+        width: 80%;
+        border: $thinnest-border solid $alabaster-stone;
+    }
+    .menu-item {
+        margin: $one-percent 0;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+}
+.link-no-style {
+    color: inherit;
+    text-decoration: none;
 }
