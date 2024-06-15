@@ -1,6 +1,11 @@
 import React from 'react';
 
-function MidiDevice() {
+interface MidiDeviceProps {
+    input: WebMidi.MIDIInput | undefined;
+    output: WebMidi.MIDIOutput | undefined;
+}
+
+function MidiDevice(props: MidiDeviceProps) {
     return (
         <div>
 
