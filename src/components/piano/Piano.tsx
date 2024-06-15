@@ -4,7 +4,11 @@ import KeyOctave from "./octave/KeyOctave";
 import ClosingOctave from "./octave/closing/ClosingOctave";
 import './Piano.css';
 
-function Piano() {
+interface PianoProps {
+    //onMidiMessage: (message: WebMidi.MIDIMessageEvent) => void;
+}
+
+function Piano(props: PianoProps) {
     return (
         <div className="piano-container">
             <div className="key-container">
