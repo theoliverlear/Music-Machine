@@ -70,3 +70,9 @@
         }
     }
 }
+.white-key-pressed {
+    background-color: $charcoal !important; // TODO: Add functionality in .tsx for more specific styles to remove !important.
+}
+.black-key-pressed {
+    background-color: $darker-grey !important; // TODO: Add functionality in .tsx for more specific styles to remove !important.
+}
