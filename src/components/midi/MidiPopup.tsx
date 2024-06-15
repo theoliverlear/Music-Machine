@@ -2,10 +2,17 @@ import React, {useEffect, useState} from 'react';
 import {MidiDeviceInfo} from "../../models/MidiDeviceInfo";
 import Menu from "../ui/menu/Menu";
 
-function MidiPopup() {
+interface MidiPopupProps {
+    onMidiDeviceSelected: (midiInput: WebMidi.MIDIInput | undefined, midiOutput: WebMidi.MIDIOutput | undefined) => void;
+}
+
+function MidiPopup(props: MidiPopupProps) {
     // const midiDevices: MidiDeviceInfo[] = [];
     const [midiDevices, setMidiDevices] = useState<MidiDeviceInfo[]>([]);
-    const [selectedMidiDevice, setSelectedMidiDevice] = useState<MidiDeviceInfo | undefined>(undefined);
+    const [selectedMidiInfoDevice, setSelectedMidiInfoDevice] = useState<MidiDeviceInfo | undefined>(undefined);
+    const [midiDeviceSelected, setMidiDeviceSelected] = useState<boolean>(false);
+    const [midiInputDevice, setMidiInputDevice] = useState<WebMidi.MIDIInput | undefined>(undefined);
+    const [midiOutputDevice, setMidiOutputDevice] = useState<WebMidi.MIDIOutput | undefined>(undefined);
     useEffect(() => {
         function buildMidiDevicesList() {
             navigator.requestMIDIAccess().then((midiAccess) => {
@@ -19,17 +26,29 @@ function MidiPopup() {
 
         buildMidiDevicesList();
     }, []);
-    function onMenuItemClick(title: string) {
+    async function onMenuItemClick(title: string) {
         console.log('Menu item clicked: ', title);
-        let selectedMidiDevice: MidiDeviceInfo | undefined = midiDevices.find((midiDevice: MidiDeviceInfo) => midiDevice.name === title);
-        if (selectedMidiDevice) {
-            console.log('Selected Midi Device: ', selectedMidiDevice.toString());
-            setSelectedMidiDevice(selectedMidiDevice);
+        let selectedDevice: MidiDeviceInfo | undefined = midiDevices.find((midiDevice: MidiDeviceInfo): boolean => midiDevice.name === title);
+        if (selectedDevice) {
+            console.log('Selected Midi Device: ', selectedDevice.toString());
+            setSelectedMidiInfoDevice(selectedDevice);
+            setMidiDeviceSelected(true);
+            const deviceID: string = selectedDevice.id;
+            const inputDevice: WebMidi.MIDIInput | undefined = await navigator.requestMIDIAccess().then((midiAccess) => {
+                return midiAccess.inputs.get(deviceID);
+            });
+            setMidiInputDevice(inputDevice);
+            props.onMidiDeviceSelected(inputDevice, midiOutputDevice);
         }
     }
     return (
         <div>
-            <Menu title="Midi Devices" titleSize={2} listItemsTitles={midiDevices.map((midiDevice: MidiDeviceInfo) => midiDevice.name)} listItemSize={4} onMenuItemClick={onMenuItemClick}/>
+            {!midiDeviceSelected && (<Menu
+                title="Midi Devices"
+                titleSize={2}
+                listItemsTitles={midiDevices.map((midiDevice: MidiDeviceInfo) => midiDevice.name)}
+                listItemSize={4}
+                onMenuItemClick={onMenuItemClick}/>)}
         </div>
     );
 }
