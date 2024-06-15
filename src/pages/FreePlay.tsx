@@ -1,21 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Piano from "../components/piano/Piano";
 import MidiController from "../components/midi/MidiController";
 import Title from "../components/title/Title";
 import MidiPopup from "../components/midi/MidiPopup";
+import {Note} from "../models/Note";
 
 
 function FreePlay() {
-    const [midiInput, setMidiInput] = React.useState<WebMidi.MIDIInput | undefined>(undefined);
-    function handleMidiMessage(message: WebMidi.MIDIMessageEvent) {
-        console.log('Midi Message Received');
-
-    }
+    const [currentNotes, setCurrentNotes] = useState<Note[]>([]);
     return (
         <div>
             <Title title="Free Play" size={1}/>
-            <MidiController />
-            <Piano />
+            <MidiController onNoteChange={setCurrentNotes} />
+            <Piano currentNotes={currentNotes} />
         </div>
     );
 }
