@@ -1,9 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
+import Title from "../../title/Title";
+import {Chord} from "../../../models/Chord";
+import {Note} from "../../../models/Note";
 
-function CurrentChord() {
+interface CurrentChordProps {
+    currentChord: Chord;
+}
+
+function CurrentChord(props: CurrentChordProps) {
     return (
         <div>
-            <h1>CurrentChord</h1>
+            <Title title="Current Chord: " size={4} />
+            <Title title={props.currentChord.name} size={5} />
         </div>
     );
 }
