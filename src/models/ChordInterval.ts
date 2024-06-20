@@ -3,15 +3,15 @@ import {Interval} from "./Interval";
 export class ChordInterval {
     private _intervals: Interval[];
     private _name: string;
-    static major: Interval[] = [Interval.UNISON, Interval.MAJOR_THIRD, Interval.PERFECT_FIFTH];
-    static minor: Interval[] = [Interval.UNISON, Interval.MINOR_THIRD, Interval.PERFECT_FIFTH];
-    static diminished: Interval[] = [Interval.UNISON, Interval.MINOR_THIRD, Interval.TRITONE];
-    static augmented: Interval[] = [Interval.UNISON, Interval.MAJOR_THIRD, Interval.MINOR_SIXTH];
-    static majorSeventh: Interval[] = [Interval.UNISON, Interval.MAJOR_THIRD, Interval.PERFECT_FIFTH, Interval.MAJOR_SEVENTH];
-    static dominant: Interval[] = [Interval.UNISON, Interval.MAJOR_THIRD, Interval.PERFECT_FIFTH, Interval.MINOR_SEVENTH];
-    static minorSeventh: Interval[] = [Interval.UNISON, Interval.MINOR_THIRD, Interval.PERFECT_FIFTH, Interval.MINOR_SEVENTH];
-    static minorMajorSeventh: Interval[] = [Interval.UNISON, Interval.MINOR_THIRD, Interval.PERFECT_FIFTH, Interval.MAJOR_SEVENTH];
-    static diminishedSeventh: Interval[] = [Interval.UNISON, Interval.MINOR_THIRD, Interval.TRITONE, Interval.MINOR_SEVENTH];
+    static major: Interval[] = [Interval.unison, Interval.majorThird, Interval.perfectFifth];
+    static minor: Interval[] = [Interval.unison, Interval.minorThird, Interval.perfectFifth];
+    static diminished: Interval[] = [Interval.unison, Interval.minorThird, Interval.tritone];
+    static augmented: Interval[] = [Interval.unison, Interval.majorThird, Interval.minorSixth];
+    static majorSeventh: Interval[] = [Interval.unison, Interval.majorThird, Interval.perfectFifth, Interval.majorSeventh];
+    static dominant: Interval[] = [Interval.unison, Interval.majorThird, Interval.perfectFifth, Interval.minorSeventh];
+    static minorSeventh: Interval[] = [Interval.unison, Interval.minorThird, Interval.perfectFifth, Interval.minorSeventh];
+    static minorMajorSeventh: Interval[] = [Interval.unison, Interval.minorThird, Interval.perfectFifth, Interval.majorSeventh];
+    static diminishedSeventh: Interval[] = [Interval.unison, Interval.minorThird, Interval.tritone, Interval.minorSeventh];
     static intervals: Interval[][] = [
         ChordInterval.major,
         ChordInterval.minor,
@@ -25,10 +25,23 @@ export class ChordInterval {
     ];
     constructor(intervals: Interval[] = []) {
         this._intervals = intervals;
+        this.removeDuplicateIntervals();
         this._name = this.getNameByIntervals();
 
     }
+    removeDuplicateIntervals(): void {
+        this._intervals = this._intervals.filter((interval: Interval, index: number, self: Interval[]): boolean => {
+            return self.indexOf(interval) === index;
+        });
+    }
     getNameByIntervals(): string {
+        for (let i: number = 0; i < this._intervals.length; i++) {
+            console.log(i + ': ' + this._intervals[i].name);
+        }
+        if (this._intervals[0] === Interval.unison && this._intervals[1] === Interval.majorThird && this._intervals[2] === Interval.perfectFifth) {
+            return "Major";
+        }
+
         switch (this._intervals) {
             case ChordInterval.major:
                 return "Major";
