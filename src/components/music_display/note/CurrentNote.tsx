@@ -1,9 +1,16 @@
 import React from "react";
+import {Note} from "../../../models/Note";
+import Title from "../../title/Title";
 
-function CurrentNote() {
+interface CurrentNoteProps {
+    currentNote: Note;
+}
+
+function CurrentNote(props: CurrentNoteProps) {
     return (
-        <div>
-            <h1>CurrentNote</h1>
+        <div className="current-note">
+            <Title title={props.currentNote.noteData.noteName} size={3} />
         </div>
     );
 }
+export default CurrentNote;
