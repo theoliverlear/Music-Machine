@@ -4,4 +4,5 @@
 
 .title-div {
     @include flex(center, center, column);
+    text-align: center;
 }
