@@ -14,7 +14,7 @@ function MidiController(props: MidiControllerProps) {
     const [currentNotes, setCurrentNotes] = useState<Note[]>([]);
     // const [currentNotes, setCurrentNotes];
     function handleMidiDeviceSelection(inputDevice: WebMidi.MIDIInput | undefined, outputDevice: WebMidi.MIDIOutput | undefined) {
-        console.log('Midi Device Selected');
+        // console.log('Midi Device Selected');
         setMidiInput(inputDevice);
         setMidiOutput(outputDevice);
     }
@@ -30,17 +30,17 @@ function MidiController(props: MidiControllerProps) {
                 setCurrentNotes(previousNotes => {
                     const updatedNotes = [...previousNotes, note];
                     props.onNoteChange(updatedNotes);
-                    console.log('Updated Notes: ', updatedNotes);
+                    // console.log('Updated Notes: ', updatedNotes);
                     return updatedNotes;
                 });
-                console.log('Note Pressed: ', note.toString());
-                console.log('Current Notes: ', currentNotes);
+                // console.log('Note Pressed: ', note.toString());
+                // console.log('Current Notes: ', currentNotes);
             } else if (status === 128 || (status === 144 && velocity === 0)) {
-                console.log('Note Released');
+                // console.log('Note Released');
                 setCurrentNotes(previousNotes => {
                     const updatedNotes = previousNotes.filter((note: Note) => note.midiNote.noteId !== noteId)
                     props.onNoteChange(updatedNotes);
-                    console.log('Updated Notes: ', updatedNotes);
+                    // console.log('Updated Notes: ', updatedNotes);
                     return updatedNotes;
                 });
             }
