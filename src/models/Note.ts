@@ -1,7 +1,8 @@
 import {MidiNote} from "./MidiNote";
 import {NoteData} from "./NoteData";
+import {Equatable} from "./Equatable";
 
-export class Note {
+export class Note implements Equatable {
     private _midiNote: MidiNote;
     private _noteNumber: number;
     private _noteData: NoteData;
@@ -30,5 +31,8 @@ export class Note {
     }
     toString(): string {
         return `Note{midiNote: ${this._midiNote}, noteNumber: ${this._noteNumber}, noteName: ${this._noteData.fullNoteName}\n`;
+    }
+    equals(note: Note): boolean {
+        return this.noteNumber === note.noteNumber;
     }
 }
