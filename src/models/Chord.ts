@@ -1,54 +1,46 @@
 import {Note} from "./Note";
 import {ChordInterval} from "./ChordInterval";
 import {Interval} from "./Interval";
+import {MusicSet} from "./MusicSet";
 
 export class Chord {
     private _name: string;
-    private _notes: Note[];
+    private _notes: MusicSet<Note>
     constructor(notes: Note[] = []) {
-        this._notes = notes;
-        for (let i: number = 0; i < this._notes.length; i++) {
-            console.log(this._notes[i].noteData.fullNoteName);
-        }
+        this._notes = new MusicSet(notes);
         this._name = this.determineChordName();
     }
     determineChordName(): string {
-        let chordIntervals: Interval[] = [];
-        chordIntervals.push(Interval.unison);
-        for (let i: number = 0; i < this._notes.length - 1; i++) {
-            let intervalBetweenNotes: Interval = Interval.getIntervalBetweenNotes(this._notes[0], this._notes[i + 1]);
-            // console.log(intervalBetweenNotes);
-            if (chordIntervals.find((interval: Interval): boolean => {
-                return interval === intervalBetweenNotes;
-            })) {
-                continue;
-            }
-            chordIntervals.push(intervalBetweenNotes);
+        let chordIntervals: MusicSet<Interval> = new MusicSet<Interval>();
+        chordIntervals.add(Interval.unison);
+        for (let i: number = 0; i < this._notes.size - 1; i++) {
+            let noteArray: Note[] = this._notes.notesArray;
+            let intervalBetweenNotes: Interval = Interval.getIntervalBetweenNotes(noteArray[0], noteArray[i + 1]);
+            chordIntervals.add(intervalBetweenNotes);
         }
-        let chordInterval: ChordInterval = new ChordInterval(chordIntervals);
-        // console.log(chordInterval.getNameByIntervals());
-        for (let i: number = 0; i < chordIntervals.length; i++) {
-            console.log(chordIntervals[i].name);
-        }
+        chordIntervals.notesArray.forEach((interval: Interval): void => {
+            console.log(interval.name);
+        });
+        let chordInterval: ChordInterval = new ChordInterval(chordIntervals.notesArray);
         return chordInterval.getNameByIntervals();
     }
     updateChordByCurrentNotes(currentNotes: Note[]): void {
-        this._notes = currentNotes;
+        this._notes = new MusicSet(currentNotes);
         this._name = this.determineChordName();
     }
     addNote(note: Note): void {
-        this._notes.push(note);
+        this._notes.add(note);
         this._name = this.determineChordName();
     }
     removeNote(note: Note): void {
-        this._notes = this._notes.filter((currentNote: Note): boolean => {
-            return currentNote !== note;
-        });
+        this._notes.remove(note);
+        this._name = this.determineChordName();
     }
     get name(): string {
         return this._name;
     }
-    get notes(): Note[] {
+    get notes(): MusicSet<Note> {
         return this._notes;
     }
+
 }
