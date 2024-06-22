@@ -1,59 +1,60 @@
 import {Note} from "./Note";
+import {Equatable} from "./Equatable";
 
-export class Interval {
+export class Interval implements Equatable {
     private _semitones: number;
     private _name: string;
-    static UNISON: number = 0;
-    static MINOR_SECOND: number = 1;
-    static MAJOR_SECOND: number = 2;
-    static MINOR_THIRD: number = 3;
-    static MAJOR_THIRD: number = 4;
-    static PERFECT_FOURTH: number = 5;
-    static TRITONE: number = 6;
-    static PERFECT_FIFTH: number = 7;
-    static MINOR_SIXTH: number = 8;
-    static MAJOR_SIXTH: number = 9;
-    static MINOR_SEVENTH: number = 10;
-    static MAJOR_SEVENTH: number = 11;
-    static OCTAVE: number = 12;
-    static MINOR_NINTH: number = 13;
-    static MAJOR_NINTH: number = 14;
-    static MINOR_TENTH: number = 15;
-    static MAJOR_TENTH: number = 16;
-    static PERFECT_ELEVENTH: number = 17;
-    static AUGMENTED_ELEVENTH: number = 18;
-    static PERFECT_TWELFTH: number = 19;
-    static MINOR_THIRTEENTH: number = 20;
-    static MAJOR_THIRTEENTH: number = 21;
-    static MINOR_FOURTEENTH: number = 22;
-    static MAJOR_FOURTEENTH: number = 23;
-    static PERFECT_FIFTEENTH: number = 24;
-    static unison: Interval = new Interval(Interval.UNISON, "Unison");
-    static minorSecond: Interval = new Interval(Interval.MINOR_SECOND, "Minor Second");
-    static majorSecond: Interval = new Interval(Interval.MAJOR_SECOND, "Major Second");
-    static minorThird: Interval = new Interval(Interval.MINOR_THIRD, "Minor Third");
-    static majorThird: Interval = new Interval(Interval.MAJOR_THIRD, "Major Third");
-    static perfectFourth: Interval = new Interval(Interval.PERFECT_FOURTH, "Perfect Fourth");
-    static tritone: Interval = new Interval(Interval.TRITONE, "Tritone");
-    static perfectFifth: Interval = new Interval(Interval.PERFECT_FIFTH, "Perfect Fifth");
-    static minorSixth: Interval = new Interval(Interval.MINOR_SIXTH, "Minor Sixth");
-    static majorSixth: Interval = new Interval(Interval.MAJOR_SIXTH, "Major Sixth");
-    static minorSeventh: Interval = new Interval(Interval.MINOR_SEVENTH, "Minor Seventh");
-    static majorSeventh: Interval = new Interval(Interval.MAJOR_SEVENTH, "Major Seventh");
-    static octave: Interval = new Interval(Interval.OCTAVE , "Octave");
-    static minorNinth: Interval = new Interval(Interval.MINOR_NINTH, "Minor Ninth");
-    static majorNinth: Interval = new Interval(Interval.MAJOR_NINTH, "Major Ninth");
-    static minorTenth: Interval = new Interval(Interval.MINOR_TENTH, "Minor Tenth");
-    static majorTenth: Interval = new Interval(Interval.MAJOR_TENTH, "Major Tenth");
-    static perfectEleventh: Interval = new Interval(Interval.PERFECT_ELEVENTH, "Perfect Eleventh");
-    static augmentedEleventh: Interval = new Interval(Interval.AUGMENTED_ELEVENTH, "Augmented Eleventh");
-    static perfectTwelfth: Interval = new Interval(Interval.PERFECT_TWELFTH, "Perfect Twelfth");
-    static minorThirteenth: Interval = new Interval(Interval.MINOR_THIRTEENTH, "Minor Thirteenth");
-    static majorThirteenth: Interval = new Interval(Interval.MAJOR_THIRTEENTH, "Major Thirteenth");
-    static minorFourteenth: Interval = new Interval(Interval.MINOR_FOURTEENTH, "Minor Fourteenth");
-    static majorFourteenth: Interval = new Interval(Interval.MAJOR_FOURTEENTH, "Major Fourteenth");
-    static perfectFifteenth: Interval = new Interval(Interval.PERFECT_FIFTEENTH, "Perfect Fifteenth");
-    static unknown: Interval = new Interval(-1, "Unknown");
+    static readonly UNISON: number = 0;
+    static readonly MINOR_SECOND: number = 1;
+    static readonly MAJOR_SECOND: number = 2;
+    static readonly MINOR_THIRD: number = 3;
+    static readonly MAJOR_THIRD: number = 4;
+    static readonly PERFECT_FOURTH: number = 5;
+    static readonly TRITONE: number = 6;
+    static readonly PERFECT_FIFTH: number = 7;
+    static readonly MINOR_SIXTH: number = 8;
+    static readonly MAJOR_SIXTH: number = 9;
+    static readonly MINOR_SEVENTH: number = 10;
+    static readonly MAJOR_SEVENTH: number = 11;
+    static readonly OCTAVE: number = 12;
+    static readonly MINOR_NINTH: number = 13;
+    static readonly MAJOR_NINTH: number = 14;
+    static readonly MINOR_TENTH: number = 15;
+    static readonly MAJOR_TENTH: number = 16;
+    static readonly PERFECT_ELEVENTH: number = 17;
+    static readonly AUGMENTED_ELEVENTH: number = 18;
+    static readonly PERFECT_TWELFTH: number = 19;
+    static readonly MINOR_THIRTEENTH: number = 20;
+    static readonly MAJOR_THIRTEENTH: number = 21;
+    static readonly MINOR_FOURTEENTH: number = 22;
+    static readonly MAJOR_FOURTEENTH: number = 23;
+    static readonly PERFECT_FIFTEENTH: number = 24;
+    static readonly unison: Interval = new Interval(Interval.UNISON, "Unison");
+    static readonly minorSecond: Interval = new Interval(Interval.MINOR_SECOND, "Minor Second");
+    static readonly majorSecond: Interval = new Interval(Interval.MAJOR_SECOND, "Major Second");
+    static readonly minorThird: Interval = new Interval(Interval.MINOR_THIRD, "Minor Third");
+    static readonly majorThird: Interval = new Interval(Interval.MAJOR_THIRD, "Major Third");
+    static readonly perfectFourth: Interval = new Interval(Interval.PERFECT_FOURTH, "Perfect Fourth");
+    static readonly tritone: Interval = new Interval(Interval.TRITONE, "Tritone");
+    static readonly perfectFifth: Interval = new Interval(Interval.PERFECT_FIFTH, "Perfect Fifth");
+    static readonly minorSixth: Interval = new Interval(Interval.MINOR_SIXTH, "Minor Sixth");
+    static readonly majorSixth: Interval = new Interval(Interval.MAJOR_SIXTH, "Major Sixth");
+    static readonly minorSeventh: Interval = new Interval(Interval.MINOR_SEVENTH, "Minor Seventh");
+    static readonly majorSeventh: Interval = new Interval(Interval.MAJOR_SEVENTH, "Major Seventh");
+    static readonly octave: Interval = new Interval(Interval.OCTAVE , "Octave");
+    static readonly minorNinth: Interval = new Interval(Interval.MINOR_NINTH, "Minor Ninth");
+    static readonly majorNinth: Interval = new Interval(Interval.MAJOR_NINTH, "Major Ninth");
+    static readonly minorTenth: Interval = new Interval(Interval.MINOR_TENTH, "Minor Tenth");
+    static readonly majorTenth: Interval = new Interval(Interval.MAJOR_TENTH, "Major Tenth");
+    static readonly perfectEleventh: Interval = new Interval(Interval.PERFECT_ELEVENTH, "Perfect Eleventh");
+    static readonly augmentedEleventh: Interval = new Interval(Interval.AUGMENTED_ELEVENTH, "Augmented Eleventh");
+    static readonly perfectTwelfth: Interval = new Interval(Interval.PERFECT_TWELFTH, "Perfect Twelfth");
+    static readonly minorThirteenth: Interval = new Interval(Interval.MINOR_THIRTEENTH, "Minor Thirteenth");
+    static readonly majorThirteenth: Interval = new Interval(Interval.MAJOR_THIRTEENTH, "Major Thirteenth");
+    static readonly minorFourteenth: Interval = new Interval(Interval.MINOR_FOURTEENTH, "Minor Fourteenth");
+    static readonly majorFourteenth: Interval = new Interval(Interval.MAJOR_FOURTEENTH, "Major Fourteenth");
+    static readonly perfectFifteenth: Interval = new Interval(Interval.PERFECT_FIFTEENTH, "Perfect Fifteenth");
+    static readonly unknown: Interval = new Interval(-1, "Unknown");
     constructor(semitones: number = 0, name: string = "") {
         this._semitones = semitones;
         this._name = ""; // This line is only here to remove the error
@@ -189,5 +190,8 @@ export class Interval {
             default:
                 return Interval.unknown;
         }
+    }
+    equals(interval: Interval): boolean {
+        return this._semitones === interval.semitones;
     }
 }
