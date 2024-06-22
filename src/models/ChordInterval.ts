@@ -1,18 +1,30 @@
 import {Interval} from "./Interval";
+import {MusicSet} from "./MusicSet";
 
 export class ChordInterval {
-    private _intervals: Interval[];
+    private _intervals: MusicSet<Interval>;
     private _name: string;
-    static major: Interval[] = [Interval.unison, Interval.majorThird, Interval.perfectFifth];
-    static minor: Interval[] = [Interval.unison, Interval.minorThird, Interval.perfectFifth];
-    static diminished: Interval[] = [Interval.unison, Interval.minorThird, Interval.tritone];
-    static augmented: Interval[] = [Interval.unison, Interval.majorThird, Interval.minorSixth];
-    static majorSeventh: Interval[] = [Interval.unison, Interval.majorThird, Interval.perfectFifth, Interval.majorSeventh];
-    static dominant: Interval[] = [Interval.unison, Interval.majorThird, Interval.perfectFifth, Interval.minorSeventh];
-    static minorSeventh: Interval[] = [Interval.unison, Interval.minorThird, Interval.perfectFifth, Interval.minorSeventh];
-    static minorMajorSeventh: Interval[] = [Interval.unison, Interval.minorThird, Interval.perfectFifth, Interval.majorSeventh];
-    static diminishedSeventh: Interval[] = [Interval.unison, Interval.minorThird, Interval.tritone, Interval.minorSeventh];
-    static intervals: Interval[][] = [
+    static majorIntervals: Interval[] = [Interval.unison, Interval.majorThird, Interval.perfectFifth];
+    static minorIntervals: Interval[] = [Interval.unison, Interval.minorThird, Interval.perfectFifth];
+    static diminishedIntervals: Interval[] = [Interval.unison, Interval.minorThird, Interval.tritone];
+    static augmentedIntervals: Interval[] = [Interval.unison, Interval.majorThird, Interval.minorSixth];
+    static majorSeventhIntervals: Interval[] = [Interval.unison, Interval.majorThird, Interval.perfectFifth, Interval.majorSeventh];
+    static dominantIntervals: Interval[] = [Interval.unison, Interval.majorThird, Interval.perfectFifth, Interval.minorSeventh];
+    static minorSeventhIntervals: Interval[] = [Interval.unison, Interval.minorThird, Interval.perfectFifth, Interval.minorSeventh];
+    static minorMajorSeventhIntervals: Interval[] = [Interval.unison, Interval.minorThird, Interval.perfectFifth, Interval.majorSeventh];
+    static diminishedSeventhIntervals: Interval[] = [Interval.unison, Interval.minorThird, Interval.tritone, Interval.minorSeventh];
+
+    static major: ChordInterval = new ChordInterval(ChordInterval.majorIntervals, 'Major');
+    static minor: ChordInterval = new ChordInterval(ChordInterval.minorIntervals, 'Minor');
+    static diminished: ChordInterval = new ChordInterval(ChordInterval.diminishedIntervals, 'Diminished');
+    static augmented: ChordInterval = new ChordInterval(ChordInterval.augmentedIntervals, 'Augmented');
+    static majorSeventh: ChordInterval = new ChordInterval(ChordInterval.majorSeventhIntervals, 'Major Seventh');
+    static dominant: ChordInterval = new ChordInterval(ChordInterval.dominantIntervals, 'Dominant');
+    static minorSeventh: ChordInterval = new ChordInterval(ChordInterval.minorSeventhIntervals, 'Minor Seventh');
+    static minorMajorSeventh: ChordInterval = new ChordInterval(ChordInterval.minorMajorSeventhIntervals, 'Minor Major Seventh');
+    static diminishedSeventh: ChordInterval = new ChordInterval(ChordInterval.diminishedSeventhIntervals, 'Diminished Seventh');
+
+    static intervals: ChordInterval[] = [
         ChordInterval.major,
         ChordInterval.minor,
         ChordInterval.diminished,
@@ -23,57 +35,57 @@ export class ChordInterval {
         ChordInterval.minorMajorSeventh,
         ChordInterval.diminishedSeventh
     ];
-    constructor(intervals: Interval[] = []) {
-        this._intervals = intervals;
-        this.removeDuplicateIntervals();
-        this._name = this.getNameByIntervals();
+    constructor(intervals: Interval[] = [], name: string = '') {
+        this._intervals = new MusicSet<Interval>(intervals);
+        if (name === '') {
+            this._name = this.getNameByIntervals();
+        } else {
+            this._name = name;
+        }
 
     }
-    removeDuplicateIntervals(): void {
-        this._intervals = this._intervals.filter((interval: Interval, index: number, self: Interval[]): boolean => {
-            return self.indexOf(interval) === index;
+    equalIntervals(chordInterval: Interval[]): boolean {
+        return this._intervals.notesArray.every((interval: Interval, index: number): boolean => {
+            return interval === chordInterval[index];
         });
     }
     getNameByIntervals(): string {
-        for (let i: number = 0; i < this._intervals.length; i++) {
-            console.log(i + ': ' + this._intervals[i].name);
+        // this._intervals.notesArray.forEach((interval: Interval): void => {
+        //     console.log('Interval: ', interval.name);
+        // });
+        let chordName: string;
+        if (this.equalIntervals(ChordInterval.majorIntervals)) {
+            chordName = 'Major';
+        } else if (this.equalIntervals(ChordInterval.minorIntervals)) {
+            chordName = 'Minor';
+        } else if (this.equalIntervals(ChordInterval.diminishedIntervals)) {
+            chordName = 'Diminished';
+        } else if (this.equalIntervals(ChordInterval.augmentedIntervals)) {
+            chordName = 'Augmented';
+        } else if (this.equalIntervals(ChordInterval.majorSeventhIntervals)) {
+            chordName = 'Major Seventh';
+        } else if (this.equalIntervals(ChordInterval.dominantIntervals)) {
+            chordName = 'Dominant';
+        } else if (this.equalIntervals(ChordInterval.minorSeventhIntervals)) {
+            chordName = 'Minor Seventh';
+        } else if (this.equalIntervals(ChordInterval.minorMajorSeventhIntervals)) {
+            chordName = 'Minor Major Seventh';
+        } else if (this.equalIntervals(ChordInterval.diminishedSeventhIntervals)) {
+            chordName = 'Diminished Seventh';
+        } else {
+            chordName = 'Unknown';
         }
-        if (this._intervals[0] === Interval.unison && this._intervals[1] === Interval.majorThird && this._intervals[2] === Interval.perfectFifth) {
-            return "Major";
-        }
-
-        switch (this._intervals) {
-            case ChordInterval.major:
-                return "Major";
-            case ChordInterval.minor:
-                return "Minor";
-            case ChordInterval.diminished:
-                return "Diminished";
-            case ChordInterval.augmented:
-                return "Augmented";
-            case ChordInterval.majorSeventh:
-                return "Major Seventh";
-            case ChordInterval.dominant:
-                return "Dominant";
-            case ChordInterval.minorSeventh:
-                return "Minor Seventh";
-            case ChordInterval.minorMajorSeventh:
-                return "Minor Major Seventh";
-            case ChordInterval.diminishedSeventh:
-                return "Diminished Seventh";
-            default:
-                return "Unknown";
-        }
+        return chordName;
     }
-    get intervals(): Interval[] {
+    get intervals(): MusicSet<Interval> {
         return this._intervals;
     }
-    set intervals(intervals: Interval[]) {
+    set intervals(intervals: MusicSet<Interval>) {
         this._intervals = intervals;
     }
     equals(chordInterval: ChordInterval): boolean {
-        return this._intervals.every((interval: Interval, index: number): boolean => {
-            return interval === chordInterval.intervals[index];
+        return this._intervals.notesArray.every((interval: Interval, index: number): boolean => {
+            return interval === chordInterval.intervals.notesArray[index];
         });
     }
 }
