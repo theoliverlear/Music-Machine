@@ -1,0 +1,14 @@
+@import "../../../../global-mixins";
+@import "../../../../global-functions";
+@import "../../../../global-variables";
+
+.title-with-notes {
+    @include flex(center, center, column);
+    .current-notes {
+        @include flex(center, center, row);
+        min-height: $h4-font-size;
+        .current-note {
+            margin: 0 $quarter-percent;
+        }
+    }
+}

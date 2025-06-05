@@ -1,0 +1,14 @@
+@import "../../../../global-variables";
+@import "../../../../global-mixins";
+@import "../../../../global-functions";
+
+.menu-div {
+    .menu-items-div {
+        .menu-item-div {
+            @include flex(center, center, row);
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
