@@ -1,5 +1,5 @@
 import React from 'react';
-import {Note} from "../../../../../models/note/Note";
+import {Note} from "../../../../../../models/note/Note";
 
 interface OpeningBlackKeyOctaveProps {
     currentNotes: Note[];

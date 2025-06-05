@@ -1,6 +1,6 @@
 import React from 'react';
-import '../../piano/Piano.css';
-import {Note} from "../../../../../models/note/Note";
+import '../../../piano/Piano.css';
+import {Note} from "../../../../../../models/note/Note";
 interface OpeningWhiteKeyOctaveProps {
     currentNotes: Note[];
     isNotePlayed: (dataNote: string) => boolean;

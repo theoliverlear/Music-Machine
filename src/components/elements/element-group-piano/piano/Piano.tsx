@@ -1,5 +1,5 @@
 import React from 'react';
-import OpeningOctave from "../element-group-opening/opening-octave/OpeningOctave";
+import OpeningOctave from "../element-group-octave/element-group-opening/opening-octave/OpeningOctave";
 import KeyOctave from "../element-group-octave/key-octave/KeyOctave";
 import ClosingOctave from "../element-group-octave/element-group-closing/closing-octave/ClosingOctave";
 import './Piano.css';

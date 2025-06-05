@@ -2,7 +2,7 @@ import React from 'react';
 import WhiteKeyOctave from "../white-key-octave/WhiteKeyOctave";
 import BlackKeyOctave from "../black-key-octave/BlackKeyOctave";
 import {Note} from "../../../../../models/note/Note";
-import currentNotes from "../../../element-group-note/note/CurrentNotes";
+import currentNotes from "../../../element-group-note/current-notes/CurrentNotes";
 
 interface KeyOctaveProps {
     octaveNumber: number;

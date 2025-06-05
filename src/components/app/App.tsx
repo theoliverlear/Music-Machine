@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import FreePlay from "../components/pages/free-play/FreePlay";
-import Home from "../components/pages/home/Home";
+import FreePlay from "../pages/free-play/FreePlay";
+import Home from "../pages/home/Home";
 import {Route, BrowserRouter as Router, Routes} from "react-router-dom";
 const menuClassName: string = "menu-item";
 

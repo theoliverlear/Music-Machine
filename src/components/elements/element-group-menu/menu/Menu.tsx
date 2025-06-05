@@ -1,6 +1,6 @@
 import React from 'react';
 import Title from "../../element-group-native/title/Title";
-import MenuItem from "./MenuItem";
+import MenuItem from "../menu-item/MenuItem";
 import './Menu.css';
 
 function Menu(props: {title: string,

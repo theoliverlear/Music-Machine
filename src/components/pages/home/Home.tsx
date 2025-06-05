@@ -1,7 +1,8 @@
 import React from 'react';
-import Title from "../components/title/Title";
+
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import FreePlay from "../free-play/FreePlay";
+import Title from "../../elements/element-group-native/title/Title";
 function Home(props: {className: string}) {
     return (
         <div className="home">

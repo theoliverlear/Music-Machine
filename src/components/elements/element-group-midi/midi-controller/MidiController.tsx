@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import MidiPopup from "../midi-popup/MidiPopup";
 import MidiDevice from "../midi-device/MidiDevice";
-import {MidiNote} from "../../models/MidiNote";
-import {Note} from "../../models/Note";
+import { Note } from '../../../../models/note/Note';
+import {MidiNote} from "../../../../models/midi/MidiNote";
 
 interface MidiControllerProps {
     onNoteChange: (notes: Note[]) => void;

@@ -1,0 +1,12 @@
+@function calc-size($width, $height, $em) {
+    @return calc(((#{$width}vw + #{$height}vh) / 2) + #{$em}rem);
+}
+@function simple-calc($width-height, $rem) {
+    @return calc-size(#{$width-height}, #{$width-height}, #{$rem});
+}
+@function simplest-calc($width-height-rem) {
+    @return simple-calc(#{$width-height-rem}, #{$width-height-rem});
+}
+@function simple-pixel-calc($width-height, $px) {
+    @return calc(((#{$width-height}vw + #{$width-height}vh) / 2) + #{$px}px);
+}

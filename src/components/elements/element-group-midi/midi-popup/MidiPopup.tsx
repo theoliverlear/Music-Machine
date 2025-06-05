@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {MidiDeviceInfo} from "../../models/MidiDeviceInfo";
 import Menu from "../../element-group-menu/menu/Menu";
+import {MidiDeviceInfo} from "../../../../models/midi/MidiDeviceInfo";
 
 interface MidiPopupProps {
     onMidiDeviceSelected: (midiInput: WebMidi.MIDIInput | undefined, midiOutput: WebMidi.MIDIOutput | undefined) => void;

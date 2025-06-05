@@ -1,6 +1,6 @@
-@import "../../../../global-mixins";
-@import "../../../../global-functions";
-@import "../../../../global-variables";
+@import "../../../../styles/global-mixins";
+@import "../../../../styles/global-functions";
+@import "../../../../styles/global-variables";
 
 .title-with-notes {
     @include flex(center, center, column);
