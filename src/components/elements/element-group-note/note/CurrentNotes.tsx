@@ -1,6 +1,6 @@
 import React from 'react';
-import {Note} from "../../../../models/Note";
-import {MidiNote} from "../../../../models/MidiNote";
+import {Note} from "../../../../models/note/Note";
+import {MidiNote} from "../../../../models/midi/MidiNote";
 import CurrentNote from "./CurrentNote";
 import Title from "../../element-group-native/title/Title";
 import './CurrentNotes.css';

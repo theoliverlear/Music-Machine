@@ -1,5 +1,5 @@
 import {Interval} from "./Interval";
-import {MusicSet} from "./MusicSet";
+import {MusicSet} from "../MusicSet";
 
 export class ChordInterval {
     private _intervals: MusicSet<Interval>;

@@ -1,5 +1,5 @@
 import React from "react";
-import {Note} from "../../../../models/Note";
+import {Note} from "../../../../models/note/Note";
 import Title from "../../element-group-native/title/Title";
 
 interface CurrentNoteProps {

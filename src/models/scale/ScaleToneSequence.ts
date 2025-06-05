@@ -1,4 +1,4 @@
-import {Interval} from "./Interval";
+import {Interval} from "../chord/Interval";
 
 export class ScaleToneSequence {
     MAJOR = [Interval.UNISON, Interval.MAJOR_SECOND, Interval.MAJOR_THIRD, Interval.PERFECT_FOURTH, Interval.PERFECT_FIFTH, Interval.MAJOR_SIXTH, Interval.MAJOR_SEVENTH];

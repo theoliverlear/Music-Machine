@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Title from "../../element-group-native/title/Title";
-import {Chord} from "../../../../models/Chord";
-import {Note} from "../../../../models/Note";
+import {Chord} from "../../../../models/chord/Chord";
+import {Note} from "../../../../models/note/Note";
 
 interface CurrentChordProps {
     currentChord: Chord;

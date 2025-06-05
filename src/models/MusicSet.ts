@@ -1,4 +1,4 @@
-import {Equatable} from "./Equatable";
+import {Equatable} from "./behavior/Equatable";
 
 export class MusicSet<T extends Equatable> {
     private _musicItems: Set<T>;

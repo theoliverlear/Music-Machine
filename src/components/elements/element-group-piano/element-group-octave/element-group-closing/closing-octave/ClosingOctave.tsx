@@ -1,6 +1,6 @@
 import React from 'react';
 import ClosingWhiteKeyOctave from "../closing-white-key-octave/ClosingWhiteKeyOctave";
-import {Note} from "../../../../../../models/Note";
+import {Note} from "../../../../../../models/note/Note";
 
 interface ClosingOctaveProps {
     currentNotes: Note[];

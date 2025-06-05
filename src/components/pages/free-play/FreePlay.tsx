@@ -3,10 +3,10 @@ import Piano from "../../elements/element-group-piano/piano/Piano";
 import MidiController from "../components/midi/MidiController";
 import Title from "../components/title/Title";
 import MidiPopup from "../components/midi/MidiPopup";
-import {Note} from "../../../models/Note";
+import {Note} from "../../../models/note/Note";
 import CurrentNotes from "../../elements/element-group-note/note/CurrentNotes";
 import CurrentChord from "../../elements/element-group-note/chord/CurrentChord";
-import {Chord} from "../../../models/Chord";
+import {Chord} from "../../../models/chord/Chord";
 
 
 function FreePlay() {

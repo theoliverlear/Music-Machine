@@ -1,6 +1,6 @@
-import {Chord} from "../Chord";
-import {Note} from "../Note";
-import {MidiNote} from "../MidiNote";
+import {Chord} from "../chord/Chord";
+import {Note} from "../note/Note";
+import {MidiNote} from "../midi/MidiNote";
 
 describe('Chord', (): void => {
     it ('does not allow duplicate notes', (): void => {

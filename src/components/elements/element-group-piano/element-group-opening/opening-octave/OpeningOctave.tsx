@@ -1,7 +1,7 @@
 import React from 'react';
 import OpeningWhiteKeyOctave from "../opening-white-key-octave/OpeningWhiteKeyOctave";
 import OpeningBlackKeyOctave from "../opening-black-key-octave/OpeningBlackKeyOctave";
-import {Note} from "../../../../../models/Note";
+import {Note} from "../../../../../models/note/Note";
 
 interface OpeningOctaveProps {
     currentNotes: Note[];

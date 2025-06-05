@@ -1,6 +1,6 @@
-import {MidiNote} from "./MidiNote";
+import {MidiNote} from "../midi/MidiNote";
 import {NoteData} from "./NoteData";
-import {Equatable} from "./Equatable";
+import {Equatable} from "../behavior/Equatable";
 
 export class Note implements Equatable {
     private _midiNote: MidiNote;

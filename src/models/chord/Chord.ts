@@ -1,7 +1,7 @@
-import {Note} from "./Note";
+import {Note} from "../note/Note";
 import {ChordInterval} from "./ChordInterval";
 import {Interval} from "./Interval";
-import {MusicSet} from "./MusicSet";
+import {MusicSet} from "../MusicSet";
 
 export class Chord {
     private _name: string;

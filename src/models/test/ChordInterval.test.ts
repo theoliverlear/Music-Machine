@@ -1,5 +1,5 @@
-import {ChordInterval} from "../ChordInterval";
-import {Interval} from "../Interval";
+import {ChordInterval} from "../chord/ChordInterval";
+import {Interval} from "../chord/Interval";
 
 describe('ChordInterval', (): void => {
     describe('getNameByIntervals', (): void => {

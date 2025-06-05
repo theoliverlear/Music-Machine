@@ -1,5 +1,5 @@
-import {Note} from "./Note";
-import {Equatable} from "./Equatable";
+import {Note} from "../note/Note";
+import {Equatable} from "../behavior/Equatable";
 
 export class Interval implements Equatable {
     private _semitones: number;
