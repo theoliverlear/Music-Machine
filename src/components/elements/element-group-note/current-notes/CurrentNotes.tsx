@@ -10,12 +10,16 @@ interface CurrentNotesProps {
 }
 
 function CurrentNotes(props: CurrentNotesProps): ReactElement {
+    function getCurrentNotes(): Note[] {
+        // sort from lowest to highest pitch
+        return props.currentNotes.sort((noteOne, noteTwo) => noteOne.noteNumber - noteTwo.noteNumber);
+    }
     return (
-        <div className="title-with-notes">
+        <div className={"current-notes"}>
             <Title text="Current Notes: " tagType={TagType.H4} />
-            {props.currentNotes.length === 0 && <Title text={"None"} tagType={TagType.H5}/>}
-            <div className="current-notes">
-                {props.currentNotes.map((note, index) => <CurrentNote key={index} currentNote={note}/>)}
+            {getCurrentNotes().length === 0 && <Title text={"None"} tagType={TagType.H5}/>}
+            <div className={"notes"}>
+                {getCurrentNotes().map((note, index) => <CurrentNote key={index} currentNote={note}/>)}
             </div>
         </div>
     );
