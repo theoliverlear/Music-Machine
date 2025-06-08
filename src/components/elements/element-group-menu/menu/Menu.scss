@@ -2,7 +2,8 @@
 @import "../../../../styles/global-mixins";
 @import "../../../../styles/global-functions";
 
-.menu-div {
+.menu {
+    @include flex(center, center, column);
     .menu-items-div {
         .menu-item-div {
             @include flex(center, center, row);
