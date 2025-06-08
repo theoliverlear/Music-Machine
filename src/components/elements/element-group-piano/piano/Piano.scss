@@ -2,7 +2,7 @@
 @import "../../../../styles/global-mixins";
 @import "../../../../styles/global-functions";
 
-.piano-container {
+.piano {
     @include basic-margin-padding($zero, $zero);
     scale: 0.75;
     .key-container {
@@ -75,4 +75,11 @@
 }
 .black-key-pressed {
     background-color: $darker-grey !important; // TODO: Add functionality in .tsx for more specific styles to remove !important.
+}
+
+// if there is x overflow, scale down the piano
+@media screen and (max-width: 1200px) {
+    .piano {
+        scale: 0.65;
+    }
 }
