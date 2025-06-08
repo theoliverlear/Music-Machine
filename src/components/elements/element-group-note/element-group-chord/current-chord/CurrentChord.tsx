@@ -1,17 +1,18 @@
-import React, {useState} from 'react';
+import React, {ReactElement} from 'react';
 import Title from "../../../element-group-native/title/Title";
 import {Chord} from "../../../../../models/chord/Chord";
-import {Note} from "../../../../../models/note/Note";
+import {TagType} from "../../../../../models/html/TagType";
 
 interface CurrentChordProps {
     currentChord: Chord;
 }
 
-function CurrentChord(props: CurrentChordProps) {
+function CurrentChord(props: CurrentChordProps): ReactElement {
     return (
-        <div>
-            <Title title="Current Chord: " size={4} />
-            <Title title={props.currentChord.name} size={5} />
+        <div className={"current-chord"}>
+            <Title text="Current Chord: " tagType={TagType.H4} />
+            {props.currentChord.notes.size == 0 && <Title text="None" tagType={TagType.H5} />}
+            {props.currentChord.notes.size != 0 && <Title text={props.currentChord.name} tagType={TagType.H5}/>}
         </div>
     );
 }
