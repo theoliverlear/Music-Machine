@@ -1,27 +1,39 @@
-import React from 'react';
+import React, {ReactElement} from 'react';
 import './Title.css';
-function Title(props: {title: string, size: number, onClick?: (title: string) => void}) {
-    function headingSize() {
-        switch (props.size) {
-            case 1:
-                return <h1>{props.title}</h1>;
-            case 2:
-                return <h2>{props.title}</h2>;
-            case 3:
-                return <h3>{props.title}</h3>;
-            case 4:
-                return <h4>{props.title}</h4>;
-            case 5:
-                return <h5>{props.title}</h5>;
-            case 6:
-                return <h6>{props.title}</h6>;
+import {TagType} from "../../../../models/html/TagType";
+
+interface TitleProps {
+    text: string;
+    tagType: TagType;
+    onClick?: (text: string) => void;
+}
+
+function Title(props: TitleProps): ReactElement {
+    function headingSize(): ReactElement {
+        switch (props.tagType) {
+            case TagType.H1:
+                return <h1>{props.text}</h1>;
+            case TagType.H2:
+                return <h2>{props.text}</h2>;
+            case TagType.H3:
+                return <h3>{props.text}</h3>;
+            case TagType.H4:
+                return <h4>{props.text}</h4>;
+            case TagType.H5:
+                return <h5>{props.text}</h5>;
+            case TagType.H6:
+                return <h6>{props.text}</h6>;
+            case TagType.P:
+                return <p>{props.text}</p>;
+            case TagType.SPAN:
+                return <span>{props.text}</span>;
             default:
-                return <h1>{props.title}</h1>;
+                return <h1>{props.text}</h1>;
         }
     }
     // Refactor onClick to be more modular. Right now it depends on a "title".
     return (
-        <div className="title-div" onClick={() => props.onClick ? props.onClick(props.title) : null}>
+        <div className="title" onClick={() => props.onClick ? props.onClick(props.text) : null}>
             {headingSize()}
         </div>
     );
