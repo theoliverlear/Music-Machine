@@ -23,6 +23,9 @@ export class ChordInterval {
     static diminishedFirstInversionIntervals: Interval[] = [Interval.unison, Interval.minorThird, Interval.majorSixth];
     static diminishedSecondInversionIntervals: Interval[] = [Interval.unison, Interval.tritone, Interval.majorSixth];
 
+    static augmentedFirstInversionIntervals: Interval[] = [Interval.unison, Interval.majorThird, Interval.minorSixth];
+    static augmentedSecondInversionIntervals: Interval[] = [Interval.unison, Interval.majorThird, Interval.minorSixth];
+
     // Base
     static major: ChordInterval = new ChordInterval(ChordInterval.majorIntervals, 'Major');
     static minor: ChordInterval = new ChordInterval(ChordInterval.minorIntervals, 'Minor');
@@ -40,6 +43,9 @@ export class ChordInterval {
     static minorSecondInversion: ChordInterval = new ChordInterval(ChordInterval.minorSecondInversionIntervals, 'Minor Second Inversion');
     static diminishedFirstInversion: ChordInterval = new ChordInterval(ChordInterval.diminishedFirstInversionIntervals, 'Diminished First Inversion');
     static diminishedSecondInversion: ChordInterval = new ChordInterval(ChordInterval.diminishedSecondInversionIntervals, 'Diminished Second Inversion');
+
+    static augmentedFirstInversion: ChordInterval = new ChordInterval(ChordInterval.augmentedFirstInversionIntervals, 'Augmented First Inversion');
+    static augmentedSecondInversion: ChordInterval = new ChordInterval(ChordInterval.augmentedSecondInversionIntervals, 'Augmented Second Inversion');
     static intervals: ChordInterval[] = [
         ChordInterval.major,
         ChordInterval.minor,
@@ -55,7 +61,9 @@ export class ChordInterval {
         ChordInterval.minorFirstInversion,
         ChordInterval.minorSecondInversion,
         ChordInterval.diminishedFirstInversion,
-        ChordInterval.diminishedSecondInversion
+        ChordInterval.diminishedSecondInversion,
+        ChordInterval.augmentedFirstInversion,
+        ChordInterval.augmentedSecondInversion
     ];
     constructor(intervals: Interval[] = [], name: string = '') {
         this._intervals = new MusicSet<Interval>(intervals);
