@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Menu from "../../element-group-menu/menu/Menu";
 import {MidiDeviceInfo} from "../../../../models/midi/MidiDeviceInfo";
+import {TagType} from "../../../../models/html/TagType";
 
 interface MidiPopupProps {
     onMidiDeviceSelected: (midiInput: WebMidi.MIDIInput | undefined, midiOutput: WebMidi.MIDIOutput | undefined) => void;
@@ -45,9 +46,9 @@ function MidiPopup(props: MidiPopupProps) {
         <div>
             {!midiDeviceSelected && (<Menu
                 title="Midi Devices"
-                titleSize={2}
-                listItemsTitles={midiDevices.map((midiDevice: MidiDeviceInfo) => midiDevice.name)}
-                listItemSize={4}
+                tagType={TagType.H2}
+                listItemsTitles={midiDevices.map((midiDevice: MidiDeviceInfo): string => midiDevice.name)}
+                listItemTagType={TagType.H4}
                 onMenuItemClick={onMenuItemClick}/>)}
         </div>
     );
