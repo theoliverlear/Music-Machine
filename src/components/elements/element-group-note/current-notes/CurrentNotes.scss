@@ -2,12 +2,14 @@
 @import "../../../../styles/global-functions";
 @import "../../../../styles/global-variables";
 
-.title-with-notes {
+.current-notes {
     @include flex(center, center, column);
-    .current-notes {
+    .notes {
         @include flex(center, center, row);
         min-height: $h4-font-size;
         .current-note {
+            font-size: $h4-font-size;
+            min-width: 3ch;
             margin: 0 $quarter-percent;
         }
     }
