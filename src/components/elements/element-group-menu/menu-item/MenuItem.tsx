@@ -1,10 +1,17 @@
 import React from 'react';
 import Title from "../../element-group-native/title/Title";
+import {TagType} from "../../../../models/html/TagType";
 
-function MenuItem(props: { title: string, titleSize: number, onMenuItemClick?: (title: string) => void }) {
+interface MenuItemProps {
+    text: string;
+    tagType: TagType;
+    onMenuItemClick?: (title: string) => void;
+}
+
+function MenuItem(props: MenuItemProps) {
     return (
         <div className="menu-item-div">
-            <Title title={props.title} size={props.titleSize} onClick={props.onMenuItemClick} />
+            <Title text={props.text} tagType={props.tagType} onClick={props.onMenuItemClick}/>
         </div>
     );
 }
