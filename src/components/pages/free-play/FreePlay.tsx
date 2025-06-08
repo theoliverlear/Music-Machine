@@ -1,12 +1,15 @@
 import React, {useState} from 'react';
 import Piano from "../../elements/element-group-piano/piano/Piano";
 import {Note} from "../../../models/note/Note";
-import CurrentNotes from "../../elements/element-group-note/current-notes/CurrentNotes";
-import CurrentChord from "../../elements/element-group-note/element-group-chord/current-chord/CurrentChord";
+import CurrentNotes
+    from "../../elements/element-group-note/current-notes/CurrentNotes";
+import CurrentChord
+    from "../../elements/element-group-note/element-group-chord/current-chord/CurrentChord";
 import {Chord} from "../../../models/chord/Chord";
 import Title from "../../elements/element-group-native/title/Title";
 import MidiController
     from "../../elements/element-group-midi/midi-controller/MidiController";
+import {TagType} from "../../../models/html/TagType";
 
 
 function FreePlay() {
@@ -19,11 +22,11 @@ function FreePlay() {
     }
     return (
         <div>
-            <Title title="Free Play" size={1}/>
-            <MidiController onNoteChange={updateCurrentNotes} />
-            <CurrentChord currentChord={currentChord} />
-            <CurrentNotes currentNotes={currentNotes} />
-            <Piano currentNotes={currentNotes} />
+            <Title text="Free Play" tagType={TagType.H1}/>
+            <MidiController onNoteChange={updateCurrentNotes}/>
+            <CurrentChord currentChord={currentChord}/>
+            <CurrentNotes currentNotes={currentNotes}/>
+            <Piano currentNotes={currentNotes}/>
         </div>
     );
 }
