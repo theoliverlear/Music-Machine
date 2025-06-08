@@ -45,11 +45,11 @@ function MidiController(props: MidiControllerProps) {
             midiInput.onmidimessage = null;
         }
     }, [midiInput, props]);
-return (
-    <div className={"midi-controller"}>
-        <MidiPopup onMidiDeviceSelected={handleMidiDeviceSelection} />
-        <MidiDevice input={midiInput} output={midiOutput} />
-    </div>
-)
+    return (
+        <div className={"midi-controller"}>
+            <MidiPopup onMidiDeviceSelected={handleMidiDeviceSelection} />
+            <MidiDevice input={midiInput} output={midiOutput} />
+        </div>
+    )
 }
 export default MidiController;
