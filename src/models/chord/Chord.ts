@@ -6,10 +6,36 @@ import {MusicSet} from "../MusicSet";
 export class Chord {
     private _name: string;
     private _notes: MusicSet<Note>
+    private _fullName: string;
     constructor(notes: Note[] = []) {
         this._notes = new MusicSet(notes);
         this._name = this.determineChordName();
+        this._fullName = this.determineFullName();
     }
+
+    get fullName(): string {
+        this._fullName = this.determineFullName();
+        return this._fullName;
+    }
+
+    determineFullName(): string {
+        if (this._notes.size < 3 || this._name === "Unknown") {
+            return "Unknown Chord";
+        }
+        if (this._name.includes("First")) {
+            if (this._name.includes("Major") || this._name.includes("Minor")) {
+                const root: Note = this._notes.notesArray[2];
+                return `${root.noteData.noteName} ${this._name}`;
+            }
+        } else if (this._name.includes("Second")) {
+            if (this._name.includes("Major") || this._name.includes("Minor")) {
+                const root: Note = this._notes.notesArray[1];
+                return `${root.noteData.noteName} ${this._name}`;
+            }
+        }
+        return `${this._notes.notesArray[0].noteData.noteName} ${this._name}`;
+    }
+
     determineChordName(): string {
         if (this._notes.size < 3) {
             return "Unknown";
