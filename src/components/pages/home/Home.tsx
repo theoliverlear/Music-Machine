@@ -1,22 +1,27 @@
-import React from 'react';
+import React, {ReactElement} from 'react';
 
-import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
-import FreePlay from "../free-play/FreePlay";
+import {Link} from "react-router-dom";
 import Title from "../../elements/element-group-native/title/Title";
-function Home(props: {className: string}) {
+import {TagType} from "../../../models/html/TagType";
+
+interface HomeProps {
+    className: string;
+}
+
+function Home(props: HomeProps): ReactElement {
     return (
         <div className="home">
-            <Title title="Music Machine" size={1}/>
+            <Title text="Music Machine" tagType={TagType.H1}/>
             <hr />
             <div className={props.className}>
-                <Title title="Learn Songs" size={3} />
+                <Title text="Learn Songs" tagType={TagType.H3} />
             </div>
             <div className={props.className}>
-                <Title title="Music Theory Engine" size={3} />
+                <Title text="Music Theory Engine" tagType={TagType.H3} />
             </div>
             <div className={props.className}>
                 <Link to={"/free-play"} className="link-no-style">
-                    <Title title="Free Play" size={3} />
+                    <Title text="Free Play" tagType={TagType.H3} />
                 </Link>
             </div>
         </div>
