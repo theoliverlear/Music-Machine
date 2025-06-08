@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactElement} from 'react';
 import OpeningOctave from "../element-group-octave/element-group-opening/opening-octave/OpeningOctave";
 import KeyOctave from "../element-group-octave/key-octave/KeyOctave";
 import ClosingOctave from "../element-group-octave/element-group-closing/closing-octave/ClosingOctave";
@@ -8,15 +8,14 @@ import {Note} from "../../../../models/note/Note";
 interface PianoProps {
     currentNotes: Note[];
 }
-
-function Piano(props: PianoProps) {
+function Piano(props: PianoProps): ReactElement {
     function isNotePlayed(dataNote: string): boolean {
         const [firstNote, secondNote] = dataNote.split(" | ");
-        let isPlayed = props.currentNotes.some(note => note.noteData.fullNoteName === firstNote || note.noteData.fullNoteName === secondNote);
+        let isPlayed: boolean = props.currentNotes.some(note => note.noteData.fullNoteName === firstNote || note.noteData.fullNoteName === secondNote);
         return isPlayed;
     }
     return (
-        <div className="piano-container">
+        <div className="piano">
             <div className="key-container">
                 <OpeningOctave currentNotes={props.currentNotes} isNotePlayed={isNotePlayed}/>
                 <KeyOctave octaveNumber={1}  currentNotes={props.currentNotes} isNotePlayed={isNotePlayed}/>
