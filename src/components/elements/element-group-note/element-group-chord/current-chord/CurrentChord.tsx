@@ -12,7 +12,7 @@ function CurrentChord(props: CurrentChordProps): ReactElement {
         <div className={"current-chord"}>
             <Title text="Current Chord: " tagType={TagType.H4} />
             {props.currentChord.notes.size == 0 && <Title text="None" tagType={TagType.H5} />}
-            {props.currentChord.notes.size != 0 && <Title text={props.currentChord.name} tagType={TagType.H5}/>}
+            {props.currentChord.notes.size != 0 && <Title text={props.currentChord.fullName} tagType={TagType.H5}/>}
         </div>
     );
 }
