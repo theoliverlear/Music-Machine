@@ -1,0 +1,31 @@
+@import "global-variables";
+@import "global-functions";
+
+%circle-border-radius {
+    border-radius: 50%;
+}
+
+%soft-border-radius {
+    border-radius: $one-percent;
+}
+
+%raise-above-box-shadow {
+    box-shadow: $navy-blue 0 0 $fifteen-percent simplest-calc(0.25);
+}
+
+%soft-raise-above-box-shadow {
+    box-shadow: $navy-blue 0 0 $seven-percent simplest-calc(0.15);
+}
+
+%softer-raise-above-box-shadow {
+    box-shadow: $navy-blue 0 0 $four-percent simplest-calc(0.05);
+}
+
+%softest-raise-above-box-shadow {
+    box-shadow: $navy-blue 0 0 $two-percent simplest-calc(0.0125);
+}
+
+%fill-container {
+    width: 100%;
+    height: 100%;
+}
