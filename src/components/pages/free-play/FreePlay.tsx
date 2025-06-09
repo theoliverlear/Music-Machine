@@ -10,6 +10,8 @@ import Title from "../../elements/element-group-native/title/Title";
 import MidiController
     from "../../elements/element-group-midi/midi-controller/MidiController";
 import {TagType} from "../../../models/html/TagType";
+import HomeButton
+    from "../../elements/element-group-menu/home-button/HomeButton";
 
 
 function FreePlay() {
@@ -22,6 +24,7 @@ function FreePlay() {
     }
     return (
         <div>
+            <HomeButton/>
             <Title text="Free Play" tagType={TagType.H1}/>
             <MidiController onNoteChange={updateCurrentNotes}/>
             <CurrentChord currentChord={currentChord}/>
