@@ -1,0 +1,18 @@
+// HomeButton.scss
+@import "../../../../styles/global-variables";
+@import "../../../../styles/global-mixins";
+@import "../../../../styles/global-functions";
+@import "../../../../styles/global-placeholders";
+
+.home-button {
+    position: absolute;
+    top: $half-percent;
+    left: $half-percent;
+    @include square-size($three-percent);
+    .image {
+        @extend %fill-container;
+        @extend %circle-border-radius;
+        background-color: $darker-grey;
+        padding: $half-percent;
+    }
+}
