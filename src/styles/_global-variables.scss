@@ -1,5 +1,5 @@
-@import "styles/global-functions";
-@import "styles/global-mixins";
+@import "global-functions";
+@import "global-mixins";
 /*----------------------------------Colors----------------------------------*/
 $pristine-white: hsl(0, 0%, 100%);
 $alabaster-stone: hsl(40, 21%, 89%);
@@ -8,6 +8,11 @@ $dark-grey: hsl(0, 0%, 49%);
 $darker-grey: hsl(0, 0%, 39%);
 $sandstone: hsl(29, 32%, 78%);
 
+$absolute-black: hsl(0, 0%, 0%);
+$neutral-black: hsl(345, 6%, 13%);
+$faded-neutral-black: hsla(345, 6%, 13%, 0.1);
+$thin-neutral-black: hsla(345, 6%, 13%, 0.2);
+$navy-blue: hsl(209, 22%, 24%);
 $charcoal: hsl(0, 0%, 9%);
 $absolute-black: hsl(0, 0%, 0%);
 /*----------------------------------Fonts-----------------------------------*/
