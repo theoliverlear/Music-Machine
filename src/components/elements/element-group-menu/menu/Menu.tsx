@@ -15,7 +15,7 @@ interface MenuProps {
 function Menu(props: MenuProps): ReactElement {
     return (
         <div className={"menu"}>
-            <Title text={props.title} tagType={props.tagType}/>
+            <Title className="top-menu-title" text={props.title} tagType={props.tagType}/>
             <div className={"menu-items-div"}>
                 {props.listItemsTitles.map((listItemTitle: string) => {
                     return <MenuItem text={listItemTitle}
