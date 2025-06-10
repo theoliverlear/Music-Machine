@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import './MidiController.css';
 import MidiPopup from "../midi-popup/MidiPopup";
 import MidiDevice from "../midi-device/MidiDevice";
 import { Note } from '../../../../models/note/Note';
@@ -47,8 +48,8 @@ function MidiController(props: MidiControllerProps) {
     }, [midiInput, props]);
     return (
         <div className={"midi-controller"}>
-            <MidiPopup onMidiDeviceSelected={handleMidiDeviceSelection} />
-            <MidiDevice input={midiInput} output={midiOutput} />
+            <MidiPopup onMidiDeviceSelected={handleMidiDeviceSelection}/>
+            <MidiDevice input={midiInput} output={midiOutput}/>
         </div>
     )
 }
