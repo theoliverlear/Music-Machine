@@ -1,0 +1,20 @@
+// NavBar.scss
+@import "../../../../styles/global-variables";
+@import "../../../../styles/global-mixins";
+@import "../../../../styles/global-functions";
+@import "../../../../styles/global-placeholders";
+
+.nav-bar {
+    @include flex(center, center, row);
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: $charcoal;
+    width: 100%;
+    height: $four-percent;
+    nav {
+        @include flex(center, center, row);
+        width: 50%;
+        height: 100%;
+    }
+}
