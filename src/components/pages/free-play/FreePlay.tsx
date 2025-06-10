@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import "./FreePlay.css";
 import Piano from "../../elements/element-group-piano/piano/Piano";
 import {Note} from "../../../models/note/Note";
 import CurrentNotes
@@ -10,8 +11,8 @@ import Title from "../../elements/element-group-native/title/Title";
 import MidiController
     from "../../elements/element-group-midi/midi-controller/MidiController";
 import {TagType} from "../../../models/html/TagType";
-import HomeButton
-    from "../../elements/element-group-menu/home-button/HomeButton";
+import NavBar
+    from "../../elements/element-group-menu/element-group-nav-bar/NavBar";
 
 
 function FreePlay() {
@@ -23,8 +24,8 @@ function FreePlay() {
         setCurrentChord(currentChord);
     }
     return (
-        <div>
-            <HomeButton/>
+        <div className={"free-play"}>
+            <NavBar/>
             <Title text="Free Play" tagType={TagType.H1}/>
             <MidiController onNoteChange={updateCurrentNotes}/>
             <CurrentChord currentChord={currentChord}/>
