@@ -3,9 +3,10 @@ import './Title.css';
 import {TagType} from "../../../../models/html/TagType";
 
 interface TitleProps {
-    text: string;
-    tagType: TagType;
-    onClick?: (text: string) => void;
+    text: string,
+    tagType: TagType,
+    onClick?: (text: string) => void,
+    className?: string
 }
 
 function Title(props: TitleProps): ReactElement {
@@ -31,12 +32,15 @@ function Title(props: TitleProps): ReactElement {
                 return <h1>{props.text}</h1>;
         }
     }
+
     // Refactor onClick to be more modular. Right now it depends on a "title".
     return (
-        <div className="title" onClick={() => props.onClick ? props.onClick(props.text) : null}>
+        <div className={`title ${props.className ? props.className : ''}`}
+             onClick={() => props.onClick ? props.onClick(props.text) : null}>
             {headingSize()}
         </div>
     );
 
 }
+
 export default Title;
