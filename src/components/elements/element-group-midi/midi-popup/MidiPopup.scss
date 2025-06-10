@@ -1,0 +1,18 @@
+// MidiPopup.scss
+@import "../../../../styles/global-variables";
+@import "../../../../styles/global-mixins";
+@import "../../../../styles/global-functions";
+@import "../../../../styles/global-placeholders";
+
+.midi-popup {
+    @include flex(center, center, column);
+    background-color: $light-grey;
+    padding: $one-percent;
+    @extend %soft-border-radius;
+    min-width: 40%;
+    max-width: 70%;
+    .top-menu-title {
+        margin: $half-percent 0;
+        text-decoration: underline;
+    }
+}
