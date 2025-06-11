@@ -15,6 +15,19 @@ function Home(): ReactElement {
                     <Title text="Free Play" tagType={TagType.H3} />
                 </Link>
             </div>
+
+            <div className={"menu-item"}>
+                <Link to={"/sheet-music"} className="link-no-style">
+                    <Title text="Sheet Music" tagType={TagType.H3} />
+                </Link>
+            </div>
+
+            <div className={"menu-item"}>
+                <Link to={"/chord-builder"} className="link-no-style">
+                    <Title text="Chord Builder" tagType={TagType.H3} />
+                </Link>
+            </div>
+
             <div className={"menu-item"}>
                 <Title text="Learn Songs" tagType={TagType.H3} />
             </div>
