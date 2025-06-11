@@ -7,6 +7,7 @@ import {MidiNote} from "../../../../models/midi/MidiNote";
 
 interface MidiControllerProps {
     onNoteChange: (notes: Note[]) => void;
+    onMidiDeviceSelected: (isSelected: boolean) => void;
 }
 
 function MidiController(props: MidiControllerProps) {
@@ -18,6 +19,11 @@ function MidiController(props: MidiControllerProps) {
         // console.log('Midi Device Selected');
         setMidiInput(inputDevice);
         setMidiOutput(outputDevice);
+        props.onMidiDeviceSelected(true);
+    }
+
+    function hasSelectedMidiDevice(): boolean {
+        return midiInput !== undefined && midiOutput !== undefined;
     }
 
     useEffect(() => {
@@ -49,7 +55,8 @@ function MidiController(props: MidiControllerProps) {
     return (
         <div className={"midi-controller"}>
             <MidiPopup onMidiDeviceSelected={handleMidiDeviceSelection}/>
-            <MidiDevice input={midiInput} output={midiOutput}/>
+            {hasSelectedMidiDevice() &&
+                <MidiDevice input={midiInput} output={midiOutput}/>}
         </div>
     )
 }
