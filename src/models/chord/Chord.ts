@@ -9,8 +9,19 @@ export class Chord {
     private _fullName: string;
     constructor(notes: Note[] = []) {
         this._notes = new MusicSet(notes);
+        // TODO: Centralize note sorting to remove verbose usage.
+        this.sortNotesByNoteNumber();
         this._name = this.determineChordName();
         this._fullName = this.determineFullName();
+    }
+
+    private sortNotesByNoteNumber(): void {
+        const sortedArray: Note[] = this._notes.notesArray.sort((noteOne: Note, noteTwo: Note): number => {
+            const noteOneNumber: number = noteOne.noteData.noteNumber;
+            const noteTwoNumber: number = noteTwo.noteData.noteNumber;
+            return noteOneNumber - noteTwoNumber;
+        });
+        this._notes.musicItems = new MusicSet(sortedArray).musicItems;
     }
 
     get fullName(): string {
@@ -18,7 +29,26 @@ export class Chord {
         return this._fullName;
     }
 
+    isTriad(): boolean {
+        return this._notes.size === 3;
+    }
+
+    isUninvertedTriad(): boolean {
+        const isTriad: boolean = this.isTriad();
+        if (!isTriad) {
+            return false;
+        }
+        const noteArray: Note[] = this._notes.notesArray;
+        const rootNote: Note = noteArray[0];
+        const thirdNote: Note = noteArray[1];
+        const fifthNote: Note = noteArray[2];
+        const intervalToThird: Interval = Interval.getIntervalBetweenNotes(rootNote, thirdNote);
+        const intervalToFifth: Interval = Interval.getIntervalBetweenNotes(rootNote, fifthNote);
+        return (intervalToThird.semitones === 3 || intervalToThird.semitones === 4) && intervalToFifth.semitones === 7;
+    }
+    
     determineFullName(): string {
+        this.sortNotesByNoteNumber();
         if (this._notes.size < 3 || this._name === "Unknown") {
             return "Unknown Chord";
         }
@@ -37,6 +67,7 @@ export class Chord {
     }
 
     determineChordName(): string {
+        this.sortNotesByNoteNumber();
         if (this._notes.size < 3) {
             return "Unknown";
         }
@@ -117,21 +148,26 @@ export class Chord {
 
     updateChordByCurrentNotes(currentNotes: Note[]): void {
         this._notes = new MusicSet(currentNotes);
+        this.sortNotesByNoteNumber();
         this._name = this.determineChordName();
     }
     addNote(note: Note): void {
         this._notes.add(note);
+        this.sortNotesByNoteNumber();
         this._name = this.determineChordName();
     }
     removeNote(note: Note): void {
         this._notes.remove(note);
+        this.sortNotesByNoteNumber();
         this._name = this.determineChordName();
     }
     get name(): string {
+        this.sortNotesByNoteNumber();
         this._name = this.determineChordName();
         return this._name;
     }
     get notes(): MusicSet<Note> {
+        this.sortNotesByNoteNumber();
         return this._notes;
     }
 
