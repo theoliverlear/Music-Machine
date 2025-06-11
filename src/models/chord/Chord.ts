@@ -15,12 +15,16 @@ export class Chord {
         this._fullName = this.determineFullName();
     }
 
-    private sortNotesByNoteNumber(): void {
-        const sortedArray: Note[] = this._notes.notesArray.sort((noteOne: Note, noteTwo: Note): number => {
+    static sortNotes(notes: Note[]): Note[] {
+        return notes.sort((noteOne: Note, noteTwo: Note): number => {
             const noteOneNumber: number = noteOne.noteData.noteNumber;
             const noteTwoNumber: number = noteTwo.noteData.noteNumber;
             return noteOneNumber - noteTwoNumber;
         });
+    }
+
+    private sortNotesByNoteNumber(): void {
+        const sortedArray: Note[] = Chord.sortNotes(this._notes.notesArray);
         this._notes.musicItems = new MusicSet(sortedArray).musicItems;
     }
 
@@ -46,31 +50,35 @@ export class Chord {
         const intervalToFifth: Interval = Interval.getIntervalBetweenNotes(rootNote, fifthNote);
         return (intervalToThird.semitones === 3 || intervalToThird.semitones === 4) && intervalToFifth.semitones === 7;
     }
-    
+
     determineFullName(): string {
         this.sortNotesByNoteNumber();
-        if (this._notes.size < 3 || this._name === "Unknown") {
+        const numNotes: number = this._notes.size;
+        if (numNotes < 3 || this._name === "Unknown") {
             return "Unknown Chord";
         }
-        if (this._name.includes("First")) {
-            if (this._name.includes("Major") || this._name.includes("Minor")) {
-                const root: Note = this._notes.notesArray[2];
-                return `${root.noteData.noteName} ${this._name}`;
-            }
-        } else if (this._name.includes("Second")) {
-            if (this._name.includes("Major") || this._name.includes("Minor")) {
-                const root: Note = this._notes.notesArray[1];
-                return `${root.noteData.noteName} ${this._name}`;
-            }
+        const match: RegExpMatchArray | null = this._name.match(/\((\d)(?:st|nd|rd) Inversion\)/);
+        let inversionNumber: number = 0;
+        if (match) {
+            inversionNumber = parseInt(match[1]);
         }
-        return `${this._notes.notesArray[0].noteData.noteName} ${this._name}`;
+        const rootIndex: number = (numNotes - inversionNumber) % numNotes;
+        const rootNote: Note | undefined  = this._notes.getByIndex(rootIndex);
+        if (!rootNote) {
+            return "Unknown Chord";
+        }
+        return `${rootNote.noteData.noteName} ${this._name}`;
     }
 
     determineChordName(): string {
-        this.sortNotesByNoteNumber();
         if (this._notes.size < 3) {
             return "Unknown";
         }
+        this.sortNotesByNoteNumber();
+        console.log("NOTES IN CHORD:");
+        this._notes.notesArray.forEach((note: Note): void => {
+            console.log(`Note: ${note.noteData.noteName}`, `Note Number: ${note.noteData.noteNumber}`);
+        });
         let chordIntervals: MusicSet<Interval> = new MusicSet<Interval>();
         chordIntervals.add(Interval.unison);
         for (let i: number = 0; i < this._notes.size - 1; i++) {
@@ -79,31 +87,31 @@ export class Chord {
             chordIntervals.add(intervalBetweenNotes);
         }
         chordIntervals.notesArray.forEach((interval: Interval): void => {
-            console.log(interval.name);
+            // console.log(interval.name);
         });
         let chordInterval: ChordInterval = new ChordInterval(chordIntervals.notesArray);
         let nameByIntervals: string = chordInterval.getNameByIntervals();
         // if unknown, reloop with different root note
 
         // if major or minor, check if all notes are in descending order, if so return the inverted name
-        if (this.shouldNormalizeMajorMinor(nameByIntervals)) {
-            // TODO: Does not work all the time.
-            const noteArray: Note[] = this._notes.notesArray;
-            let isDescending: boolean = true;
-            for (let i: number = 0; i < noteArray.length - 1; i++) {
-                if (noteArray[i].noteNumber < noteArray[i + 1].noteNumber) {
-                    isDescending = false;
-                    break;
-                }
-            }
-            if (isDescending) {
-                if (nameByIntervals === "Major") {
-                    return "Minor";
-                } else if (nameByIntervals === "Minor") {
-                    return "Major";
-                }
-            }
-        }
+        // if (this.shouldNormalizeMajorMinor(nameByIntervals)) {
+        //     // TODO: Does not work all the time.
+        //     const noteArray: Note[] = this._notes.notesArray;
+        //     let isDescending: boolean = true;
+        //     for (let i: number = 0; i < noteArray.length - 1; i++) {
+        //         if (noteArray[i].noteNumber < noteArray[i + 1].noteNumber) {
+        //             isDescending = false;
+        //             break;
+        //         }
+        //     }
+        //     if (isDescending) {
+        //         if (nameByIntervals === "Major") {
+        //             return "Minor";
+        //         } else if (nameByIntervals === "Minor") {
+        //             return "Major";
+        //         }
+        //     }
+        // }
 
         if (nameByIntervals === "Unknown") {
             const noteArray: Note[] = this._notes.notesArray;
@@ -121,13 +129,17 @@ export class Chord {
                 const newChordIntervals: MusicSet<Interval> = new MusicSet<Interval>();
                 newChordIntervals.add(Interval.unison);
                 for (let k: number = 0; k < musicSet.size - 1; k++) {
-                    const noteArray: Note[] = musicSet.notesArray;
+                    let noteArray: Note[] = musicSet.notesArray;
+                    noteArray = Chord.sortNotes(noteArray);
                     const intervalBetweenNotes: Interval = Interval.getIntervalBetweenNotes(noteArray[0], noteArray[k + 1]);
                     newChordIntervals.add(intervalBetweenNotes);
                 }
                 const newChordInterval: ChordInterval = new ChordInterval(newChordIntervals.notesArray);
                 newChordInterval.intervals.notesArray.forEach((interval: Interval): void => {
                     console.log(interval.name);
+                });
+                musicSet.notesArray.forEach((note: Note): void => {
+                    console.log(`Note: ${note.noteData.noteName}`, `Note Number: ${note.noteData.noteNumber}`);
                 })
                 newChordInterval.sortSmallestToLargest();
                 nameByIntervals = newChordInterval.getNameByIntervals();
@@ -154,6 +166,7 @@ export class Chord {
     addNote(note: Note): void {
         this._notes.add(note);
         this.sortNotesByNoteNumber();
+
         this._name = this.determineChordName();
     }
     removeNote(note: Note): void {
@@ -164,6 +177,7 @@ export class Chord {
     get name(): string {
         this.sortNotesByNoteNumber();
         this._name = this.determineChordName();
+        console.log(`Chord name: ${this._name}`);
         return this._name;
     }
     get notes(): MusicSet<Note> {
