@@ -53,6 +53,11 @@ export class MusicSet<T extends Equatable> {
     get notesArray(): T[] {
         return Array.from(this._musicItems);
     }
+
+    set musicItems(musicItems: Set<T>) {
+        this._musicItems = musicItems;
+    }
+
     setNotes(notes: Set<T>): void {
         this._musicItems = new Set<T>(notes);
     }
