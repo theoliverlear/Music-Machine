@@ -11,12 +11,127 @@ describe('Chord', (): void => {
         chord.addNote(noteDuplicate);
         expect(chord.notes.size).toBe(1);
     });
+    describe('Major chords', (): void => {
+        it('identifies a major chord', (): void => {
+            let chord: Chord = new Chord();
+            chord.addNote(new Note(new MidiNote(60))); // C
+            chord.addNote(new Note(new MidiNote(64))); // E
+            chord.addNote(new Note(new MidiNote(67))); // G
+            expect(chord.fullName).toBe("C Major");
+
+            chord = new Chord();
+            chord.addNote(new Note(new MidiNote(65))); // F
+            chord.addNote(new Note(new MidiNote(69))); // A
+            chord.addNote(new Note(new MidiNote(72))); // C
+            expect(chord.fullName).toBe("F Major");
+
+            chord = new Chord();
+            chord.addNote(new Note(new MidiNote(69))); // A
+            chord.addNote(new Note(new MidiNote(72))); // C
+            chord.addNote(new Note(new MidiNote(76))); // E
+            // Expect not A major
+            expect(chord.fullName).not.toBe("A Major");
+        });
+        it('identifies first inversion major chords', (): void => {
+            let chord: Chord = new Chord();
+            chord.addNote(new Note(new MidiNote(64))); // E
+            chord.addNote(new Note(new MidiNote(67))); // G
+            chord.addNote(new Note(new MidiNote(72))); // C
+            expect(chord.fullName).toBe("C Major (1st Inversion)");
+
+            chord = new Chord();
+            chord.addNote(new Note(new MidiNote(69))); // A
+            chord.addNote(new Note(new MidiNote(72))); // C
+            chord.addNote(new Note(new MidiNote(77))); // F
+            expect(chord.fullName).toBe("F Major (1st Inversion)");
+        });
+        it('identifies second inversion major chords', (): void => {
+            let chord: Chord = new Chord();
+            chord.addNote(new Note(new MidiNote(67))); // G
+            chord.addNote(new Note(new MidiNote(72))); // C
+            chord.addNote(new Note(new MidiNote(76))); // E
+            expect(chord.fullName).toBe("C Major (2nd Inversion)");
+
+            chord = new Chord();
+            chord.addNote(new Note(new MidiNote(72))); // C
+            chord.addNote(new Note(new MidiNote(77))); // F
+            chord.addNote(new Note(new MidiNote(81))); // A
+            expect(chord.fullName).toBe("F Major (2nd Inversion)");
+        });
+    });
+
+    describe('Minor chords', (): void => {
+        it('identifies a minor chord', (): void => {
+            let chord: Chord = new Chord();
+            chord.addNote(new Note(new MidiNote(60))); // C
+            chord.addNote(new Note(new MidiNote(63))); // Eb
+            chord.addNote(new Note(new MidiNote(67))); // G
+            expect(chord.fullName).toBe("C Minor");
+
+            chord = new Chord();
+            chord.addNote(new Note(new MidiNote(65))); // F
+            chord.addNote(new Note(new MidiNote(68))); // Ab
+            chord.addNote(new Note(new MidiNote(72))); // C
+            expect(chord.fullName).toBe("F Minor");
+
+            chord = new Chord();
+            chord.addNote(new Note(new MidiNote(69))); // A
+            chord.addNote(new Note(new MidiNote(72))); // C
+            chord.addNote(new Note(new MidiNote(75))); // E
+            // Expect not A minor
+            expect(chord.fullName).not.toBe("A Minor");
+
+            // D, F, C should expect "Unknown"
+            chord = new Chord();
+            chord.addNote(new Note(new MidiNote(62))); // D
+            chord.addNote(new Note(new MidiNote(65))); // F
+            chord.addNote(new Note(new MidiNote(72))); // C
+            console.log(chord)
+            expect(chord.fullName).toBe("Unknown Chord");
+        });
+        it('identifies first inversion minor chords', (): void => {
+            let chord: Chord = new Chord();
+            chord.addNote(new Note(new MidiNote(63))); // Eb
+            chord.addNote(new Note(new MidiNote(67))); // G
+            chord.addNote(new Note(new MidiNote(72))); // C
+            expect(chord.fullName).toBe("C Minor (1st Inversion)");
+
+            chord = new Chord();
+            chord.addNote(new Note(new MidiNote(68))); // Ab
+            chord.addNote(new Note(new MidiNote(72))); // C
+            chord.addNote(new Note(new MidiNote(77))); // F
+            expect(chord.fullName).toBe("F Minor (1st Inversion)");
+        });
+        it('identifies second inversion minor chords', (): void => {
+            let chord: Chord = new Chord();
+            chord.addNote(new Note(new MidiNote(67))); // G
+            chord.addNote(new Note(new MidiNote(72))); // C
+            chord.addNote(new Note(new MidiNote(75))); // Eb
+            expect(chord.fullName).toBe("C Minor (2nd Inversion)");
+
+            chord = new Chord();
+            chord.addNote(new Note(new MidiNote(72))); // C
+            chord.addNote(new Note(new MidiNote(77))); // F
+            chord.addNote(new Note(new MidiNote(80))); // Ab
+            expect(chord.fullName).toBe("F Minor (2nd Inversion)");
+        });
+    });
+
+
     it('calculates without regard to input order', (): void => {
         let chord: Chord = new Chord();
         chord.addNote(new Note(new MidiNote(64))); // E
         chord.addNote(new Note(new MidiNote(67))); // G
         chord.addNote(new Note(new MidiNote(60))); // C
         expect(chord.fullName).toBe("C Major");
+
+        // g dominant chord
+        chord = new Chord();
+        chord.addNote(new Note(new MidiNote(67))); // G
+        chord.addNote(new Note(new MidiNote(71))); // B
+        chord.addNote(new Note(new MidiNote(74))); // D
+        chord.addNote(new Note(new MidiNote(77))); // F
+        expect(chord.fullName).toBe("G Dominant");
     });
 
     it('identifies uninverted triads', () => {
