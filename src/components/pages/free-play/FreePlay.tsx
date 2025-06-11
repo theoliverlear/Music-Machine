@@ -18,18 +18,28 @@ import NavBar
 function FreePlay() {
     const [currentNotes, setCurrentNotes] = useState<Note[]>([]);
     const [currentChord, setCurrentChord] = useState<Chord>(new Chord());
+    const [midiDeviceSelected, setMidiDeviceSelected] = useState<boolean>(false);
     function updateCurrentNotes(newNotes: Note[]) {
         setCurrentNotes(newNotes);
         currentChord.updateChordByCurrentNotes(newNotes);
         setCurrentChord(currentChord);
     }
+    function handleMidiDeviceSelection(isMidiDeviceSelected: boolean): void {
+        setMidiDeviceSelected(isMidiDeviceSelected);
+    }
     return (
         <div className={"free-play"}>
             <NavBar/>
             <Title text="Free Play" tagType={TagType.H1}/>
-            <MidiController onNoteChange={updateCurrentNotes}/>
-            <CurrentChord currentChord={currentChord}/>
-            <CurrentNotes currentNotes={currentNotes}/>
+            <MidiController
+                onMidiDeviceSelected={handleMidiDeviceSelection}
+                onNoteChange={updateCurrentNotes}/>
+
+            {midiDeviceSelected &&
+                <CurrentChord currentChord={currentChord}/>}
+
+            {midiDeviceSelected &&
+                <CurrentNotes currentNotes={currentNotes}/>}
             <Piano currentNotes={currentNotes}/>
         </div>
     );
