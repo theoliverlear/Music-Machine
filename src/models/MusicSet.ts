@@ -44,6 +44,14 @@ export class MusicSet<T extends Equatable> {
             }
         }
     }
+
+    getByIndex(index: number): T | undefined {
+        if (index < 0 || index >= this._musicItems.size) {
+            return undefined;
+        }
+        return this.notesArray[index];
+    }
+
     get musicItems(): Set<T> {
         return this._musicItems;
     }
