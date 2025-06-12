@@ -6,7 +6,7 @@
 
 .midi-popup {
     @include flex(center, center, column);
-    background-color: $light-grey;
+    background-color: $faded-air-blue;
     padding: $one-percent;
     @extend %soft-border-radius;
     min-width: 40%;
