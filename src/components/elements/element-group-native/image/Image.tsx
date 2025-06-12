@@ -9,7 +9,7 @@ interface ImageProps {
 function Image(props: ImageProps): ReactElement {
     return (
         <div className={"image"}>
-            <img src={props.imageAsset.src} alt={props.imageAsset.alt}/>
+            <img src={props.imageAsset.src} alt={props.imageAsset.alt} draggable={false}/>
         </div>
     )
 }
