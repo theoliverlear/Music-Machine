@@ -12,10 +12,16 @@ import MidiController
     from "../../elements/element-group-midi/midi-controller/MidiController";
 import {TagType} from "../../../models/html/TagType";
 import NavBar
-    from "../../elements/element-group-menu/element-group-nav-bar/NavBar";
+    from "../../elements/element-group-menu/element-group-nav-bar/nav-bar/NavBar";
+import PitchSlider
+    from "../../elements/element-group-setting/pitch-slider/PitchSlider";
+import {
+    Pitch
+} from "../../elements/element-group-setting/pitch-slider/models/types";
 
 
 function FreePlay() {
+    const [pitchState, setPitchState] = useState<Pitch>("sharp");
     const [currentNotes, setCurrentNotes] = useState<Note[]>([]);
     const [currentChord, setCurrentChord] = useState<Chord>(new Chord());
     const [midiDeviceSelected, setMidiDeviceSelected] = useState<boolean>(false);
@@ -24,22 +30,28 @@ function FreePlay() {
         currentChord.updateChordByCurrentNotes(newNotes);
         setCurrentChord(currentChord);
     }
+
+    function handlePitchChange(newPitch: Pitch): void {
+        setPitchState(newPitch);
+    }
+
     function handleMidiDeviceSelection(isMidiDeviceSelected: boolean): void {
         setMidiDeviceSelected(isMidiDeviceSelected);
     }
     return (
         <div className={"free-play"}>
             <NavBar/>
-            <Title text="Free Play" tagType={TagType.H1}/>
+            <PitchSlider onPitchSelection={handlePitchChange}/>
+            <Title text="Free Play" tagType={TagType.H1} className={"free-play-title"}/>
             <MidiController
                 onMidiDeviceSelected={handleMidiDeviceSelection}
                 onNoteChange={updateCurrentNotes}/>
 
             {midiDeviceSelected &&
-                <CurrentChord currentChord={currentChord}/>}
+                <CurrentChord currentChord={currentChord} pitch={pitchState}/>}
 
             {midiDeviceSelected &&
-                <CurrentNotes currentNotes={currentNotes}/>}
+                <CurrentNotes currentNotes={currentNotes} pitch={pitchState}/>}
             <Piano currentNotes={currentNotes}/>
         </div>
     );
