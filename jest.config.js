@@ -7,4 +7,5 @@ module.exports = {
     },
     moduleFileExtensions: ["js", "jsx", "ts", "tsx"],
     roots: ["<rootDir>/src"],
+    setupFilesAfterEnv: ['<rootDir>/src/test/setupTests.ts'],
 };
