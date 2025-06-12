@@ -25,6 +25,10 @@
     box-shadow: $navy-blue 0 0 $two-percent simplest-calc(0.0125);
 }
 
+%simple-box-shadow {
+    box-shadow: $darker-black-shadow 0 0 $half-percent simple-calc(0.25, 0.25);
+}
+
 %fill-container {
     width: 100%;
     height: 100%;
