@@ -1,0 +1,13 @@
+// PageTitle.scss
+@import "../../../../styles/global-variables";
+@import "../../../../styles/global-mixins";
+@import "../../../../styles/global-functions";
+@import "../../../../styles/global-placeholders";
+
+.page-title {
+    position: absolute;
+    top: $six-percent;
+    padding: $half-percent;
+    text-decoration: underline;
+    //transform: translateX(-50%);
+}
