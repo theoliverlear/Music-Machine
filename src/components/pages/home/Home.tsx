@@ -17,6 +17,12 @@ function Home(): ReactElement {
             </div>
 
             <div className={"menu-item"}>
+                <Link to={"/theory-engine"} className="link-no-style">
+                    <Title text="Theory Engine" tagType={TagType.H3}/>
+                </Link>
+            </div>
+
+            <div className={"menu-item"}>
                 <Link to={"/sheet-music"} className="link-no-style">
                     <Title text="Sheet Music" tagType={TagType.H3} />
                 </Link>
@@ -30,9 +36,6 @@ function Home(): ReactElement {
 
             <div className={"menu-item"}>
                 <Title text="Learn Songs" tagType={TagType.H3} />
-            </div>
-            <div className={"menu-item"}>
-                <Title text="Music Theory Engine" tagType={TagType.H3} />
             </div>
         </div>
     );
