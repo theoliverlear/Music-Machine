@@ -129,6 +129,29 @@ export class NoteData {
     get octave(): number {
         return this._octave;
     }
+
+    get asFlat(): string {
+        if (this.altFlatName.includes("bb")) {
+            return this.noteName;
+        } else {
+            if (this.altFlatName.includes("Cb")) {
+                // return "B";
+            }
+            return this.altFlatName;
+        }
+    }
+
+    get asSharp(): string {
+        if (this.altSharpName.includes("##")) {
+            return this.noteName;
+        } else {
+            if (this.altSharpName.includes("B#")) {
+                // return "C";
+            }
+            return this.altSharpName;
+        }
+    }
+
     get fullNoteName(): string {
         return this._fullNoteName;
     }
