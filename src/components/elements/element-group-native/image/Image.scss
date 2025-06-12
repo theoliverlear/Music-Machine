@@ -1,0 +1,11 @@
+// Image.scss
+@import "../../../../styles/global-variables";
+@import "../../../../styles/global-mixins";
+@import "../../../../styles/global-functions";
+@import "../../../../styles/global-placeholders";
+
+.image {
+    img {
+        @extend %fill-container;
+    }
+}
