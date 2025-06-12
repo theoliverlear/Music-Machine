@@ -1,6 +1,6 @@
 import React from 'react';
 import './NavBar.css';
-import HomeButton from "../home-button/HomeButton";
+import HomeButton from "../../home-button/HomeButton";
 
 function NavBar() {
     return (
