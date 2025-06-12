@@ -2,11 +2,34 @@
 
 import React from 'react';
 import './PitchSlider.css';
+import BinarySlider
+    from "../../element-group-menu/element-group-slider/binary-slider/BinarySlider";
+import {
+    flatTheoryImageAsset, ImageAsset,
+    sharpTheoryImageAsset
+} from "../../../../assets/imageAssets";
+import {Pitch} from "./models/types";
 
-function PitchSlider() {
+interface PitchSliderProps {
+    onPitchSelection: (pitch: Pitch) => void;
+}
+
+function PitchSlider(props: PitchSliderProps) {
+
+    function handlePitchSelection(imageAsset: ImageAsset) {
+        if (imageAsset === sharpTheoryImageAsset){
+            props.onPitchSelection("sharp");
+        } else if (imageAsset === flatTheoryImageAsset) {
+            props.onPitchSelection("flat");
+        }
+    }
     return (
-        <div>
-
+        <div className={"pitch-slider"}>
+            <BinarySlider<ImageAsset>
+                assetLeft={sharpTheoryImageAsset}
+                assetRight={flatTheoryImageAsset}
+                onAssetSelected={handlePitchSelection}
+            />
         </div>
     );
 }
