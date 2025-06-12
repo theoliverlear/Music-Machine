@@ -1,0 +1,35 @@
+// BinarySlider.scss
+@import "../../../../../styles/global-variables";
+@import "../../../../../styles/global-mixins";
+@import "../../../../../styles/global-functions";
+@import "../../../../../styles/global-placeholders";
+
+.binary-slider {
+    @include flex(space-around, center, row);
+    width: $seven-percent;
+    height: $five-percent;
+    border: $thin-border solid $ivory-white;
+    @extend %soft-border-radius;
+    background-color: $charcoal;
+    padding: $two-third-percent;
+    .binary-asset-left {
+        border-radius: $one-percent 0 0 $one-percent;
+    }
+    .binary-asset-right {
+        border-radius: 0 $one-percent $one-percent 0;
+    }
+
+
+
+    .binary-option {
+        @include flex(center, center, column);
+        @extend %fill-container;
+        background-color: $pristine-white;
+        .image {
+            @include square-size($three-percent);
+        }
+        &.slider-selected {
+            background-color: $air-blue;
+        }
+    }
+}
