@@ -1,6 +1,6 @@
-import {MusicSet} from "../models/MusicSet";
-import {Note} from "../models/note/Note";
-import {MidiNote} from "../models/midi/MidiNote";
+import {MusicSet} from "../../models/MusicSet";
+import {Note} from "../../models/note/Note";
+import {MidiNote} from "../../models/midi/MidiNote";
 
 
 describe('MusicSet', () => {
