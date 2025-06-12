@@ -18,6 +18,8 @@ import PitchSlider
 import {
     Pitch
 } from "../../elements/element-group-setting/pitch-slider/models/types";
+import PageTitle
+    from "../../elements/element-group-text/page-title/PageTitle";
 
 
 function FreePlay() {
@@ -42,7 +44,7 @@ function FreePlay() {
         <div className={"free-play"}>
             <NavBar/>
             <PitchSlider onPitchSelection={handlePitchChange}/>
-            <Title text="Free Play" tagType={TagType.H1} className={"free-play-title"}/>
+            <PageTitle text="Free Play"/>
             <MidiController
                 onMidiDeviceSelected={handleMidiDeviceSelection}
                 onNoteChange={updateCurrentNotes}/>
