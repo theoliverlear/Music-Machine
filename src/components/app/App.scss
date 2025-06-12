@@ -40,11 +40,11 @@ body {
     @include basic-margin-padding(0, 0);
     @include flex(center, center, column);
     min-height: 100vh;
-    #root {
-        @include flex(center, center, column);
+    #root .app {
+        @include flex(flex-start, center, column);
         width: 100%;
         background-color: white;
-        min-height: 100vh;
+        //min-height: 100vh;
         @include basic-margin-padding(0, 0);
         overflow-x: hidden;
         //overflow-y: scroll;
