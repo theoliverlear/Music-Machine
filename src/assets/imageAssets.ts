@@ -36,3 +36,18 @@ export const flatTheoryImageAsset: ImageAsset = {
     src: getTheoryImagePath('flat.svg'),
     alt: 'Flat Music Theory Icon'
 };
+
+export const naturalTheoryImageAsset: ImageAsset = {
+    src: getTheoryImagePath('natural.svg'),
+    alt: 'Natural Music Theory Icon'
+};
+
+export const noteHeadTheoryImageAsset: ImageAsset = {
+    src: getTheoryImagePath('note_head.svg'),
+    alt: 'Note Head Music Theory Icon'
+};
+
+export const singleGrandStaffTheoryImageAsset: ImageAsset = {
+    src: getTheoryImagePath('single_grand_staff.svg'),
+    alt: 'Single Grand Staff Music Theory Icon'
+};
