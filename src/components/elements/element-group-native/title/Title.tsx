@@ -1,5 +1,5 @@
 import React, {ReactElement} from 'react';
-import './Title.css';
+import './Title.scss';
 import {TagType} from "../../../../models/html/TagType";
 
 interface TitleProps {

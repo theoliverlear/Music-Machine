@@ -3,7 +3,7 @@ import PageTitle
     from "../../elements/element-group-text/page-title/PageTitle";
 import NavBar
     from "../../elements/element-group-menu/element-group-nav-bar/nav-bar/NavBar";
-import './TheoryEngine.css';
+import './TheoryEngine.scss';
 
 function TheoryEngine() {
     return (

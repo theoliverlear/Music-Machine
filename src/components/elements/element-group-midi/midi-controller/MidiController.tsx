@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import './MidiController.css';
+import './MidiController.scss';
 import MidiPopup from "../midi-popup/MidiPopup";
 import MidiDevice from "../midi-device/MidiDevice";
 import { Note } from '../../../../models/note/Note';

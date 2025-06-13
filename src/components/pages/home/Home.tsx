@@ -3,6 +3,7 @@ import React, {ReactElement} from 'react';
 import {Link} from "react-router-dom";
 import Title from "../../elements/element-group-native/title/Title";
 import {TagType} from "../../../models/html/TagType";
+import './Home.scss';
 
 
 function Home(): ReactElement {

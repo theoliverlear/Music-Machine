@@ -1,7 +1,7 @@
 import React, {ReactElement} from 'react';
 import Title from "../../element-group-native/title/Title";
 import MenuItem from "../menu-item/MenuItem";
-import './Menu.css';
+import './Menu.scss';
 import {TagType} from "../../../../models/html/TagType";
 
 interface MenuProps {

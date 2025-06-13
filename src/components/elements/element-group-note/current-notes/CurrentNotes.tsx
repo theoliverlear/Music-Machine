@@ -2,7 +2,7 @@ import React, {ReactElement} from 'react';
 import {Note} from "../../../../models/note/Note";
 import CurrentNote from "../current-note/CurrentNote";
 import Title from "../../element-group-native/title/Title";
-import './CurrentNotes.css';
+import './CurrentNotes.scss';
 import {TagType} from "../../../../models/html/TagType";
 import {Pitch} from "../../element-group-setting/pitch-slider/models/types";
 

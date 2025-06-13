@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "../../element-group-native/image/Image";
 import {homeIconImageAsset} from "../../../../assets/imageAssets";
-import './HomeButton.css';
+import './HomeButton.scss';
 import {Link} from "react-router-dom";
 
 function HomeButton() {

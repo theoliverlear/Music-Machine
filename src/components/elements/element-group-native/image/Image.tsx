@@ -1,5 +1,5 @@
 import React, {ReactElement} from "react";
-import './Image.css';
+import './Image.scss';
 import {ImageAsset} from "../../../../assets/imageAssets";
 
 interface ImageProps {

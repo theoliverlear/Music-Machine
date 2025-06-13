@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import "./FreePlay.css";
+import "./FreePlay.scss";
 import Piano from "../../elements/element-group-piano/piano/Piano";
 import {Note} from "../../../models/note/Note";
 import CurrentNotes

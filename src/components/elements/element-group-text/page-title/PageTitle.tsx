@@ -1,7 +1,7 @@
 import React from 'react';
 import {TagType} from "../../../../models/html/TagType";
 import Title from "../../element-group-native/title/Title";
-import './PageTitle.css';
+import './PageTitle.scss';
 
 interface PageTitleProps {
     text: string;

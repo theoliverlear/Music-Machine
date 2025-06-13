@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Menu from "../../element-group-menu/menu/Menu";
 import {MidiDeviceInfo} from "../../../../models/midi/MidiDeviceInfo";
 import {TagType} from "../../../../models/html/TagType";
-import './MidiPopup.css';
+import './MidiPopup.scss';
 
 interface MidiPopupProps {
     onMidiDeviceSelected: (midiInput: WebMidi.MIDIInput | undefined, midiOutput: WebMidi.MIDIOutput | undefined) => void;

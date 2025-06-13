@@ -1,7 +1,5 @@
-// A slider that allows the user to adjust whether to use sharps or flats in the pitch notation.
-
 import React from 'react';
-import './PitchSlider.css';
+import './PitchSlider.scss';
 import BinarySlider
     from "../../element-group-menu/element-group-slider/binary-slider/BinarySlider";
 import {

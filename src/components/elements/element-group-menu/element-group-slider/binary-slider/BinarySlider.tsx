@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {ImageAsset} from "../../../../../assets/imageAssets";
 import Image from "../../../element-group-native/image/Image";
-import "./BinarySlider.css";
+import "./BinarySlider.scss";
 
 interface BinarySliderProps<Asset> {
     assetLeft: Asset;

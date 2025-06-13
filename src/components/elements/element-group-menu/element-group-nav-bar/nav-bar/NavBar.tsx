@@ -1,5 +1,5 @@
 import React from 'react';
-import './NavBar.css';
+import './NavBar.scss';
 import HomeButton from "../../home-button/HomeButton";
 
 function NavBar() {
