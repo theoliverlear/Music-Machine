@@ -5,5 +5,5 @@
 @import "../../../../styles/global-placeholders";
 
 .midi-piano {
-
+    @include flex(center, center, column);
 }
