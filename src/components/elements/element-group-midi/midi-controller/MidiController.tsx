@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import './MidiController.scss';
 import MidiPopup from "../midi-popup/MidiPopup";
-import MidiDevice from "../midi-device/MidiDevice";
 import { Note } from '../../../../models/note/Note';
 import {MidiNote} from "../../../../models/midi/MidiNote";
+import {PossibleMidiInput, PossibleMidiOutput} from "./models/types";
 
 interface MidiControllerProps {
     onNoteChange: (notes: Note[]) => void;
@@ -11,12 +11,12 @@ interface MidiControllerProps {
 }
 
 function MidiController(props: MidiControllerProps) {
-    const [midiInput, setMidiInput] = useState<WebMidi.MIDIInput | undefined>(undefined);
-    const [midiOutput, setMidiOutput] = useState<WebMidi.MIDIOutput | undefined>(undefined);
+    const [midiInput, setMidiInput] = useState<PossibleMidiInput>(undefined);
+    const [midiOutput, setMidiOutput] = useState<PossibleMidiOutput>(undefined);
     const [currentNotes, setCurrentNotes] = useState<Note[]>([]);
-    // const [currentNotes, setCurrentNotes];
-    function handleMidiDeviceSelection(inputDevice: WebMidi.MIDIInput | undefined, outputDevice: WebMidi.MIDIOutput | undefined) {
-        // console.log('Midi Device Selected');
+
+    function handleMidiDeviceSelection(inputDevice: PossibleMidiInput,
+                                       outputDevice: PossibleMidiOutput): void {
         setMidiInput(inputDevice);
         setMidiOutput(outputDevice);
         props.onMidiDeviceSelected(true);
@@ -26,37 +26,43 @@ function MidiController(props: MidiControllerProps) {
         return midiInput !== undefined && midiOutput !== undefined;
     }
 
+    function isActiveNote(status: number, velocity: number): boolean {
+        return status === 144 && velocity > 0;
+    }
+
+    function handleMidiMessage(message: WebMidi.MIDIMessageEvent): void {
+        let [status, noteId, velocity] = message.data;
+        if (isActiveNote(status, velocity)) {
+            const noteTimestamp: number = message.timeStamp;
+            const pressedNote: MidiNote = new MidiNote(noteId, velocity, noteTimestamp);
+            const note: Note = new Note(pressedNote);
+            setCurrentNotes((previousNotes: Note[]): Note[] => {
+                const updatedNotes: Note[] = [...previousNotes, note];
+                return updatedNotes;
+            });
+        } else if (status === 128 || (status === 144 && velocity === 0)) {
+            setCurrentNotes((previousNotes: Note[]) => {
+                const updatedNotes: Note[] = previousNotes.filter((note: Note) => note.midiNote.noteId !== noteId)
+                return updatedNotes;
+            });
+        }
+    }
+
     useEffect(() => {
         if (!midiInput) return;
-        function handleMidiMessage(message: WebMidi.MIDIMessageEvent) {
-            let [status, noteId, velocity] = message.data;
-            if (status === 144 && velocity > 0) {
-                let noteTimestamp: number = message.timeStamp;
-                let pressedNote: MidiNote = new MidiNote(noteId, velocity, noteTimestamp);
-                let note: Note = new Note(pressedNote);
-                setCurrentNotes((previousNotes: Note[]): Note[] => {
-                    const updatedNotes: Note[] = [...previousNotes, note];
-                    props.onNoteChange(updatedNotes);
-                    return updatedNotes;
-                });
-            } else if (status === 128 || (status === 144 && velocity === 0)) {
-                setCurrentNotes(previousNotes => {
-                    const updatedNotes = previousNotes.filter((note: Note) => note.midiNote.noteId !== noteId)
-                    props.onNoteChange(updatedNotes);
-                    return updatedNotes;
-                });
-            }
-        }
         midiInput.onmidimessage = handleMidiMessage;
-        return () => {
+        return (): void => {
             midiInput.onmidimessage = null;
         }
-    }, [midiInput, props]);
+    }, [midiInput]);
+
+    useEffect(() => {
+        props.onNoteChange(currentNotes);
+    }, [currentNotes, props]);
+
     return (
         <div className={"midi-controller"}>
             <MidiPopup onMidiDeviceSelected={handleMidiDeviceSelection}/>
-            {hasSelectedMidiDevice() &&
-                <MidiDevice input={midiInput} output={midiOutput}/>}
         </div>
     )
 }
