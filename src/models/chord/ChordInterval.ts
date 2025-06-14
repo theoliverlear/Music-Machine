@@ -14,10 +14,10 @@ export class ChordInterval {
         }
     }
     equalIntervals(chordInterval: Interval[]): boolean {
-        if (this._intervals.asArray.length !== chordInterval.length) {
+        if (this._intervals.asArray().length !== chordInterval.length) {
             return false;
         }
-        const semitonesSet: Set<number> = new Set(this._intervals.asArray.map((interval: Interval): number => {
+        const semitonesSet: Set<number> = new Set(this._intervals.asArray().map((interval: Interval): number => {
             return interval.semitones;
         }));
         for (const interval of chordInterval) {
@@ -29,7 +29,7 @@ export class ChordInterval {
     }
 
     sortSmallestToLargest(): void {
-        this._intervals.asArray.sort((intervalOne: Interval, intervalTwo: Interval): number => {
+        this._intervals.asArray().sort((intervalOne: Interval, intervalTwo: Interval): number => {
             return intervalOne.semitones - intervalTwo.semitones;
         });
     }
@@ -37,7 +37,7 @@ export class ChordInterval {
     getNameByIntervals(): string {
         let chordName: string = 'Unknown';
         for (const chordInterval of ChordInterval.intervals) {
-            if (this.equalIntervals(chordInterval.intervals.asArray)) {
+            if (this.equalIntervals(chordInterval.intervals.asArray())) {
                 chordName = chordInterval._name;
                 break;
             }
@@ -52,8 +52,8 @@ export class ChordInterval {
         this._intervals = intervals;
     }
     equals(chordInterval: ChordInterval): boolean {
-        return this._intervals.asArray.every((interval: Interval, index: number): boolean => {
-            return interval === chordInterval.intervals.asArray[index];
+        return this._intervals.asArray().every((interval: Interval, index: number): boolean => {
+            return interval === chordInterval.intervals.asArray()[index];
         });
     }
 
