@@ -1,0 +1,14 @@
+// LiveSheetNotes.scss
+@import "../../../../../styles/global-variables";
+@import "../../../../../styles/global-mixins";
+@import "../../../../../styles/global-functions";
+@import "../../../../../styles/global-placeholders";
+
+.live-sheet-notes, #vf-container {
+    @include flex(center, center, column);
+    margin: $four-percent 0 0 0;
+    svg {
+        @include flex(center, center, column);
+        scale: 1.25;
+    }
+}
