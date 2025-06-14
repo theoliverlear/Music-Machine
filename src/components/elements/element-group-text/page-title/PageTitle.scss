@@ -5,9 +5,7 @@
 @import "../../../../styles/global-placeholders";
 
 .page-title {
-    position: absolute;
-    top: $six-percent;
+    margin: $one-percent 0 0 0;
     padding: $half-percent;
     text-decoration: underline;
-    //transform: translateX(-50%);
 }
