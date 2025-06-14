@@ -19,6 +19,7 @@ function Menu(props: MenuProps): ReactElement {
             <div className={"menu-items-div"}>
                 {props.listItemsTitles.map((listItemTitle: string) => {
                     return <MenuItem text={listItemTitle}
+                                     key={listItemTitle}
                                      tagType={props.listItemTagType}
                                      onMenuItemClick={props.onMenuItemClick}/>;
                 })}
