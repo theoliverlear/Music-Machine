@@ -12,7 +12,6 @@ export class Chord {
     private _fullName: string;
     constructor(notes: Note[] = []) {
         this._notes = new MusicSet(notes);
-        // TODO: Centralize note sorting to remove verbose usage.
         this.sortNotesByNoteNumber();
         this._name = this.determineChordName();
         this._fullName = this.determineFullName();
@@ -27,7 +26,7 @@ export class Chord {
     }
 
     private sortNotesByNoteNumber(): void {
-        const sortedArray: Note[] = Chord.sortNotes(this._notes.asArray);
+        const sortedArray: Note[] = Chord.sortNotes(this._notes.asArray());
         this._notes.musicItems = new MusicSet(sortedArray).musicItems;
     }
 
@@ -45,7 +44,7 @@ export class Chord {
         if (!isTriad) {
             return false;
         }
-        const noteArray: Note[] = this._notes.asArray;
+        const noteArray: Note[] = this._notes.asArray();
         const rootNote: Note = noteArray[0];
         const thirdNote: Note = noteArray[1];
         const fifthNote: Note = noteArray[2];
@@ -85,25 +84,21 @@ export class Chord {
             return "Unknown";
         }
         this.sortNotesByNoteNumber();
-        console.log("NOTES IN CHORD:");
-        this._notes.asArray.forEach((note: Note): void => {
-            console.log(`Note: ${note.noteData.noteName}`, `Note Number: ${note.noteData.noteNumber}`);
-        });
         let chordIntervals: MusicSet<Interval> = new MusicSet<Interval>();
         chordIntervals.add(Interval.unison);
         for (let i: number = 0; i < this._notes.size - 1; i++) {
-            let noteArray: Note[] = this._notes.asArray;
+            let noteArray: Note[] = this._notes.asArray();
             let intervalBetweenNotes: Interval = Interval.getIntervalBetweenNotes(noteArray[0], noteArray[i + 1]);
             chordIntervals.add(intervalBetweenNotes);
         }
-        chordIntervals.asArray.forEach((interval: Interval): void => {
+        chordIntervals.asArray().forEach((interval: Interval): void => {
             // console.log(interval.name);
         });
-        let chordInterval: ChordInterval = new ChordInterval(chordIntervals.asArray);
+        let chordInterval: ChordInterval = new ChordInterval(chordIntervals.asArray());
         let nameByIntervals: string = chordInterval.getNameByIntervals();
 
         if (nameByIntervals === "Unknown") {
-            const noteArray: Note[] = this._notes.asArray;
+            const noteArray: Note[] = this._notes.asArray();
             for (let i: number = 0; i < noteArray.length; i++) {
                 console.log("----------------------------------------------")
                 const rootNote: Note = noteArray[i];
@@ -118,16 +113,16 @@ export class Chord {
                 const newChordIntervals: MusicSet<Interval> = new MusicSet<Interval>();
                 newChordIntervals.add(Interval.unison);
                 for (let k: number = 0; k < musicSet.size - 1; k++) {
-                    let noteArray: Note[] = musicSet.asArray;
+                    let noteArray: Note[] = musicSet.asArray();
                     noteArray = Chord.sortNotes(noteArray);
                     const intervalBetweenNotes: Interval = Interval.getIntervalBetweenNotes(noteArray[0], noteArray[k + 1]);
                     newChordIntervals.add(intervalBetweenNotes);
                 }
-                const newChordInterval: ChordInterval = new ChordInterval(newChordIntervals.asArray);
-                newChordInterval.intervals.asArray.forEach((interval: Interval): void => {
+                const newChordInterval: ChordInterval = new ChordInterval(newChordIntervals.asArray());
+                newChordInterval.intervals.asArray().forEach((interval: Interval): void => {
                     console.log(interval.name);
                 });
-                musicSet.asArray.forEach((note: Note): void => {
+                musicSet.asArray().forEach((note: Note): void => {
                     console.log(`Note: ${note.noteData.noteName}`, `Note Number: ${note.noteData.noteNumber}`);
                 })
                 newChordInterval.sortSmallestToLargest();
@@ -135,38 +130,29 @@ export class Chord {
                 if (nameByIntervals !== "Unknown") {
                     return nameByIntervals;
                 }
-                // Create a new ChordInterval with the remaining intervals
             }
         }
-        // If name is unknown, reloop with different root note
-
         return nameByIntervals;
     }
 
-    private shouldNormalizeMajorMinor(nameByIntervals: string) {
+    private shouldNormalizeMajorMinor(nameByIntervals: string): boolean {
         return nameByIntervals === "Major" || nameByIntervals === "Minor";
     }
 
     updateChordByCurrentNotes(currentNotes: Note[]): void {
         this._notes = new MusicSet(currentNotes);
-        // this.sortNotesByNoteNumber();
         this._name = this.determineChordName();
     }
     addNote(note: Note): void {
         this._notes.add(note);
-        // this.sortNotesByNoteNumber();
-
         this._name = this.determineChordName();
     }
     removeNote(note: Note): void {
         this._notes.remove(note);
-        // this.sortNotesByNoteNumber();
         this._name = this.determineChordName();
     }
     get name(): string {
-        // this.sortNotesByNoteNumber();
         this._name = this.determineChordName();
-        console.log(`Chord name: ${this._name}`);
         return this._name;
     }
 
@@ -174,5 +160,4 @@ export class Chord {
         this.sortNotesByNoteNumber();
         return this._notes;
     }
-
 }
