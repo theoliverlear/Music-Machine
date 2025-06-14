@@ -15,11 +15,11 @@ describe('ChordInterval', (): void => {
         it('adds the intervals passed', (): void => {
             const intervals: Interval[] = [Interval.unison, Interval.majorThird, Interval.perfectFifth];
             const chordInterval: ChordInterval = new ChordInterval(intervals);
-            expect(chordInterval.intervals.asArray.includes(Interval.unison)).toBe(true);
-            expect(chordInterval.intervals.asArray.includes(Interval.majorThird)).toBe(true);
-            expect(chordInterval.intervals.asArray.includes(Interval.perfectFifth)).toBe(true);
-            expect(chordInterval.intervals.asArray.length).toBe(3);
-            expect(chordInterval.intervals.asArray.includes(Interval.majorSixth)).toBe(false);
+            expect(chordInterval.intervals.asArray().includes(Interval.unison)).toBe(true);
+            expect(chordInterval.intervals.asArray().includes(Interval.majorThird)).toBe(true);
+            expect(chordInterval.intervals.asArray().includes(Interval.perfectFifth)).toBe(true);
+            expect(chordInterval.intervals.asArray().length).toBe(3);
+            expect(chordInterval.intervals.asArray().includes(Interval.majorSixth)).toBe(false);
         });
     });
 });
