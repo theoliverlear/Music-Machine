@@ -49,7 +49,7 @@ export class MusicSet<T extends Equatable> {
         if (index < 0 || index >= this._musicItems.size) {
             return undefined;
         }
-        return this.asArray[index];
+        return this.asArray()[index];
     }
 
     get musicItems(): Set<T> {
@@ -58,7 +58,7 @@ export class MusicSet<T extends Equatable> {
     get size(): number {
         return this._musicItems.size;
     }
-    get asArray(): T[] {
+    asArray(): T[] {
         return Array.from(this._musicItems);
     }
 
