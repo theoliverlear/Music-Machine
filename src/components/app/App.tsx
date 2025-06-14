@@ -4,6 +4,7 @@ import FreePlay from "../pages/free-play/FreePlay";
 import Home from "../pages/home/Home";
 import {Route, BrowserRouter as Router, Routes} from "react-router-dom";
 import TheoryEngine from "../pages/theory-engine/TheoryEngine";
+import SheetMusic from "../pages/sheet-music/SheetMusic";
 
 function App(): ReactElement {
     return (
@@ -13,6 +14,7 @@ function App(): ReactElement {
                     <Route path="/" element={<Home/>}/>
                     <Route path="/free-play" element={<FreePlay/>}/>
                     <Route path="/theory-engine" element={<TheoryEngine/>}/>
+                    <Route path="/sheet-music" element={<SheetMusic/>}/>
                 </Routes>
             </Router>
         </div>
