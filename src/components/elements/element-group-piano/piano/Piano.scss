@@ -77,9 +77,25 @@
     background-color: $darker-grey !important; // TODO: Add functionality in .tsx for more specific styles to remove !important.
 }
 
-// if there is x overflow, scale down the piano
 @media screen and (max-width: 1200px) {
     .piano {
         scale: 0.65;
+    }
+}
+@media screen and (max-width: 1000px) {
+    .piano {
+        scale: 0.55;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .piano {
+        scale: 0.45;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .piano {
+        scale: 0.35;
     }
 }
