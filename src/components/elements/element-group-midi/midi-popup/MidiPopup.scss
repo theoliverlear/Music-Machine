@@ -9,7 +9,7 @@
     background-color: $faded-air-blue;
     padding: $one-percent;
     @extend %soft-border-radius;
-    min-width: 40%;
+    min-width: $thirty-percent;
     max-width: 70%;
     .top-menu-title {
         margin: $half-percent 0;
