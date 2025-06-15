@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {ReactElement, useEffect, useState} from 'react';
 import {ImageAsset} from "../../../../../assets/imageAssets";
 import Image from "../../../element-group-native/image/Image";
 import "./BinarySlider.scss";
@@ -7,10 +7,11 @@ interface BinarySliderProps<Asset> {
     assetLeft: Asset;
     assetRight: Asset;
     onAssetSelected: (asset: Asset) => void;
+    selectedAsset?: Asset;
 }
 
-function BinarySlider<Asset>(props: BinarySliderProps<Asset>) {
-    const [selectedAsset, setSelectedAsset] = useState<Asset>(props.assetLeft);
+function BinarySlider<Asset>(props: BinarySliderProps<Asset>): ReactElement {
+    const [selectedAsset, setSelectedAsset] = useState<Asset | undefined>(props.assetLeft);
     function isImageSlider(): boolean {
         return props.assetLeft as ImageAsset !== undefined;
     }
@@ -21,8 +22,9 @@ function BinarySlider<Asset>(props: BinarySliderProps<Asset>) {
     }
 
     useEffect(() => {
-        setSelectedAsset(props.assetLeft);
-    }, [props.assetLeft, props.assetRight]);
+        setSelectedAsset(props.selectedAsset ?? undefined);
+    }, [props.selectedAsset]);
+
 
     function getClasses(side: string): string {
         if (side === "left") {
@@ -39,9 +41,6 @@ function BinarySlider<Asset>(props: BinarySliderProps<Asset>) {
             return classes;
         }
     }
-
-
-
     return (
         <div className={"binary-slider"}>
             <div className={getClasses("left")} onClick={() => selectAsset(props.assetLeft)}>
