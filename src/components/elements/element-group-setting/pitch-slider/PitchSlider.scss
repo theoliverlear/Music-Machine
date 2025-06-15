@@ -5,7 +5,25 @@
 @import "../../../../styles/global-placeholders";
 
 .pitch-slider {
+    @include flex(center, center, column);
     position: absolute;
     top: $five-percent;
+
     left: $two-percent;
+    @extend %soft-border-radius;
+    background-color: $charcoal;
+    border: $thin-border solid $ivory-white;
+    .binary-slider {
+        border: none;
+    }
+    .auto-button {
+        padding: $quarter-percent $one-percent;
+        margin: $quarter-percent 0 $half-percent 0;
+        //width: 80%;
+        border-radius: $one-percent;
+        background-color: $pristine-white;
+        &.selected {
+            background-color: $air-blue;
+        }
+    }
 }
