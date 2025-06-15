@@ -91,16 +91,12 @@ export class Chord {
             let intervalBetweenNotes: Interval = Interval.getIntervalBetweenNotes(noteArray[0], noteArray[i + 1]);
             chordIntervals.add(intervalBetweenNotes);
         }
-        chordIntervals.asArray().forEach((interval: Interval): void => {
-            // console.log(interval.name);
-        });
         let chordInterval: ChordInterval = new ChordInterval(chordIntervals.asArray());
         let nameByIntervals: string = chordInterval.getNameByIntervals();
 
         if (nameByIntervals === "Unknown") {
             const noteArray: Note[] = this._notes.asArray();
             for (let i: number = 0; i < noteArray.length; i++) {
-                console.log("----------------------------------------------")
                 const rootNote: Note = noteArray[i];
                 const musicSet: MusicSet<Note> = new MusicSet<Note>();
                 musicSet.add(rootNote);
@@ -119,12 +115,6 @@ export class Chord {
                     newChordIntervals.add(intervalBetweenNotes);
                 }
                 const newChordInterval: ChordInterval = new ChordInterval(newChordIntervals.asArray());
-                newChordInterval.intervals.asArray().forEach((interval: Interval): void => {
-                    console.log(interval.name);
-                });
-                musicSet.asArray().forEach((note: Note): void => {
-                    console.log(`Note: ${note.noteData.noteName}`, `Note Number: ${note.noteData.noteNumber}`);
-                })
                 newChordInterval.sortSmallestToLargest();
                 nameByIntervals = newChordInterval.getNameByIntervals();
                 if (nameByIntervals !== "Unknown") {
