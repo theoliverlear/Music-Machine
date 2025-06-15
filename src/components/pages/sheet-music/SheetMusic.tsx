@@ -55,7 +55,9 @@ function SheetMusic() {
             <PitchSlider onPitchSelection={handlePitchChange}
             onPitchTypeSelection={handlePitchTypeSelection}/>
             <PageTitle text={"Sheet Music"}/>
-            <LiveSheetNotes currentNotes={currentNotes}/>
+            <LiveSheetNotes currentNotes={currentNotes}
+                            pitch={getPitch()}
+                            pitchType={pitchType}/>
             <MidiPiano onMidiDeviceSelected={handleMidiDeviceSelection}
                        onNoteChange={updateCurrentNotes}/>
         </div>
