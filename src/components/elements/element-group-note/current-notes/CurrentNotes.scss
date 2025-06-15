@@ -7,10 +7,12 @@
     .notes {
         @include flex(center, center, row);
         min-height: $h4-font-size;
+        width: 100%;
         .current-note {
-            font-size: $h4-font-size;
-            min-width: 3ch;
-            margin: 0 $quarter-percent;
+            margin-right: $one-percent;
+            &:last-child {
+                margin-right: 0;
+            }
         }
     }
 }
