@@ -57,9 +57,7 @@ export class Interval implements Equatable {
     static readonly unknown: Interval = new Interval(-1, "Unknown");
     constructor(semitones: number = 0, name: string = "") {
         this._semitones = semitones;
-        this._name = ""; // This line is only here to remove the error
-                        //  message. The initializeName method will handle
-                        //  the assignment of the name property.
+        this._name = "";
         this.initializeName(name);
     }
     initializeName(name: string) {
@@ -69,6 +67,17 @@ export class Interval implements Equatable {
             this._name = name;
         }
     }
+
+    static isThirdInterval(noteOne: Note, noteTwo: Note): boolean {
+        const lowestNote: Note = Note.getLowestNote([noteOne, noteTwo]);
+        const highestNote: Note = Note.getHighestNote([noteOne, noteTwo]);
+        if (lowestNote.noteData.noteNumber === highestNote.noteData.noteNumber) {
+            return false;
+        }
+        return lowestNote.noteData.noteNumber + 3 === highestNote.noteData.noteNumber ||
+            lowestNote.noteData.noteNumber + 4 === highestNote.noteData.noteNumber;
+    }
+
     get semitones(): number {
         return this._semitones;
     }
