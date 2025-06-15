@@ -79,6 +79,12 @@ export class Note implements Equatable {
         });
     }
 
+    static getHighestNote(notes: Note[]): Note {
+        return notes.reduce((prev: Note, current: Note): Note => {
+            return (prev.noteNumber > current.noteNumber) ? prev : current;
+        });
+    }
+
     toStaveNote(duration: string = "w"): StaveNote {
         const keyString: string = this.toVexFlowKey();
         const note: StaveNote = new StaveNote({
