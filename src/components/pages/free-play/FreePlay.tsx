@@ -21,6 +21,8 @@ import {
 import PageTitle
     from "../../elements/element-group-text/page-title/PageTitle";
 import {ChordFactory} from "../../../models/chord/ChordFactory";
+import MidiPiano
+    from "../../elements/element-group-midi/midi-piano/MidiPiano";
 
 
 function FreePlay() {
@@ -61,16 +63,13 @@ function FreePlay() {
             <PitchSlider onPitchSelection={handlePitchChange}
             onPitchTypeSelection={handlePitchTypeSelection}/>
             <PageTitle text="Free Play"/>
-            <MidiController
-                onMidiDeviceSelected={handleMidiDeviceSelection}
-                onNoteChange={updateCurrentNotes}/>
-
-            {midiDeviceSelected &&
-                <CurrentChord currentChord={currentChord} pitch={getPitch()}/>}
-
-            {midiDeviceSelected &&
-                <CurrentNotes currentNotes={currentNotes} pitch={getPitch()}/>}
-            <Piano currentNotes={currentNotes}/>
+            {midiDeviceSelected && (<div className={"input-info-div"}>
+                    <CurrentChord currentChord={currentChord}
+                                  pitch={getPitch()}/>
+                    <CurrentNotes currentNotes={currentNotes}
+                                  pitch={getPitch()} pitchType={pitchType}/>
+            </div>)}
+            <MidiPiano onNoteChange={updateCurrentNotes} onMidiDeviceSelected={handleMidiDeviceSelection}/>
         </div>
     );
 }
