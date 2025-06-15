@@ -3,6 +3,10 @@ import {NoteData} from "./NoteData";
 import {Equatable} from "../behavior/Equatable";
 import {Accidental, StaveNote} from "vexflow";
 import {Clef} from "../theory/types";
+import {
+    Pitch, PitchType
+} from "../../components/elements/element-group-setting/pitch-slider/models/types";
+import {NoteFactory} from "./NoteFactory";
 
 export class Note implements Equatable {
     private _midiNote: MidiNote;
@@ -13,8 +17,35 @@ export class Note implements Equatable {
         this._noteNumber = midiNote.noteId - 21;
         this._noteData = NoteData.getByNoteNumber(this._noteNumber);
     }
-    toVexFlowKey(): string {
-        return `${this.noteData.noteName.toLowerCase()}/${this.noteData.octave}`;
+
+    toVexFlowKey(pitch: Pitch = "natural"): string {
+        let noteName: string = this.noteData.noteName;
+        if (pitch === "sharp") {
+            if (this.isSharp()) {
+                noteName = this.noteData.noteName;
+            } else if (this.isFlat()) {
+                if (this.isSharp()) {
+                    noteName = this.noteData.asSharp();
+                } else {
+                    noteName = this.noteData.noteName;
+                }
+            } else {
+                noteName = this.noteData.asSharp();
+            }
+        } else if (pitch === "flat") {
+            if (this.isSharp()) {
+                noteName = this.noteData.asFlat();
+            } else {
+                noteName = this.noteData.noteName;
+            }
+        } else if (pitch === "natural") {
+            noteName = this.noteData.noteName;
+        } else {
+            noteName = this.noteData.noteName;
+        }
+
+        noteName = noteName.toLowerCase();
+        return `${noteName}/${this.noteData.octave}`;
     }
 
     isBassClef(): boolean {
@@ -30,15 +61,19 @@ export class Note implements Equatable {
     }
 
     static allToBaseTrebleNoteChord(notes: Note[],
+                                    pitchType: PitchType = "auto",
+                                    pitch: Pitch = "natural",
                                     duration: string = "w"): [StaveNote, StaveNote] {
         const trebleNotes: Note[] = notes.filter((note: Note): boolean => note.isTrebleClef());
         const bassNotes: Note[] = notes.filter((note: Note): boolean => note.isBassClef());
-        const trebleNote: StaveNote = Note.allToStaveNoteChord(trebleNotes, duration);
-        const bassNote: StaveNote = Note.allToStaveNoteChord(bassNotes, duration);
+        const trebleNote: StaveNote = Note.allToStaveNoteChord(trebleNotes, pitchType, pitch, duration);
+        const bassNote: StaveNote = Note.allToStaveNoteChord(bassNotes, pitchType, pitch, duration);
         return [trebleNote, bassNote];
     }
 
     static allToStaveNoteChord(notes: Note[],
+                               pitchType: PitchType = "auto",
+                               pitch: Pitch = "natural",
                                duration: string = "w"): StaveNote {
         if (notes.length === 0) {
             return new StaveNote({
@@ -46,19 +81,34 @@ export class Note implements Equatable {
                 duration: duration,
             });
         }
+        let pitches: Pitch[] | undefined = undefined;
+        if (pitchType === "auto") {
+            let [factoryNotes, factoryPitches] = NoteFactory.getNoteWithPitches(notes);
+            notes = factoryNotes;
+            pitches = factoryPitches;
+        }
+
         const lowestNote: Note = Note.getLowestNote(notes);
         const clef: Clef = lowestNote.getClef();
         const accidentalMap: Record<number, string> = {};
         const clefMap: Record<number, string> = {};
         const staveNote = new StaveNote({
-            keys: notes.map((note, index) => {
-                if (note.isSharp()) {
-                    accidentalMap[index] = "#";
-                } else if (note.isFlat()) {
-                    accidentalMap[index] = "b";
+            keys: notes.map((note: Note, index: number) => {
+                if (pitches && pitches[index]) {
+                    pitch = pitches[index];
                 }
                 clefMap[index] = note.getClef();
-                return note.toVexFlowKey();
+                const vexFlowKey: string = note.toVexFlowKey(pitch);
+                if (vexFlowKey.includes("#")) {
+                    accidentalMap[index] = "#";
+                } else if (vexFlowKey.includes("b")) {
+                    if (!note.noteData.noteName.includes("B")) {
+                        accidentalMap[index] = "b";
+                    }
+                } else {
+                    accidentalMap[index] = "";
+                }
+                return vexFlowKey;
             }),
             duration: duration,
             clef: clef,
