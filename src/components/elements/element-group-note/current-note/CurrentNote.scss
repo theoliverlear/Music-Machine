@@ -1,0 +1,13 @@
+// CurrentNote.scss
+@import "../../../../styles/global-mixins";
+@import "../../../../styles/global-functions";
+@import "../../../../styles/global-variables";
+@import "../../../../styles/global-placeholders";
+
+.current-note {
+    @include flex(center, center, row);
+    font-size: $h4-font-size;
+    min-width: 3ch;
+    margin: 0 $quarter-percent;
+    text-align: center;
+}
