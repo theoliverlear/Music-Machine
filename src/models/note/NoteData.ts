@@ -142,14 +142,15 @@ export class NoteData {
     }
 
     get asSharp(): string {
-        if (this.altSharpName.includes("##")) {
-            return this.noteName;
-        } else {
-            if (this.altSharpName.includes("B#")) {
-                // return "C";
-            }
-            return this.altSharpName;
-        }
+        // if (this.altSharpName.includes("##")) {
+        //     return this.noteName;
+        // } else {
+        //     if (this.altSharpName.includes("B#")) {
+        //         // return "C";
+        //     }
+        //     return this.altSharpName;
+        // }
+        return this.altSharpName;
     }
 
     get fullNoteName(): string {
