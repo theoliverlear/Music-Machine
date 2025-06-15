@@ -12,13 +12,15 @@ import LiveSheetNotes
 import PitchSlider
     from "../../elements/element-group-setting/pitch-slider/PitchSlider";
 import {
-    Pitch
+    Pitch, PitchType
 } from "../../elements/element-group-setting/pitch-slider/models/types";
+import {ChordFactory} from "../../../models/chord/ChordFactory";
 
 function SheetMusic() {
     const [currentNotes, setCurrentNotes] = useState<Note[]>([]);
     const [midiDeviceSelected, setMidiDeviceSelected] = useState<boolean>(false);
-    const [pitchState, setPitchState] = useState<Pitch>("sharp");
+    const [pitchState, setPitchState] = useState<Pitch>("natural");
+    const [pitchType, setPitchType] = useState<PitchType>("auto");
 
     function handlePitchChange(newPitch: Pitch): void {
         setPitchState(newPitch);
@@ -35,10 +37,23 @@ function SheetMusic() {
         setCurrentNotes(newNotes);
     }
 
+    function handlePitchTypeSelection(newPitchType: PitchType): void {
+        setPitchType(newPitchType);
+    }
+
+    function getPitch(): Pitch {
+        if (pitchType === "auto" && pitchState === "natural") {
+            return ChordFactory.getAutoPitch(currentNotes);
+        } else {
+            return pitchState;
+        }
+    }
+
     return (
         <div className={"sheet-music"}>
             <NavBar/>
-            <PitchSlider onPitchSelection={handlePitchChange}/>
+            <PitchSlider onPitchSelection={handlePitchChange}
+            onPitchTypeSelection={handlePitchTypeSelection}/>
             <PageTitle text={"Sheet Music"}/>
             <LiveSheetNotes currentNotes={currentNotes}/>
             <MidiPiano onMidiDeviceSelected={handleMidiDeviceSelection}
