@@ -4,6 +4,7 @@ import MidiPopup from "../midi-popup/MidiPopup";
 import Piano from "../../element-group-piano/piano/Piano";
 import {Note} from "../../../../models/note/Note";
 import MidiController from "../midi-controller/MidiController";
+import {Chord} from "../../../../models/chord/Chord";
 
 interface MidiPianoProps {
     onNoteChange: (notes: Note[]) => void;
@@ -18,6 +19,7 @@ function MidiPiano(props: MidiPianoProps): ReactElement {
         props.onMidiDeviceSelected(isMidiDeviceSelected);
     }
     function updateCurrentNotes(newNotes: Note[]): void {
+        newNotes = Chord.sortNotes(newNotes);
         setCurrentNotes(newNotes);
         props.onNoteChange(newNotes);
     }
