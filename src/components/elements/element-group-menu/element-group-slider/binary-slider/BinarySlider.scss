@@ -14,6 +14,7 @@
     padding: $two-third-percent;
     .binary-asset-left {
         border-radius: $one-percent 0 0 $one-percent;
+        border-right: $thin-border solid $ivory-white;
     }
     .binary-asset-right {
         border-radius: 0 $one-percent $one-percent 0;
