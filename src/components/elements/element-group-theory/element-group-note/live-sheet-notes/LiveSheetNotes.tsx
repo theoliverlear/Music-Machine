@@ -8,9 +8,14 @@ import Vex, {
     VexFlow, Voice
 } from "vexflow";
 import {Note} from "../../../../../models/note/Note";
+import {
+    Pitch, PitchType
+} from "../../../element-group-setting/pitch-slider/models/types";
 
 interface LiveSheetNotesProps {
     currentNotes: Note[];
+    pitch?: Pitch;
+    pitchType?: PitchType;
 }
 
 function LiveSheetNotes(props: LiveSheetNotesProps): ReactElement {
@@ -24,7 +29,7 @@ function LiveSheetNotes(props: LiveSheetNotesProps): ReactElement {
         const stave: Stave = new Stave(10, 40, 400);
         stave.addClef("treble").addTimeSignature("4/4");
         stave.setContext(context).draw();
-        const [trebleNote, bassNote]: [StaveNote, StaveNote] = Note.allToBaseTrebleNoteChord(props.currentNotes);
+        const [trebleNote, bassNote]: [StaveNote, StaveNote] = Note.allToBaseTrebleNoteChord(props.currentNotes, props.pitchType, props.pitch);
         const voice: Voice = new Voice({
             numBeats: 4,
             beatValue: 4,
@@ -42,7 +47,7 @@ function LiveSheetNotes(props: LiveSheetNotesProps): ReactElement {
         bassVoice.addTickables([bassNote]);
         new Formatter().joinVoices([bassVoice]).format([bassVoice], 400);
         bassVoice.draw(context, bassStave);
-    }, [props.currentNotes]);
+    }, [props.currentNotes, props.pitch, props.pitchType]);
     return (
         <div className={"live-sheet-notes"} ref={elementRef} id={"vf-container"}>
 
