@@ -74,7 +74,7 @@ export class Chord {
             return "Unknown Chord";
         }
         if (pitch === "flat") {
-            return `${rootNote.noteData.asFlat} ${this._name}`;
+            return `${rootNote.noteData.asFlat()} ${this._name}`;
         }
         return `${rootNote.noteData.noteName} ${this._name}`;
     }
