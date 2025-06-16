@@ -1,0 +1,1 @@
+export type PitchAccidental = "none" | "sharp" | "flat" | "natural";
