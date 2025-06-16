@@ -15,12 +15,17 @@ import {
     Pitch, PitchType
 } from "../../elements/element-group-setting/pitch-slider/models/types";
 import {ChordFactory} from "../../../models/chord/ChordFactory";
+import KeySignaturePicker
+    from "../../elements/element-group-setting/element-group-signature/element-group-key-signature/element-group-key-signature-picker/key-signature-picker/KeySignaturePicker";
+import {AnalogousKeys} from "../../../models/signature/types";
+import {KeySignature} from "../../../models/signature/KeySignature";
 
 function SheetMusic() {
     const [currentNotes, setCurrentNotes] = useState<Note[]>([]);
     const [midiDeviceSelected, setMidiDeviceSelected] = useState<boolean>(false);
     const [pitchState, setPitchState] = useState<Pitch>("natural");
     const [pitchType, setPitchType] = useState<PitchType>("auto");
+    const [keySignature, setKeySignature] = useState<KeySignature>(KeySignature.cMajor);
 
     function handlePitchChange(newPitch: Pitch): void {
         setPitchState(newPitch);
@@ -49,6 +54,10 @@ function SheetMusic() {
         }
     }
 
+    function handleKeySignatureChange(newKeySignature: AnalogousKeys): void {
+        setKeySignature(newKeySignature.major);
+    }
+
     return (
         <div className={"sheet-music"}>
             <NavBar/>
@@ -57,7 +66,9 @@ function SheetMusic() {
             <PageTitle text={"Sheet Music"}/>
             <LiveSheetNotes currentNotes={currentNotes}
                             pitch={getPitch()}
-                            pitchType={pitchType}/>
+                            pitchType={pitchType}
+                            keySignature={keySignature}/>
+            <KeySignaturePicker onKeySignatureChange={handleKeySignatureChange}/>
             <MidiPiano onMidiDeviceSelected={handleMidiDeviceSelection}
                        onNoteChange={updateCurrentNotes}/>
         </div>
