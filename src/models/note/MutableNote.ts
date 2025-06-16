@@ -43,6 +43,10 @@ export class MutableNote implements Mutable<Pitch> {
         this._mutatedName = noteName;
     }
 
+    removeMutation(): void {
+        this._mutatedName = this._baseNote.noteData.noteName;
+    }
+
     isSharp(): boolean {
         return this._mutatedName.includes("#");
     }
