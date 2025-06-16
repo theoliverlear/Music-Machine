@@ -1,0 +1,26 @@
+// KeySignaturePicker.scss
+@import "../../../../../../../styles/global-variables";
+@import "../../../../../../../styles/global-mixins";
+@import "../../../../../../../styles/global-functions";
+@import "../../../../../../../styles/global-placeholders";
+
+.key-signature-picker {
+    position: absolute;
+    z-index: 1;
+    top: calc($fifteen-percent + $one-percent);
+    left: $two-percent;
+    @include flex(flex-start, center, column);
+    flex-wrap: wrap;
+    //max-width: 25%;
+    max-width: $fifteen-percent;
+    padding: $quarter-percent;
+    background-color: $charcoal;
+    max-height: 95vh;
+    overflow-y: auto;
+    //scale: 0.6;
+    @extend %soft-border-radius;
+    .key-signature-options {
+        @include flex(center, center, column);
+        flex-wrap: wrap;
+    }
+}
