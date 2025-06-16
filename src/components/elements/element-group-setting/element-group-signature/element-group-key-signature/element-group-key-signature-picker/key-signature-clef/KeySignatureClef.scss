@@ -1,0 +1,13 @@
+// KeySignatureClef.scss
+@import "../../../../../../../styles/global-variables";
+@import "../../../../../../../styles/global-mixins";
+@import "../../../../../../../styles/global-functions";
+@import "../../../../../../../styles/global-placeholders";
+
+.key-signature-clef {
+    svg {
+        display: block;
+        vertical-align: top;
+        overflow: visible;
+    }
+}
