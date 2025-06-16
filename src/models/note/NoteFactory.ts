@@ -4,6 +4,9 @@ import {
 } from "../../components/elements/element-group-setting/pitch-slider/models/types";
 import { Chord } from "../chord/Chord";
 import {Interval} from "../chord/Interval";
+import {KeySignature} from "../signature/KeySignature";
+import {MutableNote} from "./MutableNote";
+import {PitchAccidental} from "../signature/types";
 
 export class NoteFactory {
     // TODO: Refactor this code to use more concrete calculations using key
@@ -187,5 +190,15 @@ export class NoteFactory {
             }
         }
         return [pitchOne, pitchTwo];
+    }
+
+    static mutateNotes(notes: Note[], keySignature: KeySignature): MutableNote[] {
+        const mutableNotes: MutableNote[] = [];
+        const accidentals: PitchAccidental[] = [];
+        notes = Chord.sortNotes(notes);
+        for (const note of notes) {
+
+        }
+        return [];
     }
 }
