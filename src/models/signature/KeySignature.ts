@@ -1,9 +1,9 @@
 import {
     Pitch
 } from "../../components/elements/element-group-setting/pitch-slider/models/types";
-import { Note } from "../note/Note";
-import {PitchAccidental} from "./types";
+import {AnalogousKeys, PitchAccidental} from "./types";
 import {MutableNote} from "../note/MutableNote";
+import {KeySignature as VexKeySignature} from "vexflow";
 
 export class KeySignature {
     private _name: string;
@@ -38,6 +38,23 @@ export class KeySignature {
                          this._pitchG,
                          this._pitchA,
                          this._pitchB];
+    }
+
+    toVexFlowSignature(): VexKeySignature {
+        return new VexKeySignature(this.getVexFlowString());
+    }
+
+    getVexFlowString(): string {
+        const indexOfSpace: number = this._name.indexOf(' ');
+        if (indexOfSpace === -1) {
+            throw new Error(`Invalid key signature name: ${this._name}`);
+        } else if (indexOfSpace === 1) {
+            return this._name.charAt(0).toUpperCase();
+        } else if (indexOfSpace === 2) {
+            return this._name.charAt(0).toUpperCase() + this._name.charAt(1);
+        } else {
+            throw new Error(`Invalid key signature name: ${this._name}`);
+        }
     }
 
     getAccidentals(notes: MutableNote[]): PitchAccidental[] {
@@ -94,6 +111,10 @@ export class KeySignature {
             default:
                 throw new Error(`Unknown pitch: ${comparedPitch}`);
         }
+    }
+
+    toString(): string {
+        return this._name;
     }
     //-----------------------------------------C           D          E          F          G          A          B
     static readonly C_MAJOR_PITCHES: Pitch[] = ["natural", "natural", "natural", "natural", "natural", "natural", "natural"];
@@ -179,5 +200,115 @@ export class KeySignature {
         KeySignature.gMinor,
         KeySignature.dMinor,
         KeySignature.cMinor,
+    ];
+
+    static readonly sharpKeys: KeySignature[] = [
+        KeySignature.gMajor,
+        KeySignature.dMajor,
+        KeySignature.aMajor,
+        KeySignature.eMajor,
+        KeySignature.bMajor,
+        KeySignature.fSharpMajor,
+        KeySignature.cSharpMajor,
+        KeySignature.eMinor,
+        KeySignature.bMinor,
+        KeySignature.fSharpMinor,
+        KeySignature.cSharpMinor,
+        KeySignature.gSharpMinor,
+        KeySignature.dSharpMinor,
+        KeySignature.aSharpMinor,
+    ]
+
+    static readonly cMajorAnalogousKey: AnalogousKeys = {
+        major: KeySignature.cMajor,
+        minor: KeySignature.aMinor
+    };
+
+    static readonly gMajorAnalogousKey: AnalogousKeys = {
+        major: KeySignature.gMajor,
+        minor: KeySignature.eMinor
+    };
+
+    static readonly dMajorAnalogousKey: AnalogousKeys = {
+        major: KeySignature.dMajor,
+        minor: KeySignature.bMinor
+    };
+
+    static readonly aMajorAnalogousKey: AnalogousKeys = {
+        major: KeySignature.aMajor,
+        minor: KeySignature.fSharpMinor
+    };
+
+    static readonly eMajorAnalogousKey: AnalogousKeys = {
+        major: KeySignature.eMajor,
+        minor: KeySignature.cSharpMinor
+    };
+
+    static readonly fSharpMajorAnalogousKey: AnalogousKeys = {
+        major: KeySignature.fSharpMajor,
+        minor: KeySignature.dSharpMinor
+    };
+
+    static readonly bMajorAnalogousKey: AnalogousKeys = {
+        major: KeySignature.bMajor,
+        minor: KeySignature.gSharpMinor
+    }
+
+    static readonly cSharpMajorAnalogousKey: AnalogousKeys = {
+        major: KeySignature.cSharpMajor,
+        minor: KeySignature.aSharpMinor
+    }
+
+    static readonly fMajorAnalogousKey: AnalogousKeys = {
+        major: KeySignature.fMajor,
+        minor: KeySignature.dMinor
+    };
+
+    static readonly bFlatMajorAnalogousKey: AnalogousKeys = {
+        major: KeySignature.bFlatMajor,
+        minor: KeySignature.gMinor
+    };
+
+    static readonly eFlatMajorAnalogousKey: AnalogousKeys = {
+        major: KeySignature.eFlatMajor,
+        minor: KeySignature.cMinor
+    };
+
+    static readonly aFlatMajorAnalogousKey: AnalogousKeys = {
+        major: KeySignature.aFlatMajor,
+        minor: KeySignature.fMinor
+    };
+
+    static readonly dFlatMajorAnalogousKey: AnalogousKeys = {
+        major: KeySignature.dFlatMajor,
+        minor: KeySignature.bFlatMinor
+    };
+
+    static readonly gFlatMajorAnalogousKey: AnalogousKeys = {
+        major: KeySignature.gFlatMajor,
+        minor: KeySignature.eFlatMinor
+    };
+
+    static readonly cFlatMajorAnalogousKey: AnalogousKeys = {
+        major: KeySignature.cFlatMajor,
+        minor: KeySignature.aFlatMinor
+    };
+
+    static readonly analogousKeys: AnalogousKeys[] = [
+        KeySignature.cMajorAnalogousKey,
+        KeySignature.gMajorAnalogousKey,
+        KeySignature.dMajorAnalogousKey,
+        KeySignature.aMajorAnalogousKey,
+        KeySignature.eMajorAnalogousKey,
+        KeySignature.bMajorAnalogousKey,
+        KeySignature.fSharpMajorAnalogousKey,
+        KeySignature.cSharpMajorAnalogousKey,
+        KeySignature.fMajorAnalogousKey,
+        KeySignature.bFlatMajorAnalogousKey,
+        KeySignature.eFlatMajorAnalogousKey,
+        KeySignature.aFlatMajorAnalogousKey,
+        KeySignature.dFlatMajorAnalogousKey,
+        KeySignature.gFlatMajorAnalogousKey,
+        KeySignature.cFlatMajorAnalogousKey
     ];
 }
