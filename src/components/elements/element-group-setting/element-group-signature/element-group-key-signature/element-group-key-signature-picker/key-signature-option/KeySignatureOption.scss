@@ -1,0 +1,18 @@
+// KeySignatureOption.scss
+@import "../../../../../../../styles/global-variables";
+@import "../../../../../../../styles/global-mixins";
+@import "../../../../../../../styles/global-functions";
+@import "../../../../../../../styles/global-placeholders";
+
+.key-signature-option {
+    @include flex(center, center, column);
+    @extend %soft-border-radius;
+    //background-color: transparent;
+    background-color: $pristine-white;
+    margin: $half-percent;
+    padding: $quarter-percent;
+    &:hover {
+        background-color: $pristine-white;
+        cursor: pointer;
+    }
+}
