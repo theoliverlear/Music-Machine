@@ -7,6 +7,7 @@ import {
     Pitch, PitchType
 } from "../../components/elements/element-group-setting/pitch-slider/models/types";
 import {NoteFactory} from "./NoteFactory";
+import {MutableNote} from "./MutableNote";
 
 export class Note implements Equatable {
     private _midiNote: MidiNote;
@@ -16,6 +17,11 @@ export class Note implements Equatable {
         this._midiNote = midiNote;
         this._noteNumber = midiNote.noteId - 21;
         this._noteData = NoteData.getByNoteNumber(this._noteNumber);
+    }
+
+    toMutableNote(pitch: Pitch = "natural"): MutableNote {
+        const mutableNote: MutableNote = new MutableNote(this, pitch);
+        return mutableNote;
     }
 
     toVexFlowKey(pitch: Pitch = "natural"): string {
