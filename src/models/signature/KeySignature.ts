@@ -40,10 +40,26 @@ export class KeySignature {
                          this._pitchB];
     }
 
+    getAccidentals(notes: MutableNote[]): PitchAccidental[] {
+        return notes.map((note: MutableNote): PitchAccidental => this.getAccidental(note));
+    }
+
     getAccidental(note: MutableNote): PitchAccidental {
-        const noteNumber: number = note.baseNote.noteData.noteNumber;
-        const octaveAdjustedNoteNumber: number = noteNumber % 12;
-        const comparedPitch: Pitch = this._pitches[octaveAdjustedNoteNumber];
+        let noteNumber: number;
+        const baseNoteName: string = note.baseNote.noteData.noteName;
+        const notes: string[] = ["C", "D", "E", "F", "G", "A", "B"];
+        noteNumber = notes.indexOf(baseNoteName.charAt(0).toUpperCase());
+        if (KeySignature.flatKeys.includes(this)) {
+            if (note.isSharp()) {
+                note.mutate("flat");
+                noteNumber = notes.indexOf(note.mutatedName.charAt(0).toUpperCase());
+                note.mutate("sharp");
+            }
+        }
+        if (noteNumber === -1) {
+            throw new Error(`Unknown note name: ${baseNoteName}`);
+        }
+        const comparedPitch: Pitch = this._pitches[noteNumber];
         switch (comparedPitch) {
             case "natural":
                 if (note.isNatural()) {
@@ -147,4 +163,21 @@ export class KeySignature {
     static readonly bFlatMinor: KeySignature = new KeySignature('Bb Minor', ...KeySignature.B_FLAT_MINOR_PITCHES);
     static readonly eFlatMinor: KeySignature = new KeySignature('Eb Minor', ...KeySignature.E_FLAT_MINOR_PITCHES);
     static readonly aFlatMinor: KeySignature = new KeySignature('Ab Minor', ...KeySignature.A_FLAT_MINOR_PITCHES);
+
+    static readonly flatKeys: KeySignature[] = [
+        KeySignature.fMajor,
+        KeySignature.bFlatMajor,
+        KeySignature.eFlatMajor,
+        KeySignature.aFlatMajor,
+        KeySignature.dFlatMajor,
+        KeySignature.gFlatMajor,
+        KeySignature.cFlatMajor,
+        KeySignature.fMinor,
+        KeySignature.bFlatMinor,
+        KeySignature.eFlatMinor,
+        KeySignature.aFlatMinor,
+        KeySignature.gMinor,
+        KeySignature.dMinor,
+        KeySignature.cMinor,
+    ];
 }
