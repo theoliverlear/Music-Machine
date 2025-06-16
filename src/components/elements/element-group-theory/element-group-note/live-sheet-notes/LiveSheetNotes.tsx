@@ -5,15 +5,18 @@ import Vex, {
     Renderer, Stave,
     StaveConnector,
     StaveNote,
-    VexFlow, Voice
+    VexFlow, Voice,
+    KeySignature as VexKeySignature
 } from "vexflow";
 import {Note} from "../../../../../models/note/Note";
 import {
     Pitch, PitchType
 } from "../../../element-group-setting/pitch-slider/models/types";
+import {KeySignature} from "../../../../../models/signature/KeySignature";
 
 interface LiveSheetNotesProps {
     currentNotes: Note[];
+    keySignature?: KeySignature;
     pitch?: Pitch;
     pitchType?: PitchType;
 }
@@ -28,7 +31,12 @@ function LiveSheetNotes(props: LiveSheetNotesProps): ReactElement {
         const context: RenderContext = renderer.getContext();
         const stave: Stave = new Stave(10, 40, 400);
         stave.addClef("treble").addTimeSignature("4/4");
+        if (props.keySignature) {
+            const keySignature: VexKeySignature = props.keySignature.toVexFlowSignature();
+            stave.addModifier(keySignature);
+        }
         stave.setContext(context).draw();
+        // TODO: Create new static method or refactor to pass key signatures.
         const [trebleNote, bassNote]: [StaveNote, StaveNote] = Note.allToBaseTrebleNoteChord(props.currentNotes, props.pitchType, props.pitch);
         const voice: Voice = new Voice({
             numBeats: 4,
@@ -39,6 +47,10 @@ function LiveSheetNotes(props: LiveSheetNotesProps): ReactElement {
         voice.draw(context, stave);
         const bassStave: Stave = new Stave(10, 120, 400);
         bassStave.addClef("bass").addTimeSignature("4/4");
+        if (props.keySignature) {
+            const keySignature: VexKeySignature = props.keySignature.toVexFlowSignature();
+            bassStave.addModifier(keySignature);
+        }
         bassStave.setContext(context).draw();
         const bassVoice: Voice = new Voice({
             numBeats: 4,
@@ -47,7 +59,7 @@ function LiveSheetNotes(props: LiveSheetNotesProps): ReactElement {
         bassVoice.addTickables([bassNote]);
         new Formatter().joinVoices([bassVoice]).format([bassVoice], 400);
         bassVoice.draw(context, bassStave);
-    }, [props.currentNotes, props.pitch, props.pitchType]);
+    }, [props]);
     return (
         <div className={"live-sheet-notes"} ref={elementRef} id={"vf-container"}>
 
