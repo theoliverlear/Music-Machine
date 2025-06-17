@@ -35,6 +35,11 @@ describe('KeySignature', (): void => {
             const mutableNoteF: MutableNote = noteF.toMutableNote();
             const pitchAdjustmentF: PitchAccidental = fKeySignature.getAccidental(mutableNoteF);
             expect(pitchAdjustmentF).toBe("none");
+
+            const bFlatNote: MutableNote = MutableNote.fromMidiNumber(70);
+            bFlatNote.mutateToKeySignature(fKeySignature);
+            const bFlatAccidental: PitchAccidental = fKeySignature.getAccidental(bFlatNote);
+            expect(bFlatAccidental).toBe("none");
         });
         it('can find sharp accidentals', (): void => {
             const keySignature: KeySignature = KeySignature.gMajor;
