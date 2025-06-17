@@ -5,6 +5,23 @@ import {MutableNote} from "../../../models/note/MutableNote";
 import {PitchAccidental} from "../../../models/signature/types";
 
 describe('KeySignature', (): void => {
+    describe('getVexFlowKeyString', (): void => {
+        it('can detect natural key signature', (): void => {
+            const keySignature: KeySignature = KeySignature.cMajor;
+            const vexFlowKeyString: string = keySignature.getVexFlowString();
+            expect(vexFlowKeyString).toBe("C");
+        });
+        it('can detect a key signature with sharps', (): void => {
+            const keySignature: KeySignature = KeySignature.fSharpMajor;
+            const vexFlowKeyString: string = keySignature.getVexFlowString();
+            expect(vexFlowKeyString).toBe("F#");
+        });
+        it('can detect a key signature with flats', (): void => {
+            const keySignature: KeySignature = KeySignature.gFlatMajor;
+            const vexFlowKeyString: string = keySignature.getVexFlowString();
+            expect(vexFlowKeyString).toBe("Gb");
+        });
+    });
     describe('getAccidental', (): void => {
         it('can find no change accidentals', (): void => {
             const keySignature: KeySignature = KeySignature.cMajor;
