@@ -19,7 +19,7 @@ export class Note implements Equatable {
         this._noteData = NoteData.getByNoteNumber(this._noteNumber);
     }
 
-    static fromMidiNote(midiNote: number): Note {
+    static fromMidiNumber(midiNote: number): Note {
         const note: Note = new Note(new MidiNote(midiNote));
         return note;
     }
