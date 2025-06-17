@@ -17,16 +17,8 @@ export class Chord {
         this._fullName = this.determineFullName();
     }
 
-    static sortNotes(notes: Note[]): Note[] {
-        return notes.sort((noteOne: Note, noteTwo: Note): number => {
-            const noteOneNumber: number = noteOne.noteData.noteNumber;
-            const noteTwoNumber: number = noteTwo.noteData.noteNumber;
-            return noteOneNumber - noteTwoNumber;
-        });
-    }
-
     private sortNotesByNoteNumber(): void {
-        const sortedArray: Note[] = Chord.sortNotes(this._notes.asArray());
+        const sortedArray: Note[] = Note.sortNotes(this._notes.asArray());
         this._notes.musicItems = new MusicSet(sortedArray).musicItems;
     }
 
@@ -110,7 +102,7 @@ export class Chord {
                 newChordIntervals.add(Interval.unison);
                 for (let k: number = 0; k < musicSet.size - 1; k++) {
                     let noteArray: Note[] = musicSet.asArray();
-                    noteArray = Chord.sortNotes(noteArray);
+                    noteArray = Note.sortNotes(noteArray);
                     const intervalBetweenNotes: Interval = Interval.getIntervalBetweenNotes(noteArray[0], noteArray[k + 1]);
                     newChordIntervals.add(intervalBetweenNotes);
                 }
