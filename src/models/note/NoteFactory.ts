@@ -11,6 +11,15 @@ import {PitchAccidental} from "../signature/types";
 export class NoteFactory {
     // TODO: Refactor this code to use more concrete calculations using key
     //       signatures, intervals, and costs.
+
+    static mutateToKeySignature(notes: Note[], keySignature: KeySignature): MutableNote[] {
+        const mutableNotes: MutableNote[] = notes.map((note: Note): MutableNote => new MutableNote(note));
+        mutableNotes.forEach((mutableNote: MutableNote)=> {
+           mutableNote.mutateToKeySignature(keySignature);
+        });
+        return mutableNotes;
+    }
+
     static getNoteWithPitches(notes: Note[]): [Note[], Pitch[]] {
         notes = Chord.sortNotes(notes);
         if (notes.length === 0) {
@@ -190,15 +199,5 @@ export class NoteFactory {
             }
         }
         return [pitchOne, pitchTwo];
-    }
-
-    static mutateNotes(notes: Note[], keySignature: KeySignature): MutableNote[] {
-        const mutableNotes: MutableNote[] = [];
-        const accidentals: PitchAccidental[] = [];
-        notes = Chord.sortNotes(notes);
-        for (const note of notes) {
-
-        }
-        return [];
     }
 }
