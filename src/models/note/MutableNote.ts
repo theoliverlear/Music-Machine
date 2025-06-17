@@ -3,6 +3,8 @@ import {
     Pitch
 } from "../../components/elements/element-group-setting/pitch-slider/models/types";
 import {Mutable} from "../behavior/Mutable";
+import {KeySignature} from "../signature/KeySignature";
+import {PitchAccidental} from "../signature/types";
 
 export class MutableNote implements Mutable<Pitch> {
     private _baseNote: Note;
@@ -13,6 +15,18 @@ export class MutableNote implements Mutable<Pitch> {
         this._baseNote = baseNote;
         this._mutatedName = baseNote.noteData.noteName;
         this.mutate(pitch);
+    }
+
+    static fromMidiNumber(midiNumber: number): MutableNote {
+        const note: Note = Note.fromMidiNumber(midiNumber);
+        return new MutableNote(note);
+    }
+
+    public mutateToKeySignature(keySignature: KeySignature): void {
+        const pitchAccidental: PitchAccidental = keySignature.getAccidental(this);
+        if (pitchAccidental !== "none") {
+            this.mutate(pitchAccidental);
+        }
     }
 
     public mutate(pitch: Pitch): void {
