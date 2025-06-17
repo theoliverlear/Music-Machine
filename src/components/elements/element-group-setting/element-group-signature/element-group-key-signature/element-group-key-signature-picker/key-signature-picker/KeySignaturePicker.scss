@@ -15,7 +15,7 @@
     max-width: $fifteen-percent;
     padding: $quarter-percent;
     background-color: $charcoal;
-    max-height: 95vh;
+    max-height: $thirty-percent;
     overflow-y: auto;
     //scale: 0.6;
     @extend %soft-border-radius;

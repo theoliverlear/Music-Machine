@@ -71,9 +71,9 @@ export class KeySignature {
 
     getAccidental(note: MutableNote): PitchAccidental {
         let noteNumber: number;
-        const baseNoteName: string = note.baseNote.noteData.noteName;
+        const noteName: string = note.mutatedName;
         const notes: string[] = ["C", "D", "E", "F", "G", "A", "B"];
-        noteNumber = notes.indexOf(baseNoteName.charAt(0).toUpperCase());
+        noteNumber = notes.indexOf(noteName.charAt(0).toUpperCase());
         if (KeySignature.flatKeys.includes(this)) {
             if (note.isSharp()) {
                 note.mutate("flat");
@@ -82,7 +82,7 @@ export class KeySignature {
             }
         }
         if (noteNumber === -1) {
-            throw new Error(`Unknown note name: ${baseNoteName}`);
+            throw new Error(`Unknown note name: ${noteName}`);
         }
         const comparedPitch: Pitch = this._pitches[noteNumber];
         switch (comparedPitch) {
@@ -125,6 +125,10 @@ export class KeySignature {
             default:
                 throw new Error(`Unknown pitch: ${comparedPitch}`);
         }
+    }
+
+    get name(): string {
+        return this._name;
     }
 
     toString(): string {

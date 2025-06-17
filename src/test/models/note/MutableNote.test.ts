@@ -42,6 +42,9 @@ describe('MutableNote', (): void => {
             const noteThree: MutableNote = MutableNote.fromMidiNumber(66); // F# || Gb
             noteThree.mutateToKeySignature(keySignature);
             expect(noteThree.mutatedName).toBe("Gb");
+            const noteFour: MutableNote = MutableNote.fromMidiNumber(70); // A# || Bb
+            noteFour.mutateToKeySignature(keySignature);
+            expect(noteFour.mutatedName).toBe("Bb");
         });
     });
     describe('mutate', (): void => {

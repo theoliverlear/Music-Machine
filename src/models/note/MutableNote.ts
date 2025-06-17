@@ -19,6 +19,10 @@ export class MutableNote implements Mutable<Pitch> {
         this.mutate(pitch);
     }
 
+    static allToMutableNotes(notes: Note[], pitch: Pitch = "natural"): MutableNote[] {
+        return notes.map((note: Note): MutableNote => new MutableNote(note, pitch));
+    }
+
     static sortNotes(notes: MutableNote[]): MutableNote[] {
         return notes.sort((noteOne: MutableNote, noteTwo: MutableNote): number => {
             const noteOneNumber: number = noteOne._baseNote.noteData.noteNumber;
@@ -41,6 +45,15 @@ export class MutableNote implements Mutable<Pitch> {
         if (pitchAccidental !== "none") {
             this.mutate(pitchAccidental);
         }
+    }
+
+    static allToTrebleBassChord(mutableNotes: MutableNote[],
+                                keySignature: KeySignature): [StaveNote, StaveNote] {
+        const trebleNotes: MutableNote[] = mutableNotes.filter((mutableNote: MutableNote): boolean => mutableNote.isTrebleClef());
+        const bassNotes: MutableNote[] = mutableNotes.filter((mutableNote: MutableNote): boolean => mutableNote.isBassClef());
+        const trebleChord: StaveNote = MutableNote.allToStaveChord(trebleNotes, keySignature);
+        const bassChord: StaveNote = MutableNote.allToStaveChord(bassNotes, keySignature);
+        return [trebleChord, bassChord];
     }
 
     static allToStaveChord(mutableNotes: MutableNote[],
@@ -131,6 +144,14 @@ export class MutableNote implements Mutable<Pitch> {
 
     isNatural(): boolean {
         return !this.isSharp() && !this.isFlat();
+    }
+
+    isTrebleClef(): boolean {
+        return this.baseNote.isTrebleClef();
+    }
+
+    isBassClef(): boolean {
+        return this.baseNote.isBassClef();
     }
 
     get baseNote(): Note {

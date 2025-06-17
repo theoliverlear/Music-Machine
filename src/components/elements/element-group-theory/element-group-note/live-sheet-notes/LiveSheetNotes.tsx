@@ -13,6 +13,7 @@ import {
     Pitch, PitchType
 } from "../../../element-group-setting/pitch-slider/models/types";
 import {KeySignature} from "../../../../../models/signature/KeySignature";
+import {MutableNote} from "../../../../../models/note/MutableNote";
 
 interface LiveSheetNotesProps {
     currentNotes: Note[];
@@ -37,7 +38,14 @@ function LiveSheetNotes(props: LiveSheetNotesProps): ReactElement {
         }
         stave.setContext(context).draw();
         // TODO: Create new static method or refactor to pass key signatures.
-        const [trebleNote, bassNote]: [StaveNote, StaveNote] = Note.allToBaseTrebleNoteChord(props.currentNotes, props.pitchType, props.pitch);
+        let trebleNote: StaveNote;
+        let bassNote: StaveNote;
+        if (props.keySignature) {
+            const notes: MutableNote[] = MutableNote.allToMutableNotes(props.currentNotes);
+            [trebleNote, bassNote] = MutableNote.allToTrebleBassChord(notes, props.keySignature);
+        } else {
+            [trebleNote, bassNote] = Note.allToBaseTrebleNoteChord(props.currentNotes, props.pitchType, props.pitch);
+        }
         const voice: Voice = new Voice({
             numBeats: 4,
             beatValue: 4,
