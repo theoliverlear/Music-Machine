@@ -17,6 +17,10 @@ export class Chord {
         this._fullName = this.determineFullName();
     }
 
+    isUnknownChord(): boolean {
+        return this._name === "Unknown";
+    }
+
     private sortNotesByNoteNumber(): void {
         const sortedArray: Note[] = Note.sortNotes(this._notes.asArray());
         this._notes.musicItems = new MusicSet(sortedArray).musicItems;
