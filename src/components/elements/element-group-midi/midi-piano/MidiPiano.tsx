@@ -19,7 +19,7 @@ function MidiPiano(props: MidiPianoProps): ReactElement {
         props.onMidiDeviceSelected(isMidiDeviceSelected);
     }
     function updateCurrentNotes(newNotes: Note[]): void {
-        newNotes = Chord.sortNotes(newNotes);
+        newNotes = Note.sortNotes(newNotes);
         setCurrentNotes(newNotes);
         props.onNoteChange(newNotes);
     }
