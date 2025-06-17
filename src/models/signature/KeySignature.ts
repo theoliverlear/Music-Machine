@@ -40,6 +40,14 @@ export class KeySignature {
                          this._pitchB];
     }
 
+    isSharpSignature(): boolean {
+        return KeySignature.sharpKeys.includes(this);
+    }
+
+    isFlatSignature(): boolean {
+        return KeySignature.flatKeys.includes(this);
+    }
+
     toVexFlowSignature(): VexKeySignature {
         return new VexKeySignature(this.getVexFlowString());
     }
@@ -82,8 +90,14 @@ export class KeySignature {
                 if (note.isNatural()) {
                     return "none";
                 } else if (note.isSharp()) {
+                    if (this.isFlatSignature()) {
+                        return "flat";
+                    }
                     return "sharp";
                 } else if (note.isFlat()) {
+                    if (this.isSharpSignature()) {
+                        return "sharp";
+                    }
                     return "flat";
                 } else {
                     throw new Error(`Unknown pitch: ${comparedPitch}`);
