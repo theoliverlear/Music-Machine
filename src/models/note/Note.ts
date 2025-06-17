@@ -82,6 +82,14 @@ export class Note implements Equatable {
         return [trebleNote, bassNote];
     }
 
+    static sortNotes(notes: Note[]): Note[] {
+        return notes.sort((noteOne: Note, noteTwo: Note): number => {
+            const noteOneNumber: number = noteOne.noteData.noteNumber;
+            const noteTwoNumber: number = noteTwo.noteData.noteNumber;
+            return noteOneNumber - noteTwoNumber;
+        });
+    }
+
     static allToStaveNoteChord(notes: Note[],
                                pitchType: PitchType = "auto",
                                pitch: Pitch = "natural",
