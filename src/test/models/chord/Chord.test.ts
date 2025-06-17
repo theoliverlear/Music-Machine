@@ -4,9 +4,9 @@ import {MidiNote} from "../../../models/midi/MidiNote";
 
 describe('Chord', (): void => {
     it('does not allow duplicate notes', (): void => {
-        let chord: Chord = new Chord();
-        let noteBase: Note = new Note(new MidiNote(60));
-        let noteDuplicate: Note = new Note(new MidiNote(60));
+        const chord: Chord = new Chord();
+        const noteBase: Note = new Note(new MidiNote(60));
+        const noteDuplicate: Note = new Note(new MidiNote(60));
         chord.addNote(noteBase);
         chord.addNote(noteDuplicate);
         expect(chord.notes.size).toBe(1);
@@ -29,7 +29,6 @@ describe('Chord', (): void => {
             chord.addNote(new Note(new MidiNote(69))); // A
             chord.addNote(new Note(new MidiNote(72))); // C
             chord.addNote(new Note(new MidiNote(76))); // E
-            // Expect not A major
             expect(chord.fullName).not.toBe("A Major");
         });
         it('identifies first inversion major chords', (): void => {
@@ -78,15 +77,12 @@ describe('Chord', (): void => {
             chord.addNote(new Note(new MidiNote(69))); // A
             chord.addNote(new Note(new MidiNote(72))); // C
             chord.addNote(new Note(new MidiNote(75))); // E
-            // Expect not A minor
             expect(chord.fullName).not.toBe("A Minor");
 
-            // D, F, C should expect "Unknown"
             chord = new Chord();
             chord.addNote(new Note(new MidiNote(62))); // D
             chord.addNote(new Note(new MidiNote(65))); // F
             chord.addNote(new Note(new MidiNote(72))); // C
-            console.log(chord)
             expect(chord.fullName).toBe("Unknown Chord");
         });
         it('identifies first inversion minor chords', (): void => {
