@@ -21,7 +21,7 @@ export class NoteFactory {
     }
 
     static getNoteWithPitches(notes: Note[]): [Note[], Pitch[]] {
-        notes = Chord.sortNotes(notes);
+        notes = Note.sortNotes(notes);
         if (notes.length === 0) {
             return [[], []];
         } else if (notes.length === 1) {
