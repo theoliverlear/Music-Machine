@@ -5,6 +5,8 @@ import {
 import {Mutable} from "../behavior/Mutable";
 import {KeySignature} from "../signature/KeySignature";
 import {PitchAccidental} from "../signature/types";
+import {StaveNote, Accidental as VexAccidental} from "vexflow";
+import {Clef} from "../theory/types";
 
 export class MutableNote implements Mutable<Pitch> {
     private _baseNote: Note;
@@ -17,9 +19,21 @@ export class MutableNote implements Mutable<Pitch> {
         this.mutate(pitch);
     }
 
+    static sortNotes(notes: MutableNote[]): MutableNote[] {
+        return notes.sort((noteOne: MutableNote, noteTwo: MutableNote): number => {
+            const noteOneNumber: number = noteOne._baseNote.noteData.noteNumber;
+            const noteTwoNumber: number = noteTwo._baseNote.noteData.noteNumber;
+            return noteOneNumber - noteTwoNumber;
+        });
+    }
+
     static fromMidiNumber(midiNumber: number): MutableNote {
         const note: Note = Note.fromMidiNumber(midiNumber);
         return new MutableNote(note);
+    }
+
+    toVexFlowKey(): string {
+        return this._mutatedName.toLowerCase() + "/" + this._baseNote.noteData.octave;
     }
 
     public mutateToKeySignature(keySignature: KeySignature): void {
@@ -27,6 +41,52 @@ export class MutableNote implements Mutable<Pitch> {
         if (pitchAccidental !== "none") {
             this.mutate(pitchAccidental);
         }
+    }
+
+    static allToStaveChord(mutableNotes: MutableNote[],
+                           keySignature: KeySignature): StaveNote {
+        if (mutableNotes.length === 0) {
+            return new StaveNote({
+                keys: ["r/4"],
+                duration: "w",
+            });
+        }
+        mutableNotes = MutableNote.sortNotes(mutableNotes);
+        mutableNotes.forEach((mutableNote: MutableNote): void => {
+            mutableNote.mutateToKeySignature(keySignature);
+        });
+        const asNotes: Note[] = mutableNotes.map((mutableNote: MutableNote): Note => mutableNote.baseNote);
+        const lowestNote: Note = Note.getLowestNote(asNotes);
+        const clef: Clef = lowestNote.getClef();
+        const accidentalMap: Record<number, string> = {};
+        const staveNote: StaveNote = new StaveNote({
+            keys: mutableNotes.map((mutableNote: MutableNote, index: number): string => {
+                const vexFlowKey: string = mutableNote.toVexFlowKey();
+                const accidental: PitchAccidental = keySignature.getAccidental(mutableNote);
+                if (accidental === "sharp") {
+                    accidentalMap[index] = "#";
+                } else if (accidental === "flat") {
+                    accidentalMap[index] = "b";
+                } else if (accidental === "natural") {
+                    accidentalMap[index] = "n";
+                } else {
+                    accidentalMap[index] = "";
+                }
+                return vexFlowKey;
+            }),
+            duration: "w",
+            clef: clef,
+        });
+        for (const [index, accidental] of Object.entries(accidentalMap)) {
+            if (accidental === "#") {
+                staveNote.addModifier(new VexAccidental("#"), parseInt(index));
+            } else if (accidental === "b") {
+                staveNote.addModifier(new VexAccidental("b"), parseInt(index));
+            } else if (accidental === "n") {
+                staveNote.addModifier(new VexAccidental("n"), parseInt(index));
+            }
+        }
+        return staveNote;
     }
 
     public mutate(pitch: Pitch): void {
