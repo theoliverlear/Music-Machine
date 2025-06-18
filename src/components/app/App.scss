@@ -64,7 +64,9 @@ body {
             .home,
             .free-play,
             .theory-engine,
-            .sheet-music {
+            .sheet-music,
+            .chord-callout,
+            .key-quest {
                 //@include flex(center, center, column);
                 width: 100%;
                 box-sizing: border-box;
