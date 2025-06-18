@@ -5,6 +5,7 @@ import Home from "../pages/home/Home";
 import {Route, BrowserRouter as Router, Routes} from "react-router-dom";
 import TheoryEngine from "../pages/theory-engine/TheoryEngine";
 import SheetMusic from "../pages/sheet-music/SheetMusic";
+import ChordCallout from "../pages/chord-callout/ChordCallout";
 
 function App(): ReactElement {
     return (
@@ -13,8 +14,9 @@ function App(): ReactElement {
                 <Routes>
                     <Route path="/" element={<Home/>}/>
                     <Route path="/free-play" element={<FreePlay/>}/>
-                    <Route path="/theory-engine" element={<TheoryEngine/>}/>
                     <Route path="/sheet-music" element={<SheetMusic/>}/>
+                    <Route path="/chord-callout" element={<ChordCallout/>}/>
+                    <Route path="/theory-engine" element={<TheoryEngine/>}/>
                 </Routes>
             </Router>
         </div>
