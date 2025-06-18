@@ -5,5 +5,19 @@
 @import "../../../../styles/global-placeholders";
 
 .button {
-
+    user-select: none;
+    background-color: $charcoal;
+    color: $pristine-white;
+    @extend %soft-border-radius;
+    padding: $half-percent;
+    margin: $half-percent 0;
+    box-shadow: $darker-black-shadow 0 0 simplest-calc(0.05) simplest-calc(0.05);
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+    &:hover {
+        cursor: pointer;
+        box-shadow: $darker-black-shadow 0 0 simplest-calc(0.1) simplest-calc(0.1);
+    }
+    &:active {
+        box-shadow: none;
+    }
 }
