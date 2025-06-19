@@ -2,25 +2,26 @@ import {
     metronomeOffBeatAudioAsset,
     metronomeOnBeatAudioAsset
 } from "../../assets/audioAssets";
+import {AudioPlayer} from "../audio/AudioPlayer";
 
 export class Metronome {
     // TODO: A general metronome which can start manually or automatically
     //       when a user starts playing the piano.
-    private _audio: HTMLAudioElement;
+    private _audio: AudioPlayer;
     private _isPlaying: boolean;
     private _bpm: number;
     private _numBeats: number;
-    private _volume: number;
     constructor(bpm: number = 120,
                 numBeats: number = 4,
                 volume: number = 0.5) {
         this._isPlaying = false;
-        this._audio = new Audio();
+        this._audio = new AudioPlayer(volume);
         this._bpm = this.normalizeBpm(bpm);
         this._numBeats = numBeats;
-        this._volume = this.getVolume(volume);
-        this._audio.volume = this._volume;
-        this._audio.preload = 'auto';
+    }
+
+    set volume(percentage: number) {
+        this._audio.volume = percentage;
     }
 
     normalizeBpm(bpm: number): number {
@@ -40,16 +41,6 @@ export class Metronome {
         }
     }
 
-    getVolume(percentage: number): number {
-        if (percentage === 1) {
-            return 0;
-        } else if (percentage === 0) {
-            return Number.MIN_VALUE;
-        } else {
-            return -6 * Math.log10(1 / percentage);
-        }
-    }
-
     getMillisBetweenBeats(): number {
         return (60 / this._bpm) * 1000;
     }
@@ -63,26 +54,25 @@ export class Metronome {
             return;
         }
         this._isPlaying = true;
-        let beatCount = 0;
+        let beatCount: number = 0;
         while (this._isPlaying) {
             this.setAudioSource(beatCount);
-            this._audio.currentTime = 0;
             this.click();
             beatCount++;
-            const millisBetweenBeats = this.getMillisBetweenBeats();
-            const nextBeatTime = Date.now() + millisBetweenBeats;
+            const millisBetweenBeats: number = this.getMillisBetweenBeats();
+            const nextBeatTime: number = Date.now() + millisBetweenBeats;
             await new Promise(resolve => {
-                const timeUntilNextBeat = nextBeatTime - Date.now();
+                const timeUntilNextBeat: number = nextBeatTime - Date.now();
                 setTimeout(resolve, timeUntilNextBeat);
             });
         }
     }
 
-    private setAudioSource(beatCount: number): void {
+    setAudioSource(beatCount: number): void {
         if (this.playOnBeat(beatCount)) {
-            this._audio.src = metronomeOnBeatAudioAsset.path;
+            this._audio.setAudioSource(metronomeOnBeatAudioAsset);
         } else {
-            this._audio.src = metronomeOffBeatAudioAsset.path;
+            this._audio.setAudioSource(metronomeOffBeatAudioAsset);
         }
     }
 
@@ -91,7 +81,6 @@ export class Metronome {
     }
 
     click = (): void => {
-        this._audio.currentTime = 0;
-        this._audio.play().catch(console.error);
+        this._audio.play();
     }
 }
