@@ -9,6 +9,10 @@
     border-radius: $one-percent;
 }
 
+%underline {
+    text-decoration: underline;
+}
+
 %raise-above-box-shadow {
     box-shadow: $navy-blue 0 0 $fifteen-percent simplest-calc(0.25);
 }
