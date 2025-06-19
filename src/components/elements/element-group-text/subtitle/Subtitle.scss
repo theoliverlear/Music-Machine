@@ -1,0 +1,11 @@
+// Subtitle.scss
+@import "../../../../styles/global-variables";
+@import "../../../../styles/global-mixins";
+@import "../../../../styles/global-functions";
+@import "../../../../styles/global-placeholders";
+
+.subtitle {
+    @include flex(center, center, column);
+    text-align: center;
+    font-style: italic;
+}
