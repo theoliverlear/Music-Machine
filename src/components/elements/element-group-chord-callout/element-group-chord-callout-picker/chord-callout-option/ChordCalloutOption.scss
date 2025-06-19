@@ -1,0 +1,32 @@
+// ChordCalloutOption.scss
+@import "../../../../../styles/global-variables";
+@import "../../../../../styles/global-mixins";
+@import "../../../../../styles/global-functions";
+@import "../../../../../styles/global-placeholders";
+
+.chord-callout-option {
+    @include flex(space-between, center, column);
+    width: $twenty-percent;
+    min-height: calc($twenty-percent + $two-percent);
+    max-width: 30vw;
+    background-color: $black-shadow;
+    @extend %soft-border-radius;
+    margin: $half-percent;
+    padding: $half-percent;
+    .option-type {
+        @include flex(center, center, column);
+        @extend %fill-container;
+        flex: 1;
+    }
+    .name-option {
+        @extend %underline;
+    }
+    .multiplier-text {
+        width: 98%;
+        hr {
+            border: $very-thin-border $darker-black-shadow solid;
+            width: 50%;
+        }
+    }
+
+}
