@@ -1,0 +1,10 @@
+// ChordCalloutPicker.scss
+@import "../../../../../styles/global-variables";
+@import "../../../../../styles/global-mixins";
+@import "../../../../../styles/global-functions";
+@import "../../../../../styles/global-placeholders";
+
+.chord-callout-picker {
+    @include flex(center, center, row);
+    flex-wrap: wrap;
+}
