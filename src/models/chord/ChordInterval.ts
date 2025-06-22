@@ -77,6 +77,13 @@ export class ChordInterval {
     static augmentedIntervals: Interval[] =
         [Interval.unison, Interval.majorThird, Interval.minorSixth];
 
+    static uninvertedTriadIntervals: Interval[][] = [
+        ChordInterval.majorIntervals,
+        ChordInterval.minorIntervals,
+        ChordInterval.diminishedIntervals,
+        ChordInterval.augmentedIntervals
+    ];
+
     static majorSeventhIntervals: Interval[] =
         [Interval.unison, Interval.majorThird, Interval.perfectFifth, Interval.majorSeventh];
 
@@ -177,19 +184,19 @@ export class ChordInterval {
         ChordInterval.augmentedIntervals, 'Augmented');
 
     static majorSeventh: ChordInterval = new ChordInterval(
-        ChordInterval.majorSeventhIntervals, 'Major Seventh');
+        ChordInterval.majorSeventhIntervals, 'Major 7th');
 
     static dominant: ChordInterval = new ChordInterval(
         ChordInterval.dominantIntervals, 'Dominant');
 
     static minorSeventh: ChordInterval = new ChordInterval(
-        ChordInterval.minorSeventhIntervals, 'Minor Seventh');
+        ChordInterval.minorSeventhIntervals, 'Minor 7th');
 
     static minorMajorSeventh: ChordInterval = new ChordInterval(
-        ChordInterval.minorMajorSeventhIntervals, 'Minor Major Seventh');
+        ChordInterval.minorMajorSeventhIntervals, 'Minor Major 7th');
 
     static diminishedSeventh: ChordInterval = new ChordInterval(
-        ChordInterval.diminishedSeventhIntervals, 'Diminished Seventh');
+        ChordInterval.diminishedSeventhIntervals, 'Diminished 7th');
 
     //-----------------------Triad-Chord-Intervals----------------------------
     static majorFirstInversion: ChordInterval = new ChordInterval(
@@ -218,13 +225,13 @@ export class ChordInterval {
 
     //------------------------7th-Chord-Intervals-----------------------------
     static majorSeventhFirstInversion: ChordInterval = new ChordInterval(
-        ChordInterval.majorSeventhFirstInversionIntervals, 'Major Seventh (1st Inversion)');
+        ChordInterval.majorSeventhFirstInversionIntervals, 'Major 7th (1st Inversion)');
 
     static majorSeventhSecondInversion: ChordInterval = new ChordInterval(
-        ChordInterval.majorSeventhSecondInversionIntervals, 'Major Seventh (2nd Inversion)');
+        ChordInterval.majorSeventhSecondInversionIntervals, 'Major 7th (2nd Inversion)');
 
     static majorSeventhThirdInversion: ChordInterval = new ChordInterval(
-        ChordInterval.majorSeventhThirdInversionIntervals, 'Major Seventh (3rd Inversion)');
+        ChordInterval.majorSeventhThirdInversionIntervals, 'Major 7th (3rd Inversion)');
 
     static dominantFirstInversion: ChordInterval = new ChordInterval(
         ChordInterval.dominantFirstInversionIntervals, 'Dominant (1st Inversion)');
@@ -236,31 +243,31 @@ export class ChordInterval {
         ChordInterval.dominantThirdInversionIntervals, 'Dominant (3rd Inversion)');
 
     static minorSeventhFirstInversion: ChordInterval = new ChordInterval(
-        ChordInterval.minorSeventhFirstInversionIntervals, 'Minor Seventh (1st Inversion)');
+        ChordInterval.minorSeventhFirstInversionIntervals, 'Minor 7th (1st Inversion)');
 
     static minorSeventhSecondInversion: ChordInterval = new ChordInterval(
-        ChordInterval.minorSeventhSecondInversionIntervals, 'Minor Seventh (2nd Inversion)');
+        ChordInterval.minorSeventhSecondInversionIntervals, 'Minor 7th (2nd Inversion)');
 
     static minorSeventhThirdInversion: ChordInterval = new ChordInterval(
-        ChordInterval.minorSeventhThirdInversionIntervals, 'Minor Seventh (3rd Inversion)');
+        ChordInterval.minorSeventhThirdInversionIntervals, 'Minor 7th (3rd Inversion)');
 
     static minorMajorSeventhFirstInversion: ChordInterval = new ChordInterval(
-        ChordInterval.minorMajorSeventhFirstInversionIntervals, 'Minor Major 7 (1st Inversion)');
+        ChordInterval.minorMajorSeventhFirstInversionIntervals, 'Minor Major 7th (1st Inversion)');
 
     static minorMajorSeventhSecondInversion: ChordInterval = new ChordInterval(
-        ChordInterval.minorMajorSeventhSecondInversionIntervals, 'Minor Major 7 (2nd Inversion)');
+        ChordInterval.minorMajorSeventhSecondInversionIntervals, 'Minor Major 7th (2nd Inversion)');
 
     static minorMajorSeventhThirdInversion: ChordInterval = new ChordInterval(
-        ChordInterval.minorMajorSeventhThirdInversionIntervals, 'Minor Major 7 (3rd Inversion)');
+        ChordInterval.minorMajorSeventhThirdInversionIntervals, 'Minor Major 7th (3rd Inversion)');
 
     static diminishedSeventhFirstInversion: ChordInterval = new ChordInterval(
-        ChordInterval.diminishedSeventhFirstInversionIntervals, 'Diminished Seventh (1st Inversion)');
+        ChordInterval.diminishedSeventhFirstInversionIntervals, 'Diminished 7th (1st Inversion)');
 
     static diminishedSeventhSecondInversion: ChordInterval = new ChordInterval(
-        ChordInterval.diminishedSeventhSecondInversionIntervals, 'Diminished Seventh (2nd Inversion)');
+        ChordInterval.diminishedSeventhSecondInversionIntervals, 'Diminished 7th (2nd Inversion)');
 
     static diminishedSeventhThirdInversion: ChordInterval = new ChordInterval(
-        ChordInterval.diminishedSeventhThirdInversionIntervals, 'Diminished Seventh (3rd Inversion)');
+        ChordInterval.diminishedSeventhThirdInversionIntervals, 'Diminished 7th (3rd Inversion)');
     //-----------------------------Intervals----------------------------------
     static intervals: ChordInterval[] = [
         ChordInterval.major,
