@@ -121,8 +121,40 @@ export class Chord {
         return nameByIntervals;
     }
 
-    private shouldNormalizeMajorMinor(nameByIntervals: string): boolean {
-        return nameByIntervals === "Major" || nameByIntervals === "Minor";
+    public isMajor(): boolean {
+        return this.isAnyMajor() && !this.isAnyInverted();
+    }
+
+    public isMinor(): boolean {
+        return this.isAnyMinor() && !this.isAnyInverted();
+    }
+
+    public isAugmented(): boolean {
+        return this.isAnyAugmented() && !this.isAnyInverted();
+    }
+
+    public isDiminished(): boolean {
+        return this.isAnyDiminished() && !this.isAnyInverted();
+    }
+
+    public isAnyMajor(): boolean {
+        return this.fullName.includes("Major");
+    }
+
+    public isAnyMinor(): boolean {
+        return this.fullName.includes("Minor");
+    }
+
+    public isAnyAugmented(): boolean {
+        return this.fullName.includes("Augmented");
+    }
+
+    public isAnyDiminished(): boolean {
+        return this.fullName.includes("Diminished");
+    }
+
+    public isAnyInverted(): boolean {
+        return this.fullName.includes("Inversion");
     }
 
     updateChordByCurrentNotes(currentNotes: Note[]): void {
