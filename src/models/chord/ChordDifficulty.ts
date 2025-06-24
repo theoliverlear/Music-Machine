@@ -21,4 +21,12 @@ export namespace ChordDifficulty {
         }
         return totalDifficulty as ChordDifficulty;
     }
+    export function values(): ChordDifficulty[] {
+        return [
+            ChordDifficulty.EASY,
+            ChordDifficulty.MEDIUM,
+            ChordDifficulty.HARD,
+            ChordDifficulty.EXPERT
+        ];
+    }
 }
