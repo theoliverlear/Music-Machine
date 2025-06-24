@@ -99,6 +99,14 @@ export class ChordInterval {
     static diminishedSeventhIntervals: Interval[] =
         [Interval.unison, Interval.minorThird, Interval.tritone, Interval.minorSeventh];
 
+    static uninvertedSeventhIntervals: Interval[][] = [
+        ChordInterval.majorSeventhIntervals,
+        ChordInterval.dominantIntervals,
+        ChordInterval.minorSeventhIntervals,
+        ChordInterval.minorMajorSeventhIntervals,
+        ChordInterval.diminishedSeventhIntervals
+    ];
+
     //---------------------Triad-Inversions-Intervals-------------------------
     static majorFirstInversionIntervals: Interval[] =
         [Interval.unison, Interval.minorThird, Interval.minorSixth];
@@ -123,6 +131,20 @@ export class ChordInterval {
 
     static augmentedSecondInversionIntervals: Interval[] =
         [Interval.unison, Interval.majorThird, Interval.minorSixth];
+
+    static triadFirstInversionIntervals: Interval[][] = [
+        ChordInterval.majorFirstInversionIntervals,
+        ChordInterval.minorFirstInversionIntervals,
+        ChordInterval.diminishedFirstInversionIntervals,
+        ChordInterval.augmentedFirstInversionIntervals
+    ];
+
+    static triadSecondInversionIntervals: Interval[][] = [
+        ChordInterval.majorSecondInversionIntervals,
+        ChordInterval.minorSecondInversionIntervals,
+        ChordInterval.diminishedSecondInversionIntervals,
+        ChordInterval.augmentedSecondInversionIntervals,
+    ];
 
     //----------------------7th-Inversions-Intervals--------------------------
     static majorSeventhFirstInversionIntervals: Interval[] =
@@ -268,6 +290,23 @@ export class ChordInterval {
 
     static diminishedSeventhThirdInversion: ChordInterval = new ChordInterval(
         ChordInterval.diminishedSeventhThirdInversionIntervals, 'Diminished 7th (3rd Inversion)');
+
+    static firstInversionSeventhIntervals: Interval[][] = [
+        ChordInterval.majorSeventhFirstInversionIntervals,
+        ChordInterval.dominantFirstInversionIntervals,
+        ChordInterval.minorSeventhFirstInversionIntervals,
+        ChordInterval.minorMajorSeventhFirstInversionIntervals,
+        ChordInterval.diminishedSeventhFirstInversionIntervals
+    ]
+
+    static secondInversionSeventhIntervals: Interval[][] = [
+        ChordInterval.majorSeventhSecondInversionIntervals,
+        ChordInterval.dominantSecondInversionIntervals,
+        ChordInterval.minorSeventhSecondInversionIntervals,
+        ChordInterval.minorMajorSeventhSecondInversionIntervals,
+        ChordInterval.diminishedSeventhSecondInversionIntervals
+    ];
+
     //-----------------------------Intervals----------------------------------
     static intervals: ChordInterval[] = [
         ChordInterval.major,
