@@ -121,6 +121,27 @@ export class Chord {
         return nameByIntervals;
     }
 
+    public isFirstInversion(): boolean {
+        return this.isAnyInverted() && this.fullName.includes("1st");
+    }
+
+    public isSecondInversion(): boolean {
+        return this.isAnyInverted() && this.fullName.includes("2nd");
+    }
+
+    public isThirdInversion(): boolean {
+        return this.isAnyInverted() && this.fullName.includes("3rd");
+    }
+
+    public isSeventh(): boolean {
+        return this.isAnySeventh() && !this.isAnyInverted();
+    }
+
+    public isAnySeventh(): boolean {
+        return this.fullName.includes("7th") ||
+               this.fullName.includes("Dominant");
+    }
+
     public isMajor(): boolean {
         return this.isAnyMajor() && !this.isAnyInverted();
     }
