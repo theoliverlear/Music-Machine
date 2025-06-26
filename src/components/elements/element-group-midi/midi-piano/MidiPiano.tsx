@@ -5,6 +5,7 @@ import Piano from "../../element-group-piano/piano/Piano";
 import {Note} from "../../../../models/note/Note";
 import MidiController from "../midi-controller/MidiController";
 import {Chord} from "../../../../models/chord/Chord";
+import {usePiano} from "../../../../hooks/piano/usePiano";
 
 interface MidiPianoProps {
     onNoteChange: (notes: Note[]) => void;
@@ -12,15 +13,20 @@ interface MidiPianoProps {
 }
 
 function MidiPiano(props: MidiPianoProps): ReactElement {
-    const [currentNotes, setCurrentNotes] = useState<Note[]>([]);
-    const [midiDeviceSelected, setMidiDeviceSelected] = useState<boolean>(false);
+    const {
+        currentNotes,
+        midiDeviceSelected,
+        handleMidiDeviceSelected,
+        handleNoteChange
+    } = usePiano();
+
     function handleMidiDeviceSelection(isMidiDeviceSelected: boolean): void {
-        setMidiDeviceSelected(isMidiDeviceSelected);
+        handleMidiDeviceSelected(isMidiDeviceSelected);
         props.onMidiDeviceSelected(isMidiDeviceSelected);
     }
     function updateCurrentNotes(newNotes: Note[]): void {
         newNotes = Note.sortNotes(newNotes);
-        setCurrentNotes(newNotes);
+        handleNoteChange(newNotes);
         props.onNoteChange(newNotes);
     }
 
