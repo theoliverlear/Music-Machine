@@ -12,52 +12,62 @@ export class ChordCalloutGame {
 
     constructor() {
         this._score = 0;
-        this._chords = [];
+        this._chords = ChordCalloutGame.generateRandomChords(6);
         this._secondsPerChord = 5;
         this._currentChordIndex = 0;
     }
 
-    public generateRandomChord(difficulty: ChordDifficulty): Chord {
+
+    public getCurrentChord(): Chord {
+        const outOfBounds: boolean = this._currentChordIndex >= this._chords.length;
+        if (outOfBounds) {
+            throw new Error("Current chord index is out of bounds.");
+        }
+        return this._chords[this._currentChordIndex];
+    }
+
+    public static generateRandomChord(difficulty: ChordDifficulty): Chord {
         switch (difficulty) {
             case ChordDifficulty.EASY:
-                return this.getEasyChord();
+                return ChordCalloutGame.getEasyChord();
             case ChordDifficulty.MEDIUM:
-                return this.getMediumChord();
+                return ChordCalloutGame.getMediumChord();
             case ChordDifficulty.HARD:
-                return this.getHardChord();
+                return ChordCalloutGame.getHardChord();
+            case ChordDifficulty.EXPERT:
+                return ChordCalloutGame.getHardChord();
             default:
                 throw new Error(`Unsupported chord difficulty: ${difficulty}`);
         }
     }
 
-    getMediumChord(): Chord {
-        const [numNotes, inversionSplit] = this.getNoteInversionSplit(ChordDifficulty.MEDIUM);
+    static getMediumChord(): Chord {
+        const [numNotes, inversionSplit] = ChordCalloutGame.getNoteInversionSplit(ChordDifficulty.MEDIUM);
         switch (inversionSplit) {
             case 0:
-                return this.getUninvertedSeventhChord();
+                return ChordCalloutGame.getUninvertedSeventhChord();
             case 1:
-                return this.getFirstInversionTriadChord();
+                return ChordCalloutGame.getFirstInversionTriadChord();
             default:
                 throw new Error("Invalid inversion amount for medium difficulty: " + inversionSplit);
         }
     }
 
-    getHardChord(): Chord {
+    static getHardChord(): Chord {
         const [numNotes, inversionSplit] = this.getNoteInversionSplit(ChordDifficulty.HARD);
-        console.log(inversionSplit);
         switch (inversionSplit) {
             case 0:
-                return this.getSecondInversionSeventhChord();
+                return ChordCalloutGame.getSecondInversionSeventhChord();
             case 1:
-                return this.getFirstInversionSeventhChord();
+                return ChordCalloutGame.getFirstInversionSeventhChord();
             case 2:
-                return this.getSecondInversionTriadChord();
+                return ChordCalloutGame.getSecondInversionTriadChord();
             default:
                 throw new Error("Invalid inversion amount for hard difficulty: " + inversionSplit);
         }
     }
 
-    getSecondInversionSeventhChord(): Chord {
+    static getSecondInversionSeventhChord(): Chord {
         const numSecondInversionSevenths: number = ChordInterval.secondInversionSeventhIntervals.length;
         const randomIndexSecondInversion: number = Math.floor(Math.random() * numSecondInversionSevenths);
         const randomIntervalSecondInversion: Interval[] = ChordInterval.secondInversionSeventhIntervals[randomIndexSecondInversion];
@@ -70,7 +80,7 @@ export class ChordCalloutGame {
         return chordSecondInversion;
     }
 
-    getFirstInversionSeventhChord(): Chord {
+    static getFirstInversionSeventhChord(): Chord {
         const numFirstInversionSevenths: number = ChordInterval.firstInversionSeventhIntervals.length;
         const randomIndexFirstInversion: number = Math.floor(Math.random() * numFirstInversionSevenths);
         const randomIntervalFirstInversion: Interval[] = ChordInterval.firstInversionSeventhIntervals[randomIndexFirstInversion];
@@ -83,7 +93,7 @@ export class ChordCalloutGame {
         return chordFirstInversion;
     }
 
-    getFirstInversionTriadChord(): Chord {
+    static getFirstInversionTriadChord(): Chord {
         const numFirstInversionTriads: number = ChordInterval.triadFirstInversionIntervals.length;
         const randomIndex: number = Math.floor(Math.random() * numFirstInversionTriads);
         const randomInterval: Interval[] = ChordInterval.triadFirstInversionIntervals[randomIndex];
@@ -96,7 +106,7 @@ export class ChordCalloutGame {
         return chord;
     }
 
-    getSecondInversionTriadChord(): Chord {
+    static getSecondInversionTriadChord(): Chord {
         const numSecondInversionTriads: number = ChordInterval.triadSecondInversionIntervals.length;
         const randomIndex: number = Math.floor(Math.random() * numSecondInversionTriads);
         const randomInterval: Interval[] = ChordInterval.triadSecondInversionIntervals[randomIndex];
@@ -109,7 +119,7 @@ export class ChordCalloutGame {
         return chord;
     }
 
-    getUninvertedSeventhChord(): Chord {
+    static getUninvertedSeventhChord(): Chord {
         const numUninvertedSevenths: number = ChordInterval.uninvertedSeventhIntervals.length;
         const randomIndexUninverted: number = Math.floor(Math.random() * numUninvertedSevenths);
         const randomIntervalUninverted: Interval[] = ChordInterval.uninvertedSeventhIntervals[randomIndexUninverted];
@@ -122,7 +132,7 @@ export class ChordCalloutGame {
         return chordUninverted;
     }
 
-    public getNoteInversionSplit(difficulty: ChordDifficulty): [number, number] {
+    public static getNoteInversionSplit(difficulty: ChordDifficulty): [number, number] {
         let numNotes: number;
         let inversionSplit: number;
         switch (difficulty) {
@@ -146,7 +156,7 @@ export class ChordCalloutGame {
         }
     }
 
-    private getEasyChord(): Chord {
+    static getEasyChord(): Chord {
         const numUninvertedTriads: number = ChordInterval.uninvertedTriadIntervals.length;
         const randomIndex: number = Math.floor(Math.random() * numUninvertedTriads);
         const randomInterval: Interval[] = ChordInterval.uninvertedTriadIntervals[randomIndex];
@@ -160,7 +170,16 @@ export class ChordCalloutGame {
     }
 
     static generateRandomChords(count: number): Chord[] {
-        return [];
+        if (count < 6) {
+            count = 6;
+        }
+        const chords: Chord[] = [];
+        for (let i: number = 0; i < count; i++) {
+            const randomDifficulty = ChordDifficulty.getRandomDifficulty();
+            const chord: Chord = ChordCalloutGame.generateRandomChord(randomDifficulty);
+            chords.push(chord);
+        }
+        return chords;
     }
 
     public getTimeBasedScore(startTime: number,
