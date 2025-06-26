@@ -11,7 +11,7 @@ function ChordKeyDisplay(props: ChordDisplayProps): ReactElement {
     function getKeyLimits(): [number, number] {
         const firstNote: Note = props.currentNotes[0];
         const lastNote: Note = props.currentNotes[props.currentNotes.length - 1];
-        return [firstNote.noteData.noteNumber, lastNote.noteData.noteNumber];
+        return [firstNote.noteData.noteNumber - 12, lastNote.noteData.noteNumber + 12];
     }
 
     return (
