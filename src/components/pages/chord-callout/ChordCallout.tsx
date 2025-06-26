@@ -17,26 +17,26 @@ import PageTitle
 import ChordDisplay
     from "../../elements/element-group-chord-callout/element-group-chord-display/chord-display/ChordDisplay";
 import {Note} from "../../../models/note/Note";
+import {ChordCalloutGame} from "./models/ChordCalloutGame";
+import CountdownTimer
+    from "../../elements/element-group-game/countdown-timer/CountdownTimer";
+import {usePiano} from "../../../hooks/piano/usePiano";
 
 function ChordCallout(): ReactElement {
+    const [game, setGame] = useState<ChordCalloutGame>(new ChordCalloutGame());
     const [metronome, setMetronome] = useState<Metronome>(new Metronome(85, 4, 0.8));
     const [gameModePicked, setGameModePicked] = useState<boolean>(false);
     const [gameMode, setGameMode] = useState<ChordCalloutOptionType>(ChordCalloutOptionType.KEYS);
-    const [midiDeviceSelected, setMidiDeviceSelected] = useState<boolean>(false);
-    const [currentNotes, setCurrentNotes] = useState<Note[]>([]);
-
-    function handleNoteChange(currentNotes: Note[]): void {
-        currentNotes = Note.sortNotes(currentNotes);
-        setCurrentNotes(currentNotes);
-    }
+    const {
+        currentNotes,
+        midiDeviceSelected,
+        handleMidiDeviceSelected,
+        handleNoteChange
+    } = usePiano();
 
     function handleGameModeChange(gameMode: ChordCalloutOptionType): void {
         setGameModePicked(true);
         setGameMode(gameMode);
-    }
-
-    function handleMidiDeviceSelected(isSelected: boolean): void {
-        setMidiDeviceSelected(isSelected);
     }
 
     return (
@@ -50,7 +50,8 @@ function ChordCallout(): ReactElement {
                 <MidiPiano onNoteChange={handleNoteChange}
                            onMidiDeviceSelected={handleMidiDeviceSelected}/>}
             {gameModePicked &&
-                <ChordDisplay chordType={gameMode} currentNotes={currentNotes}/>}
+                <ChordDisplay chordType={gameMode} currentNotes={game.getCurrentChord().notes.asArray()}/>}
+            <CountdownTimer timeInSeconds={5}/>
         </div>
     );
 }
