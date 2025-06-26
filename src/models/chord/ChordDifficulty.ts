@@ -29,4 +29,9 @@ export namespace ChordDifficulty {
             ChordDifficulty.EXPERT
         ];
     }
+    export function getRandomDifficulty(): ChordDifficulty {
+        const difficulties: ChordDifficulty[] = ChordDifficulty.values();
+        const randomIndex: number = Math.floor(Math.random() * difficulties.length);
+        return difficulties[randomIndex];
+    }
 }
