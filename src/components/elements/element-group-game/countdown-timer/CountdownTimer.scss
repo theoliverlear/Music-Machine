@@ -1,0 +1,29 @@
+// CountdownTimer.scss
+@import "../../../../styles/global-variables";
+@import "../../../../styles/global-mixins";
+@import "../../../../styles/global-functions";
+@import "../../../../styles/global-placeholders";
+
+.countdown-timer {
+    .time-display-div {
+        @include flex(flex-end, center, row);
+        width: $ten-percent;
+        height: $five-percent;
+        padding: $half-percent;
+        @extend %soft-border-radius;
+        background-color: $charcoal;
+        position: relative;
+        .time-remaining-div {
+            @extend %soft-border-radius;
+            height: 100%;
+        }
+        .countdown-timer-text {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+            z-index: 1;
+            color: $pristine-white;
+        }
+    }
+}
