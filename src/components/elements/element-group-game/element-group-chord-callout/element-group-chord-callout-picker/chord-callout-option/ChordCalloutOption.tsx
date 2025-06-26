@@ -1,12 +1,12 @@
 import React, {ReactElement, useEffect, useRef} from 'react';
 import './ChordCalloutOption.scss';
 import {ChordCalloutOptionType} from "./models/ChordCalloutOptionType";
-import {Note} from "../../../../../models/note/Note";
-import Piano from "../../../element-group-piano/piano/Piano";
-import Title from "../../../element-group-native/title/Title";
-import {TagType} from "../../../../../models/html/TagType";
-import Subtitle from "../../../element-group-text/subtitle/Subtitle";
-import {Chord} from "../../../../../models/chord/Chord";
+import {Note} from "../../../../../../models/note/Note";
+import Piano from "../../../../element-group-piano/piano/Piano";
+import Title from "../../../../element-group-native/title/Title";
+import {TagType} from "../../../../../../models/html/TagType";
+import Subtitle from "../../../../element-group-text/subtitle/Subtitle";
+import {Chord} from "../../../../../../models/chord/Chord";
 import {
     Formatter,
     RenderContext,
@@ -15,8 +15,8 @@ import {
     StaveNote,
     Voice
 } from "vexflow";
-import Button from "../../../element-group-native/button/Button";
-import {ElementSize} from "../../../../../models/ElementSize";
+import Button from "../../../../element-group-native/button/Button";
+import {ElementSize} from "../../../../../../models/ElementSize";
 
 interface ChordCalloutOptionProps {
     optionType: ChordCalloutOptionType;

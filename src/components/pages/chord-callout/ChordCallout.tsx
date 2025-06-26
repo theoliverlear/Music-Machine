@@ -6,16 +6,16 @@ import NavBar
 import Button from "../../elements/element-group-native/button/Button";
 import {ElementSize} from "../../../models/ElementSize";
 import ChordCalloutPicker
-    from '../../elements/element-group-chord-callout/element-group-chord-callout-picker/chord-callout-picker/ChordCalloutPicker';
+    from '../../elements/element-group-game/element-group-chord-callout/element-group-chord-callout-picker/chord-callout-picker/ChordCalloutPicker';
 import MidiPiano
     from "../../elements/element-group-midi/midi-piano/MidiPiano";
 import {
     ChordCalloutOptionType
-} from "../../elements/element-group-chord-callout/element-group-chord-callout-picker/chord-callout-option/models/ChordCalloutOptionType";
+} from "../../elements/element-group-game/element-group-chord-callout/element-group-chord-callout-picker/chord-callout-option/models/ChordCalloutOptionType";
 import PageTitle
     from "../../elements/element-group-text/page-title/PageTitle";
 import ChordDisplay
-    from "../../elements/element-group-chord-callout/element-group-chord-display/chord-display/ChordDisplay";
+    from "../../elements/element-group-game/element-group-chord-callout/element-group-chord-display/chord-display/ChordDisplay";
 import {Note} from "../../../models/note/Note";
 import {ChordCalloutGame} from "./models/ChordCalloutGame";
 import CountdownTimer

@@ -1,7 +1,7 @@
 import React, {ReactElement} from 'react';
 import './ChordKeyDisplay.scss';
-import {Note} from "../../../../../models/note/Note";
-import Piano from "../../../element-group-piano/piano/Piano";
+import {Note} from "../../../../../../models/note/Note";
+import Piano from "../../../../element-group-piano/piano/Piano";
 
 interface ChordDisplayProps {
     currentNotes: Note[];

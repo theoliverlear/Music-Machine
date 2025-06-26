@@ -6,7 +6,7 @@ import {
 import ChordKeyDisplay from "../chord-key-display/ChordKeyDisplay";
 import ChordSheetDisplay from "../chord-sheet-display/ChordSheetDisplay";
 import ChordNameDisplay from "../chord-name-display/ChordNameDisplay";
-import {Note} from "../../../../../models/note/Note";
+import {Note} from "../../../../../../models/note/Note";
 
 interface ChordDisplayProps {
     chordType: ChordCalloutOptionType;
