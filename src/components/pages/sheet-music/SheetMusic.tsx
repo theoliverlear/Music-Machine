@@ -18,15 +18,14 @@ import {usePiano} from "../../../hooks/piano/usePiano";
 import {usePitch} from "../../../hooks/piano/usePitch";
 
 function SheetMusic(): ReactElement {
+    //============================-Variables-=================================
     const [keySignature, setKeySignature] = useState<KeySignature>(KeySignature.cMajor);
-
     const {
         currentNotes,
         midiDeviceSelected,
         handleMidiDeviceSelected,
         handleNoteChange
     } = usePiano();
-
     const {
         pitchState,
         pitchType,
@@ -34,16 +33,16 @@ function SheetMusic(): ReactElement {
         handlePitchTypeSelection,
         getPitch,
     } = usePitch();
-
+    //--------------------Handle-Key-Signature-Change-------------------------
     function handleKeySignatureChange(newKeySignature: AnalogousKeys): void {
         setKeySignature(newKeySignature.major);
     }
-
+    //=============================-Element-==================================
     return (
         <div className={"sheet-music"}>
             <NavBar/>
             <PitchSlider onPitchSelection={handlePitchChange}
-            onPitchTypeSelection={handlePitchTypeSelection}/>
+                         onPitchTypeSelection={handlePitchTypeSelection}/>
             <PageTitle text={"Sheet Music"}/>
             <LiveSheetNotes currentNotes={currentNotes}
                             pitch={getPitch(currentNotes)}
