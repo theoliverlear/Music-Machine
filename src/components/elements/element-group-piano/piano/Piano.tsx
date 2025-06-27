@@ -16,7 +16,8 @@ function Piano(props: PianoProps): ReactElement {
         const isPlayed: boolean = props.currentNotes.some(note => note.noteData.fullNoteName === firstNote || note.noteData.fullNoteName === secondNote);
         return isPlayed;
     }
-    function limitOctave(limits: [number, number] | undefined, octave: number): boolean {
+    //----------------------------Limit-Octave--------------------------------
+    function shouldLimitOctave(limits: [number, number] | undefined, octave: number): boolean {
         if (!limits) {
             return false;
         }
@@ -24,13 +25,13 @@ function Piano(props: PianoProps): ReactElement {
         const highNote: NoteData = NoteData.getByNoteNumber(limits[1]);
         return lowNote.octave > octave || highNote.octave < octave;
     }
-
-    function getElementByOctave(octaveNumber: number) {
+    //-----------------------Get-Element-By-Octave----------------------------
+    function getElementByOctave(octaveNumber: number): ReactElement {
         switch (octaveNumber) {
             case 0:
                 return (
                     <>
-                        {!limitOctave(props.keyLimits, 0) && (
+                        {!shouldLimitOctave(props.keyLimits, 0) && (
                             <OpeningOctave currentNotes={props.currentNotes}
                                            isNotePlayed={isNotePlayed}/>
                         )}
@@ -39,7 +40,7 @@ function Piano(props: PianoProps): ReactElement {
             case 8:
                 return (
                     <>
-                        {!limitOctave(props.keyLimits, 8) && (
+                        {!shouldLimitOctave(props.keyLimits, 8) && (
                             <ClosingOctave currentNotes={props.currentNotes}
                                            isNotePlayed={isNotePlayed}/>
                         )}
@@ -48,7 +49,7 @@ function Piano(props: PianoProps): ReactElement {
             default:
                 return (
                     <>
-                        {!limitOctave(props.keyLimits, octaveNumber) && (
+                        {!shouldLimitOctave(props.keyLimits, octaveNumber) && (
                             <KeyOctave octaveNumber={octaveNumber}
                                        currentNotes={props.currentNotes}
                                        isNotePlayed={isNotePlayed}/>
@@ -57,19 +58,11 @@ function Piano(props: PianoProps): ReactElement {
                 )
         }
     }
-
+    //=============================-Element-==================================
     return (
         <div className="piano">
             <div className="key-container">
-                {getElementByOctave(0)}
-                {getElementByOctave(1)}
-                {getElementByOctave(2)}
-                {getElementByOctave(3)}
-                {getElementByOctave(4)}
-                {getElementByOctave(5)}
-                {getElementByOctave(6)}
-                {getElementByOctave(7)}
-                {getElementByOctave(8)}
+                {Array.from({length: 9}, (_: unknown, i: number): ReactElement => getElementByOctave(i))}
             </div>
         </div>
     );
