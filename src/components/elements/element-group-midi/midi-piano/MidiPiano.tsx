@@ -13,6 +13,7 @@ interface MidiPianoProps {
 }
 
 function MidiPiano(props: MidiPianoProps): ReactElement {
+    //============================-Variables-=================================
     const {
         currentNotes,
         midiDeviceSelected,
@@ -20,16 +21,19 @@ function MidiPiano(props: MidiPianoProps): ReactElement {
         handleNoteChange
     } = usePiano();
 
+    //--------------------Handle-Midi-Device-Selection------------------------
     function handleMidiDeviceSelection(isMidiDeviceSelected: boolean): void {
         handleMidiDeviceSelected(isMidiDeviceSelected);
         props.onMidiDeviceSelected(isMidiDeviceSelected);
     }
+    //------------------------Update-Current-Notes----------------------------
     function updateCurrentNotes(newNotes: Note[]): void {
         newNotes = Note.sortNotes(newNotes);
         handleNoteChange(newNotes);
         props.onNoteChange(newNotes);
     }
 
+    //=============================-Element-==================================
     return (
         <div className={"midi-piano"}>
             <MidiController onMidiDeviceSelected={handleMidiDeviceSelection}
@@ -38,5 +42,4 @@ function MidiPiano(props: MidiPianoProps): ReactElement {
         </div>
     );
 }
-
 export default MidiPiano;
