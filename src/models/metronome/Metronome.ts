@@ -11,13 +11,32 @@ export class Metronome {
     private _isPlaying: boolean;
     private _bpm: number;
     private _numBeats: number;
+    private _hasCountOff: boolean;
+    private _countOffMeasures?: number;
     constructor(bpm: number = 120,
                 numBeats: number = 4,
-                volume: number = 0.5) {
+                volume: number = 0.5,
+                hasCountOff: boolean = false,
+                countOffMeasures?: number) {
         this._isPlaying = false;
         this._audio = new AudioPlayer(volume);
         this._bpm = this.normalizeBpm(bpm);
         this._numBeats = numBeats;
+        this._hasCountOff = hasCountOff;
+        if (countOffMeasures !== undefined) {
+            this._countOffMeasures = countOffMeasures;
+        }
+    }
+
+    playCountOff(): void {
+        if (!this._hasCountOff || this._countOffMeasures === undefined) {
+            return;
+        }
+
+    }
+
+    playMeasure() {
+
     }
 
     set volume(percentage: number) {
@@ -59,13 +78,23 @@ export class Metronome {
             this.setAudioSource(beatCount);
             this.click();
             beatCount++;
-            const millisBetweenBeats: number = this.getMillisBetweenBeats();
-            const nextBeatTime: number = Date.now() + millisBetweenBeats;
-            await new Promise(resolve => {
-                const timeUntilNextBeat: number = nextBeatTime - Date.now();
-                setTimeout(resolve, timeUntilNextBeat);
-            });
+            // const millisBetweenBeats: number = this.getMillisBetweenBeats();
+            // const nextBeatTime: number = Date.now() + millisBetweenBeats;
+            // await new Promise(resolve => {
+            //     const timeUntilNextBeat: number = nextBeatTime - Date.now();
+            //     setTimeout(resolve, timeUntilNextBeat);
+            // });
+            await this.waitTillNextBeat().catch(console.error);
         }
+    }
+
+    async waitTillNextBeat(): Promise<void> {
+        const millisBetweenBeats: number = this.getMillisBetweenBeats();
+        const nextBeatTime: number = Date.now() + millisBetweenBeats;
+        await new Promise(resolve => {
+            const timeUntilNextBeat: number = nextBeatTime - Date.now();
+            setTimeout(resolve, timeUntilNextBeat);
+        });
     }
 
     setAudioSource(beatCount: number): void {
