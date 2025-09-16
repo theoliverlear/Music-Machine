@@ -30,7 +30,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Create temporary Maven POM for CI
         run: |
-          cat > pom.xml << 'EOF'
+          mkdir -p ci-maven
+          cat > ci-maven/pom.xml << 'EOF'
           <?xml version="1.0" encoding="UTF-8"?>
           <project xmlns="http://maven.apache.org/POM/4.0.0"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -52,6 +53,8 @@ jobs:
           server-id: github
           server-username: GITHUB_ACTOR
           server-password: GITHUB_TOKEN
+          cache: maven
+          cache-dependency-path: ci-maven/pom.xml
       - name: Run Promo Bot
         uses: theoliverlear/Sigwarth-Software-Suite@master
         env:
@@ -71,4 +74,4 @@ jobs:
           repo_name:       ${{ secrets.REPO_NAME }}
       - name: Clean up temporary POM
         if: always()
-        run: rm -f pom.xml
+        run: rm -rf ci-maven
