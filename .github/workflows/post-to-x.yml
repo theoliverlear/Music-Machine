@@ -1,0 +1,53 @@
+name: Post updates to X
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    types: [ closed ]
+    branches: [ "main", "master" ]
+  issues:
+    types: [ opened ]
+  release:
+    types: [ published ]
+  workflow_dispatch:
+    inputs:
+      start:
+        description: 'Start commit SHA (optional)'
+        required: false
+      end:
+        description: 'End commit SHA (optional)'
+        required: false
+jobs:
+  promo:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: read
+      packages: read
+      pull-requests: read
+    steps:
+      - name: Set up JDK and GitHub Packages for Maven
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '23'
+          server-id: github
+          server-username: GITHUB_ACTOR
+          server-password: GITHUB_TOKEN
+      - name: Run Promo Bot
+        uses: theoliverlear/Sigwarth-Software-Suite@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_ACTOR: ${{ github.actor }}
+        with:
+          app_name: "Music Machine"
+          mode: prod
+          start:           ${{ github.event.inputs.start }}
+          end:             ${{ github.event.inputs.end }}
+          openai_key:      ${{ secrets.OPENAI_KEY }}
+          github_token:    ${{ secrets.GITHUB_TOKEN }}
+          x_api_key:       ${{ secrets.X_API_KEY }}
+          x_secret:        ${{ secrets.X_SECRET }}
+          x_access_token:  ${{ secrets.X_ACCESS_TOKEN }}
+          x_access_secret: ${{ secrets.X_ACCESS_SECRET }}
+          repo_name:       ${{ secrets.REPO_NAME }}
