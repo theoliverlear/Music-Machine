@@ -33,7 +33,8 @@ function Piano(props: PianoProps): ReactElement {
                     <>
                         {!shouldLimitOctave(props.keyLimits, 0) && (
                             <OpeningOctave currentNotes={props.currentNotes}
-                                           isNotePlayed={isNotePlayed}/>
+                                           isNotePlayed={isNotePlayed}
+                                           key={octaveNumber}/>
                         )}
                     </>
                 );
@@ -42,7 +43,8 @@ function Piano(props: PianoProps): ReactElement {
                     <>
                         {!shouldLimitOctave(props.keyLimits, 8) && (
                             <ClosingOctave currentNotes={props.currentNotes}
-                                           isNotePlayed={isNotePlayed}/>
+                                           isNotePlayed={isNotePlayed}
+                                           key={octaveNumber}/>
                         )}
                     </>
                 );
@@ -52,7 +54,8 @@ function Piano(props: PianoProps): ReactElement {
                         {!shouldLimitOctave(props.keyLimits, octaveNumber) && (
                             <KeyOctave octaveNumber={octaveNumber}
                                        currentNotes={props.currentNotes}
-                                       isNotePlayed={isNotePlayed}/>
+                                       isNotePlayed={isNotePlayed}
+                                       key={octaveNumber}/>
                         )}
                     </>
                 )
