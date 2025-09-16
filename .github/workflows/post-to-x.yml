@@ -26,6 +26,24 @@ jobs:
       packages: read
       pull-requests: read
     steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Create temporary Maven POM for CI
+        run: |
+          cat > pom.xml << 'EOF'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <project xmlns="http://maven.apache.org/POM/4.0.0"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+              <modelVersion>4.0.0</modelVersion>
+              <groupId>com.sigwarth</groupId>
+              <artifactId>music-machine-ci</artifactId>
+              <version>0.0.1-SNAPSHOT</version>
+              <packaging>pom</packaging>
+              <name>Music Machine CI Placeholder</name>
+              <description>Ephemeral placeholder POM for CI; not part of the repo.</description>
+          </project>
+          EOF
       - name: Set up JDK and GitHub Packages for Maven
         uses: actions/setup-java@v4
         with:
@@ -51,3 +69,6 @@ jobs:
           x_access_token:  ${{ secrets.X_ACCESS_TOKEN }}
           x_access_secret: ${{ secrets.X_ACCESS_SECRET }}
           repo_name:       ${{ secrets.REPO_NAME }}
+      - name: Clean up temporary POM
+        if: always()
+        run: rm -f pom.xml
